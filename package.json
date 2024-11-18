@@ -13,23 +13,21 @@
     "format": "prettier --write .",
     "prepare": "husky install"
   },
+  "type": "module",
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{html,css,md,json}": [
-      "prettier --write"
-    ]
+    "*.js": "eslint --fix",
+    "*.{html,css,md,json}": "prettier --write"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.15.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.12.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.10",
     "postcss": "^8.4.49",
