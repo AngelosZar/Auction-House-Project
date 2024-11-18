@@ -3,3 +3,4 @@ dist
 .eslintcache
 .prettier-cache
 .env
+.DS_Store
