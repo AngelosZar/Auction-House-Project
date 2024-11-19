@@ -49,3 +49,9 @@ h5 {
 h6 {
   @apply text-3xl;
 }
+body {
+  @apply max-w-[1440px] mx-auto;
+}
+/* main {
+  @apply px-4;
+} */
