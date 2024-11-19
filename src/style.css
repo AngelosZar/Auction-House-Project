@@ -52,6 +52,7 @@
   body {
     @apply max-w-[1440px] mx-auto;
     @apply bg-body-light dark:bg-body-dark;
+    @apply text-text-black dark:text-text-white;
   }
 }
 
