@@ -3,55 +3,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  /* text elements */
+  p,
+  ul,
+  li,
+  form,
+  input,
+  textarea,
+  select {
+    @apply font-primary;
+  }
 
-/* text elements */
-p,
-ul,
-li,
-form,
-input,
-textarea,
-select {
-  @apply font-primary;
-}
+  /* headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  button {
+    @apply font-secondary;
+  }
+  /* set font sizes */
+  h1 {
+    @apply text-8xl;
+  }
 
-/* headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-button {
-  @apply font-secondary;
-}
-/* set font sizes */
-h1 {
-  @apply text-8xl;
-}
+  h2 {
+    @apply text-7xl;
+  }
 
-h2 {
-  @apply text-7xl;
-}
+  h3 {
+    @apply text-6xl;
+  }
 
-h3 {
-  @apply text-6xl;
-}
+  h4 {
+    @apply text-5xl;
+  }
 
-h4 {
-  @apply text-5xl;
-}
+  h5 {
+    @apply text-4xl;
+  }
 
-h5 {
-  @apply text-4xl;
+  h6 {
+    @apply text-3xl;
+  }
+  body {
+    @apply max-w-[1440px] mx-auto;
+  }
+  body {
+    @apply bg-body-light dark:bg-body-dark;
+  }
 }
-
-h6 {
-  @apply text-3xl;
-}
-body {
-  @apply max-w-[1440px] mx-auto;
-}
-/* main {
-  @apply px-4;
-} */

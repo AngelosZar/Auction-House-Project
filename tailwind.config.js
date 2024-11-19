@@ -9,7 +9,7 @@ export default {
       colors: {
         body: {
           dark: "#0B1423",
-          light: "#FDFDFD",
+          light: "#F5F5EF",
         },
         green: {
           1: "#8EEB78",
@@ -29,6 +29,10 @@ export default {
         text: {
           white: "#FDFDFD",
           black: "#000000",
+        },
+        light: {
+          cards: "#FFFFFF",
+          component: "#F0F0E8",
         },
       },
     },
