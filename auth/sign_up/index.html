@@ -123,32 +123,65 @@
     <!-- main -->
     <!-- <main class="min-h-screen flex flex-col items-center justify-center"> -->
     <main class="flex h-screen">
-      <section class="w-full max-w-sm m-auto bg-light-cards dark:bg-purple-dark rounded-md p-5">
-        <h2>Sign up</h2>
-        <form action="" class="">
-          <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" />
-          </div>
-          <div>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" />
-          </div>
+      <!-- <main class="grid"> -->
+      <div class="flex h-screen">
+        <div class="w-full max-w-sm m-auto bg-light-cards dark:bg-purple-dark rounded-md p-5">
+          <h2>Sign up</h2>
 
-          <div>
-            <label for="password"></label>
-            <input type="password" id="password" name="password" />
-          </div>
+          <form action="" class="">
+            <div class="mb-4">
+              <label for="email" class="block mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full py-2 px-4 mb-6 rounded-lg"
+              />
+            </div>
 
-          <div>
-            <label for="confirm-password">Confirm password</label>
-            <input type="confirm-password" id="confirm-password" name="confirm-password" />
-          </div>
+            <div class="mb-4">
+              <label for="username" class="block mb-2">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="w-full py-2 px-4 mb-6 rounded-lg"
+              />
+            </div>
 
-          <button class="btn btn-primary dark:btn btn-primary-dark">Sign up</button>
-        </form>
-      </section>
+            <div class="mb-4">
+              <label for="password" class="block mb-2">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="w-full py-2 px-4 mb-6 rounded-lg"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="confirm-password" class="block mb-2">Confirm password</label>
+              <input
+                type="confirm-password"
+                id="confirm-password"
+                name="confirm-password"
+                class="w-full py-2 px-4 mb-6 rounded-lg"
+              />
+            </div>
+
+            <button class="btn btn-primary dark:btn btn-primary-dark" type="submit">Sign up</button>
+
+            <div class="flex gap-2 items-center">
+              <p class="mr-4">Already have an account?</p>
+              <a href="/auth/sign_in/" class="btn btn-primary dark:btn btn-secondary-dark"
+                >Sing in</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
     </main>
+
     <footer
       class="bg-light-component px-4 py-8 lg:px-20 text-text-black dark:text-text-white border-y-2 dark:border-none dark:bg-black-bright"
     >
