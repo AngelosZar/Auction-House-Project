@@ -1,3 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  /* text elements */
+  p,
+  ul,
+  li,
+  form,
+  input,
+  textarea,
+  select {
+    @apply font-primary;
+  }
+
+  /* headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  button {
+    @apply font-secondary;
+  }
+  /* set font sizes */
+  h1 {
+    @apply text-8xl;
+  }
+
+  h2 {
+    @apply text-7xl;
+  }
+
+  h3 {
+    @apply text-6xl;
+  }
+
+  h4 {
+    @apply text-5xl;
+  }
+
+  h5 {
+    @apply text-4xl;
+  }
+
+  h6 {
+    @apply text-3xl;
+  }
+  body {
+    @apply max-w-[1440px] mx-auto;
+    @apply bg-body-light dark:bg-body-dark;
+    @apply text-text-black dark:text-text-white;
+  }
+}
+
+/* Btns for light and dark mode */
+@layer components {
+  .btn {
+    @apply inline-flex min-w-[120px] w-fit items-center justify-center 
+           rounded-[8px] px-4 py-2  /* Standardized border-radius */
+           font-bold text-center
+           transition-colors duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-green-2 text-white hover:bg-green-3 
+           focus:ring-2 focus:ring-green-2 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-green-2 border-2 border-green-2
+           hover:bg-green-2 hover:text-white 
+           focus:ring-2 focus:ring-green-2 focus:ring-offset-2;
+  }
+
+  .btn-primary-dark {
+    @apply border-2 border-purple-light
+           bg-purple-light text-white hover:bg-body-dark 
+           hover:border-2 hover:border-purple-light
+           focus:ring-2 focus:ring-purple-light focus:ring-offset-2;
+  }
+
+  .btn-secondary-dark {
+    @apply border-2 border-purple-light
+           bg-body-dark text-white hover:bg-purple-light 
+           focus:ring-2 focus:ring-purple-light focus:ring-offset-2;
+  }
+}
