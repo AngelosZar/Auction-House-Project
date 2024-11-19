@@ -51,8 +51,6 @@
   }
   body {
     @apply max-w-[1440px] mx-auto;
-  }
-  body {
     @apply bg-body-light dark:bg-body-dark;
   }
 }
