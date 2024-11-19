@@ -11,8 +11,9 @@ export const signUpApiCall = async (data) => {
       },
       body: JSON.stringify(data),
     });
-    if (!res.ok) {
+    if (!response.ok) {
       const errorResponse = await res.json();
+      console.log(errorResponse);
       let mappedErrors = 'Unexpected error';
       if (errorResponse.errors && errorResponse.errors.length > 0) {
         mappedErrors = errorResponse.errors.map((error) => error.message).join('\n');
@@ -25,7 +26,7 @@ export const signUpApiCall = async (data) => {
     console.log(response);
     return response.json();
   } catch (error) {
-    return error;
+    throw Error;
   }
 };
 // {
