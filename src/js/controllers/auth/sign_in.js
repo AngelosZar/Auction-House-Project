@@ -12,5 +12,23 @@ export const signInController = async (event) => {
   try {
     const result = await signInApiCall(data);
     console.log(result);
+    const {
+      data: {
+        name,
+        email,
+        accessToken,
+        avatar: { url: avatarUrl, alt: avatarAlt },
+        banner: { url: bannerUrl, alt: bannerAlt },
+      },
+    } = await result;
+    //
+    const currentUser = {
+      name,
+      email,
+      accessToken,
+      avatar: { url: avatarUrl, alt: avatarAlt },
+      banner: { url: bannerUrl, alt: bannerAlt },
+    };
+    console.log('i am the current user yo', currentUser);
   } catch (error) {}
 };
