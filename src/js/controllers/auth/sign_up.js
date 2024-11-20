@@ -3,31 +3,19 @@ import { validatePassword } from '../../utilities/ValidatePassword';
 
 export async function onSignUpUser(event) {
   event.preventDefault();
-  //   make make this another function
   const form = event.target;
   console.log(form);
-  //   const name = form.username.value;
-  //   console.log('name', name);
-  //   const email = form.email.value;
+  // password validation
   const password = form.password.value;
   const confirmPassword = form.confirmPassword.value;
   if (!validatePassword(password, confirmPassword)) {
     alert('Passwords do not match \n Please insert the same password in both fields');
     return;
   }
-  //   const bio = form.bio.value;
-  //   const profileImg = form.profileImg.value;
-  //   const profileImgAlt = form.profileImgAlt.value;
-  //
-  //   console.log('password', password);
-  //   console.log('confirmPassword', confirmPassword);
-  //   const confirmPassword = form.target.confirmPassword.value;
-  console.log(confirmPassword);
-  //   up to here
-
+  // grab user data
   const userData = {
     name: form.username.value,
-    email: form.username.value,
+    email: form.email.value,
     password: form.password.value,
     bio: form.bio?.value || undefined,
     avatar: form.profileImg?.value
@@ -38,10 +26,7 @@ export async function onSignUpUser(event) {
       : undefined,
   };
   console.log('userData', userData);
-  //   console.log('i got the data', userData);
-  //   prompt('i grabbed the data', userData);
-
-  //   form.reset();
+  // call the api
   try {
     const res = await signUpApiCall(userData);
     const data = await res.json();
@@ -51,7 +36,7 @@ export async function onSignUpUser(event) {
   } catch (error) {
     console.log('i am doing all the work');
   } finally {
-    // prompt('i am resetting the form');
-    // form.reset();
+    prompt('i am resetting the form');
+    form.reset();
   }
 }
