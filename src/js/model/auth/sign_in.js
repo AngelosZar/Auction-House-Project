@@ -1,4 +1,5 @@
 import { API_AUTH_LOGIN } from '../../utilities/constants';
+
 /**
  *
  * @param {object} data -user email and password
@@ -19,7 +20,7 @@ export const signInApiCall = async (data) => {
       alert(result.errors[0].message);
       return { result, Error };
     }
-    console.log(result);
+
     const {
       data: {
         name,
@@ -29,7 +30,7 @@ export const signInApiCall = async (data) => {
         banner: { url: bannerUrl, alt: bannerAlt },
       },
     } = await result;
-    //
+
     const currentUser = {
       name,
       email,
