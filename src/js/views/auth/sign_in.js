@@ -1,4 +1,4 @@
-import { signInController } from '../controllers/auth/sign_in';
+import { signInController } from '../../controllers/auth/sign_in';
 
 const signInForm = document.forms.signInForm;
 
