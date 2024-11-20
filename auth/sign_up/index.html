@@ -109,7 +109,10 @@
                     >
                   </li>
                   <li>
-                    <a href="#" class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                    <a
+                      href="#"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                      id="logOutBtn"
                       >Log out</a
                     >
                   </li>
@@ -138,6 +141,9 @@
                 class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
                 required
                 placeholder="Email"
+                maxlength="30"
+                pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
+                title="Email must be a valid noroff email  ending with @stud.noroff.no "
               />
               <!-- add regex for email to be only norff  -->
             </div>
@@ -151,6 +157,7 @@
                 class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
                 required
                 placeholder="Username"
+                maxlength="20"
               />
             </div>
 
@@ -163,8 +170,12 @@
                 class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
                 placeholder="Password"
                 required
+                pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$"
+                title="Password must contain at least 8 characters, one uppercase letter, one number and one special character"
               />
             </div>
+
+            <!-- create a function to give feedback to the user  if it doesnt match the pattern-->
 
             <div class="mb-4">
               <label for="confirmPassword" class="block mb-2">Confirm password</label>

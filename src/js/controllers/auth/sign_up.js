@@ -4,14 +4,14 @@ import { validatePassword } from '../../utilities/ValidatePassword';
 export async function onSignUpUser(event) {
   event.preventDefault();
 
+  const form = event.target;
   const password = form.password.value;
   const confirmPassword = form.confirmPassword.value;
-  if (!validatePassword(password, confirmPassword)) {
-    alert('Passwords do not match \n Please insert the same password in both fields');
+  const isPasswordValid = validatePassword(password, confirmPassword);
+  if (!isPasswordValid(password, confirmPassword)) {
     return;
   }
-
-  const form = event.target;
+  // check again alert i not properly showing
   const userData = {
     name: form.username.value,
     email: form.email.value,
