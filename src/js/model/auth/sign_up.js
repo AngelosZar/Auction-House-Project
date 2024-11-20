@@ -14,15 +14,10 @@ export const signUpApiCall = async (data) => {
 
     if (!response.ok || response.status === 400) {
       const errorMessage = responseData.errors[0].message;
-      const errorStatus = responseData.status;
-      const errorCode = responseData.statusCode;
-      console.log('responseData', responseData);
-      console.log('errorMessage', errorMessage);
-      console.log('errorStatus', errorStatus);
-      console.log('errorCode', errorCode);
+      alert(errorMessage);
       throw new Error(errorMessage);
     }
-    //
+
     return responseData;
   } catch (error) {
     throw error;
