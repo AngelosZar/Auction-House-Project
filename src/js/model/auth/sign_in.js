@@ -1,22 +1,47 @@
 import { API_AUTH_LOGIN } from '../../utilities/constants';
-console.log(API_AUTH_LOGIN);
+/**
+ *
+ * @param {object} data -user email and password
+ * @returns  - user data and access token
+ */
 export const signInApiCall = async (data) => {
-  //
-  console.log('I am fetching data from the server');
-  //
-  const response = await fetch(API_AUTH_LOGIN, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-  const result = await response.json();
-  if (!response.ok) {
+  try {
+    const response = await fetch(API_AUTH_LOGIN, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+      alert(result.errors[0].message);
+      return { result, Error };
+    }
     console.log(result);
+    const {
+      data: {
+        name,
+        email,
+        accessToken,
+        avatar: { url: avatarUrl, alt: avatarAlt },
+        banner: { url: bannerUrl, alt: bannerAlt },
+      },
+    } = await result;
+    //
+    const currentUser = {
+      name,
+      email,
+      accessToken,
+      avatar: { url: avatarUrl, alt: avatarAlt },
+      banner: { url: bannerUrl, alt: bannerAlt },
+    };
+
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
     return result;
+  } catch (error) {
+    return error;
   }
-  //   console.log(result);
-  //   console.log('this is the result from the api call', result);
-  return result;
 };
