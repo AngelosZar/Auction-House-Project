@@ -12,8 +12,8 @@ export default async function router(pathname = window.location.pathname) {
     case '/profile/':
       await import('./views/profile/viewProfile.js');
       break;
-    case '/profile-edit/':
-      await import('./views/profile/editProfile.js');
+    case '/profile/update/':
+      await import('./controllers/profile/update.js');
       break;
   }
 }
