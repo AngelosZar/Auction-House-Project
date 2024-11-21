@@ -4,4 +4,4 @@ const profilePage = async function () {
   await readProfileHandler();
 };
 
-await profilePage();
+// await profilePage();

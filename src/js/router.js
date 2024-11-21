@@ -10,7 +10,10 @@ export default async function router(pathname = window.location.pathname) {
       await import('./views/auth/sign_up.js');
       break;
     case '/profile/':
-      await import('./views/profile/profile.js');
+      await import('./views/profile/viewProfile.js');
+      break;
+    case '/profile-edit/':
+      await import('./views/profile/editProfile.js');
       break;
   }
 }

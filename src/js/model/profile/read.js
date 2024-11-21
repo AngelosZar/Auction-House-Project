@@ -1,4 +1,3 @@
-import { data } from 'autoprefixer';
 import { API_READ_PROFILES } from '../../utilities/constants';
 // import { headers } from '../../utilities/headers';
 import { API_KEY } from '../../utilities/constants';
@@ -36,7 +35,7 @@ export async function readProfiles(limit = 12, page = 1, query = '_wins') {
     }
     // console.log('userdata', userData);
     // console.log(Promise.resolve(userData));
-    console.log('data', data);
+    // console.log('data', data);
     return data;
   } catch (error) {
     console.error(error);

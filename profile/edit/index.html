@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auction House</title>
+    <!-- <script type="module" src="/src/main.js"></script> -->
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <header class="w-full bg-light-component dark:bg-black-bright border-y-2 dark:border-none">
+      <section class="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3">
+        <div>
+          <a href="/"
+            ><img
+              src="/media/header_logos/grayscale-transparent.png"
+              alt="auction house logo"
+              id="header-logo"
+              class="max-w-[220px]"
+          /></a>
+        </div>
+        <div class="mr-4 items-center gap-4">
+          <nav class="flex gap-4">
+            <!-- serch btn and dropdown -->
+            <div class="group relative">
+              <!-- rethink about the style on hover -->
+              <button
+                class="rounded-full p-2 transition-all duration-300 hover:bg-green-3 hover:dark:bg-purple-dark"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-10 w-10 hover:h-11 hover:w-11"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </button>
+
+              <!-- add dropdown set with js later-->
+              <div id="search-dropdown"></div>
+            </div>
+            <div class="group relative">
+              <button
+                class="rounded-full p-2 transition-all duration-300 hover:bg-green-2 hover:dark:bg-purple-dark"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-10 w-10 hover:h-11 hover:w-11"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+              </button>
+              <!-- add dropdown -->
+              <div
+                class="invisible absolute right-0 mt-2 w-48 rounded-lg bg-white opacity-0 shadow-lg transition-all duration-300 group-hover:visible group-hover:opacity-100 dark:bg-bright-black dark:bg-purple-dark"
+              >
+                <ul class="py-2 font-bold">
+                  <!-- [&>li]:hover:bg-dark-purple -->
+                  <!-- add on focus later  -->
+                  <li>
+                    <a
+                      href="/auth/sign_up/"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                      >Register</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/auth/sign_in/"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                      >Log in</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/profile/"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                      >Profile</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/listing/view/"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                      >Your items</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/listing/create/"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                      >List an item</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                      id="logOutBtn"
+                      >Log out</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </section>
+    </header>
+    <main class="h-screen mx-auto max-w-[1440px] px-4">
+      <div class="pt-16 px-8">
+        <h5>User name = name</h5>
+        <p>Verified user ✌️</p>
+        <h6>1000 points</h6>
+      </div>
+      <div class="flex justify-center items-center h-20 bg-green-900">
+        <p class="text-red-700 p-4 bg">Test</p>
+      </div>
+      <div class="bg-purple-dark p-4 w-24 h-24 rounded-lg m-4 shadow-lg">
+        <p class="text-red-700 p-4 bg">Test</p>
+      </div>
+    </main>
+    <footer
+      class="bg-light-component px-4 py-8 lg:px-20 text-text-black dark:text-text-white border-y-2 dark:border-none dark:bg-black-bright"
+    >
+      <section class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <h3 class="mb-4 text-lg font-extrabold">Contact us</h3>
+          <ul>
+            <li>Randomvein 12</li>
+            <li>007 Oslo</li>
+            <li>Tlf +47 7896541</li>
+            <li>Epost: post@auctionhouse.no</li>
+          </ul>
+        </div>
+        <!-- info -->
+        <div>
+          <h3 class="mb-4 text-lg font-extrabold">Info</h3>
+          <ul>
+            <li>FAQ</li>
+            <li>Blog</li>
+            <li>Tracking</li>
+            <li>Privacy Policy</li>
+            <li>Terms and conditions</li>
+          </ul>
+        </div>
+        <!-- explore  -->
+        <div>
+          <h3 class="mb-4 text-lg font-extrabold">Explore</h3>
+          <ul>
+            <li>Single Products</li>
+            <li>By seller</li>
+            <li>By category</li>
+          </ul>
+        </div>
+        <!-- explore  -->
+        <div>
+          <div>
+            <h3 class="mb-4 text-lg font-extrabold">About us</h3>
+            <ul>
+              <li>Our story</li>
+              <li>About our partners</li>
+              <li>Quality assurance</li>
+            </ul>
+          </div>
+          <div class="flex justify-center pt-8 [&>a]:m-4">
+            <a href="#"
+              ><img src="/media/footer_logos/facebook.png" class="max-w-12" alt="facebook"
+            /></a>
+            <a href="#"
+              ><img src="/media/footer_logos/linkedin.png" class="max-w-12" alt="linkedin"
+            /></a>
+            <a href="#"
+              ><img src="/media/footer_logos/instagram.png" class="max-w-12" alt="instagram"
+            /></a>
+            <a href="#"><img src="/media/footer_logos/blog.png" class="max-w-12" alt="blog" /></a>
+          </div>
+        </div>
+      </section>
+    </footer>
+  </body>
+</html>
