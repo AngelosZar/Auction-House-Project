@@ -18,16 +18,33 @@ export async function readProfiles(limit = 12, page = 1, query = '_wins') {
     if (!response.ok) {
       throw new Error(userData.errors?.[0]?.message || 'Failed to fetch profiles');
     }
-    console.log('userdata', userData);
-    console.log(Promise.resolve(userData));
+    // console.log('userdata', userData);
+    // console.log(Promise.resolve(userData));
     return userData;
   } catch (error) {
     console.error(error);
   }
 }
 
-export async function readProfile() {
-  console.log('I am fetching data from the server - models/profile/read.js');
-  // fetch function to get the data from the server
-  //   return userdata;
+export async function readProfile(username, query = '') {
+  const { accessToken } = JSON.parse(localStorage.getItem('currentUser'));
+  try {
+    const response = await fetch(`${API_READ_PROFILES}/${username}${query}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+        'X-Noroff-API-Key': API_KEY,
+      },
+    });
+    const userData = await response.json();
+    if (!response.ok) {
+      throw new Error(userData.errors?.[0]?.message || 'Failed to fetch profiles');
+    }
+    // console.log('userdata', userData);
+    // console.log(Promise.resolve(userData));
+    return userData;
+  } catch (error) {
+    console.error(error);
+  }
 }
