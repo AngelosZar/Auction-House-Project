@@ -2,11 +2,11 @@ import { API_READ_PROFILES } from '../../utilities/constants';
 // import { headers } from '../../utilities/headers';
 import { API_KEY } from '../../utilities/constants';
 
-export async function readProfiles(limit = 12, page = 1) {
+export async function readProfiles(limit = 12, page = 1, query = '_wins') {
   const offset = (page - 1) * limit;
   const { accessToken } = JSON.parse(localStorage.getItem('currentUser'));
   try {
-    const response = await fetch(`${API_READ_PROFILES}/?limit=${limit}&offset=${offset}`, {
+    const response = await fetch(`${API_READ_PROFILES}/?limit=${limit}&offset=${offset}${query}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
