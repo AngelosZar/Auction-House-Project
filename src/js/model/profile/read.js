@@ -15,13 +15,29 @@ export async function readProfiles(limit = 12, page = 1, query = '_wins') {
         'X-Noroff-API-Key': API_KEY,
       },
     });
-    const userData = await response.json();
+    const { data } = await response.json();
+    data.forEach((user) => {
+      let name, email, credits, listings, wins, avatarUrl, avatarAlt, bannerUrl, bannerAlt, bio;
+      console.log(user);
+      const userData = {
+        data: {
+          name,
+          email,
+          credits,
+          _count: { listings, wins },
+          avatar: { url: avatarUrl, alt: avatarAlt },
+          banner: { url: bannerUrl, alt: bannerAlt },
+          bio,
+        },
+      };
+    });
     if (!response.ok) {
       throw new Error(userData.errors?.[0]?.message || 'Failed to fetch profiles');
     }
     // console.log('userdata', userData);
     // console.log(Promise.resolve(userData));
-    return userData;
+    console.log('data', data);
+    return data;
   } catch (error) {
     console.error(error);
   }
