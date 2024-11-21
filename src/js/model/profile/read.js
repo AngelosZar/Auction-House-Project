@@ -90,3 +90,26 @@ export async function readProfile(username, query = '') {
     console.error(error);
   }
 }
+
+export async function readProfileListings(username) {
+  //GET
+  // /auction/profiles/<name>/listings
+  // Retrieve all listings created by profile.
+  // The response is the same as the listings endpoint, and accepts the same optional query parameters and flags.
+}
+
+//
+
+export async function readProfileBids(username) {
+  // GET;
+  // /auction/profiles/<name>/bids
+  // Retrieve all bids made by profile.
+  // Use the _listings flag to include the associated listing.
+}
+
+export async function readProfileWins(username) {
+  //GET
+  // /auction/profiles/<name>/wins
+  // Retrieve all listings won by profile.
+  // The response is the same as the listings endpoint, and accepts the same optional query parameters and flags.
+}
