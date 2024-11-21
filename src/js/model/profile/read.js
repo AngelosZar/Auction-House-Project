@@ -1,16 +1,12 @@
 import { API_READ_PROFILES } from '../../utilities/constants';
-import { headers } from '../../utilities/headers';
+// import { headers } from '../../utilities/headers';
 import { API_KEY } from '../../utilities/constants';
-// console.log(API_KEY);
-// const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-// console.log(currentUser.email);
-//
-// console.log(API_READ_PROFILES);
-export async function readProfiles() {
-  console.log('I am fetching data from the server - models/profile/read.js');
+
+export async function readProfiles(limit = 12, page = 1) {
+  const offset = (page - 1) * limit;
   const { accessToken } = JSON.parse(localStorage.getItem('currentUser'));
   try {
-    const response = await fetch(API_READ_PROFILES, {
+    const response = await fetch(`${API_READ_PROFILES}/?limit=${limit}&offset=${offset}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -25,9 +21,7 @@ export async function readProfiles() {
     console.log('userdata', userData);
     console.log(Promise.resolve(userData));
     return userData;
-    // need authorization header
   } catch (error) {
-    // console.error('Error:', responseData.errors[0].message);
     console.error(error);
   }
 }
