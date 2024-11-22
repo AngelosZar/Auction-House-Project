@@ -33,7 +33,10 @@ export async function readListing(id) {
       throw new Error(singleListing.errors?.[0]?.message || 'Failed to fetch listing');
     }
     return singleListing;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
 
-await readListing('529a57c6-2c45-4a7d-9ed9-5df7026628c0');
+// await readListing('529a57c6-2c45-4a7d-9ed9-5df7026628c0');
