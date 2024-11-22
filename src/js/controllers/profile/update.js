@@ -7,4 +7,4 @@ const updateProfileHandler = async function (data) {
   //   await collectProfileChanges(data);
   console.log('i do the update');
 };
-updateProfileHandler();
+// updateProfileHandler();

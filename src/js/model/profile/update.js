@@ -3,7 +3,8 @@ import { API_BASE } from '../../utilities/constants';
 import { headers } from '../../utilities/headers';
 import { API_KEY } from '../../utilities/constants';
 import { parse } from 'postcss';
-
+import { returnToken } from '../../utilities/returnToken';
+//
 export const updateProfileApiCall = async (name, userData) => {
   //   console.log('  API call to update profile');
   //   const currentUser = localStorage.getItem('currentUser');
