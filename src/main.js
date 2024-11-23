@@ -30,12 +30,12 @@ window.addEventListener('DOMContentLoaded', () => {
 const bid = {
   amount: 20, // Required
 };
-const id = 'aff4808b-2a2f-429d-80b0-55cc5668f20d';
-console.log(id);
+// const id = 'aff4808b-2a2f-429d-80b0-55cc5668f20d';
+// console.log(id);
 // await createListing(testData);
 // await readListing(id);
 // await deleteListing(id);
 // await updateListing(testData, id);
 // await bidOnListing(bid, id);
 // await searchListings('macbook');
-// await searchProfiles('test');
+await searchProfiles('kim');

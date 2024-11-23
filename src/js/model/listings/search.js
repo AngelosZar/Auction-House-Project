@@ -5,10 +5,13 @@ export async function searchListings(query) {
   const accessToken = returnToken();
   try {
     const response = await fetch(`${API_SEARCH_LISTINGS}${query}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        'api-key': API_KEY,
-      },
+      method: 'GET',
+      //   no need for headers here
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     Authorization: `Bearer ${accessToken}`,
+      //     'X-Noroff-API-Key': `${API_KEY}`,
+      //   },
     });
     const data = await response.json();
     if (!response.ok) {
@@ -24,5 +27,27 @@ export async function searchListings(query) {
 }
 
 export async function searchProfiles(query) {
-  //
+  const accessToken = returnToken();
+  const API_KEY = localStorage.getItem('apiKey');
+  console.log(accessToken, API_KEY);
+  try {
+    const response = await fetch(`${API_SEARCH_PROFILES}${query}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+        'X-Noroff-API-Key': `${API_KEY}`,
+      },
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      console.log(data.errors[0].message);
+    }
+    console.log('route: model.listings.search.js');
+    console.log(response);
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 }
