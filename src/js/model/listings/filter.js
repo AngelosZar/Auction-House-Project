@@ -33,6 +33,11 @@ export async function filterByTag(tag, status = 'active', offset = 1, limit = 12
       },
     });
 
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.errors?.[0]?.message || 'Failed to find a listing with this tag');
+    }
+
     const data = await response.json();
     console.log(data);
     return data;
