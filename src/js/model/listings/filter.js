@@ -1,26 +1,37 @@
 import { API_READ_LISTINGS } from '../../utilities/constants';
 
-export async function filterByTag(tag, status = 'active') {
+// maybe rearrage the order of the parameters
+export async function filterByTag(tag, status = 'active', offset = 1, limit = 12) {
   try {
     // /auction/listings?_tag=my_tag&_active=true
     if (!tag) throw new Error('You need to provide a tag');
+    const page = Math.floor(offset / limit + 1);
+    // errors;
+    // :
+    // Array(2)
+    // 0
+    // :
+    // {message: 'Limit must be a number', code: 'invalid_type', path: Array(1)}
+    // 1
+    // :
+    // {message: 'Page must be a number', code: 'invalid_type', path: Array(1)}
+    // length
+    // :
+    // 2
     const queryParams = new URLSearchParams({
       _tag: tag.toLowerCase(),
       _active: status.toString(),
+      limit: limit,
+      page: offset,
     });
-    // https://v2.api.noroff.dev/auction/listings?_tag=laptop&_active=true
-    // const response = fetch(' https://v2.api.noroff.dev/auction/listings?_tag=laptop&_active=true', {
 
+    // `${API_BASE}/auction/listings
     const response = await fetch(`${API_READ_LISTINGS}?${queryParams}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    // if (!response.ok) {
-    //   console.log(response);
-    //   throw new Error(`HTTP error! status: ${response.status}`);
-    // }
 
     const data = await response.json();
     console.log(data);

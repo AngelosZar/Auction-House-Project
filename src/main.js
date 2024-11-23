@@ -40,4 +40,4 @@ const bid = {
 // await bidOnListing(bid, id);
 // await searchListings('macbook');
 // await searchProfiles('kim');
-await filterByTag('laptop', true);
+await filterByTag('electronics', true);
