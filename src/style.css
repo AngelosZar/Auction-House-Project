@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
   /* text elements */
   p,
   ul,

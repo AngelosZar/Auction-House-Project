@@ -10,6 +10,9 @@ import { deleteListing } from './js/model/listings/delete';
 import { bidOnListing } from './js/model/listings/bid';
 import { searchListings, searchProfiles } from './js/model/listings/search';
 import { filterByTag } from './js/model/listings/filter';
+
+// In your app/route:
+
 //
 // const testData = {
 //   title: 'test',
@@ -28,9 +31,9 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('logOutBtn').addEventListener('click', logOut);
 });
 // await testReadListings();
-const bid = {
-  amount: 20, // Required
-};
+// const bid = {
+//   amount: 20, // Required
+// };
 // const id = 'aff4808b-2a2f-429d-80b0-55cc5668f20d';
 // console.log(id);
 // await createListing(testData);
@@ -40,4 +43,4 @@ const bid = {
 // await bidOnListing(bid, id);
 // await searchListings('macbook');
 // await searchProfiles('kim');
-await filterByTag('electronics', true);
+// await filterByTag('electronics', true);
