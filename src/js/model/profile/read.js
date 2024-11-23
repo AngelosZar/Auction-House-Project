@@ -124,11 +124,33 @@ export async function readProfileListings(username, query = '') {
 
 //
 
-export async function readProfileBids(username) {
-  // GET;
-  // /auction/profiles/<name>/bids
-  // Retrieve all bids made by profile.
-  // Use the _listings flag to include the associated listing.
+export async function readProfileBids(username, limit = 12, offset = 1) {
+  const accessToken = returnToken();
+  const page = Math.floor(offset / limit + 1);
+  try {
+    const response = await fetch(
+      `${API_READ_PROFILES}/${username}/listings?limit=${limit}&page=${+page}&_seller=true&_bids=true`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+          'X-Noroff-API-Key': API_KEY,
+        },
+      }
+    );
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.errors?.[0]?.message || 'Failed to fetch profile bids');
+    }
+    const data = await response.json();
+    console.log('route: model/profile/read.js');
+    console.log(data);
+    console.log(response);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function readProfileWins(username) {
@@ -139,3 +161,4 @@ export async function readProfileWins(username) {
 }
 
 // readProfileListings('kimYong');
+readProfileBids('kimYong');
