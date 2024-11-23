@@ -121,116 +121,74 @@
         </div>
       </section>
     </header>
-    <!-- <main class="flex justify-center">
-      <section class="">
-        <div
-          class="bg-purple-dark w-[500px] h-[60vh] rounded-lg shadow-lg m-40 flex justify-center items-center flex-row"
-        >
-          <form id="signInForm" method="post" class="w-full">
-            <h1>Sign in</h1>
-            <div class="mb-4">
-              <label for="email" class="block mb-2">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
-                required
-                placeholder="Email"
-              />
-            </div>
 
-            <div class="mb-4">
-              <label for="username" class="block mb-2">Username</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
-                placeholder="Username"
-              />
-            </div>
-
-            <div class="mb-4">
-              <label for="password" class="block mb-2">Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
-                placeholder="Password"
-                required
-              />
-            </div>
-
-            <button class="btn btn-primary dark:btn btn-primary-dark" type="submit">Sign in</button>
-
-            <div class="flex gap-2 items-center">
-              <p class="mr-4">Don't have an account ?</p>
-              <a href="/auth/sign_up/" class="btn btn-primary dark:btn btn-secondary-dark"
-                >Sing up</a
-              >
-            </div>
-          </form>
-        </div>
-      </section>
-    </main> -->
-    <main class="flex justify-center">
-      <div class="my-24">
-        <div class="bg-light-cards dark:bg-purple-dark p-4 w-full h-auto rounded-lg m-4 shadow-lg">
-          <div class="w-full max-w-sm m-auto bg-light-cards dark:bg-purple-dark rounded-md p-5">
-            <h2 class="px-8">Sign in</h2>
-
-            <form id="signInForm" method="post">
-              <div class="mb-4">
-                <label for="email" class="block mb-2">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
-                  required
-                  placeholder="Email"
-                />
-              </div>
-
-              <div class="mb-4">
-                <label for="username" class="block mb-2">Username</label>
-                <input
-                  type="text"
-                  id="username"
-                  name="username"
-                  class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
-                  placeholder="Username"
-                />
-              </div>
-
-              <div class="mb-4">
-                <label for="password" class="block mb-2">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
-                  placeholder="Password"
-                  required
-                />
-              </div>
-
-              <button class="btn btn-primary dark:btn btn-primary-dark" type="submit">
+    <main class="flex justify-center flex-col">
+      <section class="p-4 md:p-16 min-h-screen">
+        <h1 class="invisible">1</h1>
+        <div class="mx-auto py-8 px-4 bg-purple-dark rounded-lg shadow-lg">
+          <div class="max-w-md mx-auto bg-light-componentdark:bg-black-bright">
+            <div class="p-16 md:p-8">
+              <h3 class="md:text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">
                 Sign in
-              </button>
+              </h3>
+              <p class="invisible">1</p>
+              <!-- Add your form elements here -->
+              <div class="flex justify-start">
+                <span class="invisible"><p>111111</p></span>
+                <form id="signInForm" method="post" class="">
+                  <div class="mb-4">
+                    <label for="email" class="block mb-2">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
+                      required
+                      placeholder="Email"
+                    />
+                  </div>
 
-              <div class="flex gap-2 items-center">
-                <p class="mr-4">Don't have an account ?</p>
-                <a href="/auth/sign_up/" class="btn btn-primary dark:btn btn-secondary-dark"
-                  >Sing up</a
-                >
+                  <div class="mb-4">
+                    <label for="username" class="block mb-2">Username</label>
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
+                      placeholder="Username"
+                    />
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="password" class="block mb-2">Password</label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
+                      placeholder="Password"
+                      required
+                    />
+                  </div>
+
+                  <button class="btn btn-primary dark:btn btn-primary-dark" type="submit">
+                    Sign in
+                  </button>
+                  <p class="invisible">1</p>
+                  <div class="flex gap-2 items-center flex-wrap">
+                    <p class="mr-4 text-xs">Don't have an account ?</p>
+                    <a href="/auth/sign_up/" class="btn btn-primary dark:btn btn-secondary-dark">
+                      Sign up
+                    </a>
+                  </div>
+                </form>
+                <span class="invisible"><p>111111</p></span>
               </div>
-            </form>
+            </div>
           </div>
         </div>
-      </div>
+        <h1 class="invisible">1</h1>
+      </section>
     </main>
     <footer
       class="bg-light-component px-4 py-8 lg:px-20 text-text-black dark:text-text-white border-y-2 dark:border-none dark:bg-black-bright"
