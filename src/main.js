@@ -6,6 +6,7 @@ import { testReadListings } from './js/model/listings/readListings';
 import { createListing } from './js/model/listings/create';
 import { updateListing } from './js/model/listings/update';
 import { readListing } from './js/model/listings/readListings';
+import { deleteListing } from './js/model/listings/delete';
 //
 const testData = {
   title: 'test',
@@ -26,4 +27,5 @@ window.addEventListener('DOMContentLoaded', () => {
 // await testReadListings();
 const id = '2176cc01-bc8f-4cd2-92d9-9cb3d84415a7';
 // await readListing(id);
+await deleteListing(id);
 // await updateListing(testData, id);
