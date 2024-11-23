@@ -16,3 +16,5 @@ export const listings = '_listings';
 
 export const API_READ_LISTINGS = `${API_BASE}/auction/listings
 `;
+export const API_SEARCH_LISTINGS = `${API_BASE}/auction/listings/search?q=`;
+export const API_SEARCH_PROFILES = `${API_BASE}/auction/profiles/search?q=`;
