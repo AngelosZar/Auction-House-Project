@@ -153,12 +153,36 @@ export async function readProfileBids(username, limit = 12, offset = 1) {
   }
 }
 
-export async function readProfileWins(username) {
-  //GET
-  // /auction/profiles/<name>/wins
-  // Retrieve all listings won by profile.
-  // The response is the same as the listings endpoint, and accepts the same optional query parameters and flags.
+export async function readProfileWins(username, limit = 12, offset = 1) {
+  const accessToken = returnToken();
+  const page = Math.floor(offset / limit + 1);
+  try {
+    // GET /auction/profiles/<name>/wins
+    // check the url and the query parameters if they are correct
+    const response = await fetch(
+      `${API_READ_PROFILES}/${username}/wins?limit=${limit}&page=${+page}&_seller=true&_bids=true`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+          'X-Noroff-API-Key': API_KEY,
+        },
+      }
+    );
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.errors?.[0]?.message || 'Failed to fetch profile wins');
+    }
+    const data = await response.json();
+    console.log('route: model/profile/read.js');
+    console.log(data);
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 // readProfileListings('kimYong');
-readProfileBids('kimYong');
+// readProfileBids('kimYong');
+// readProfileWins('kimYong', 12, 1);
