@@ -8,6 +8,7 @@ import { updateListing } from './js/model/listings/update';
 import { readListing } from './js/model/listings/readListings';
 import { deleteListing } from './js/model/listings/delete';
 import { bidOnListing } from './js/model/listings/bid';
+import { searchListings, searchProfiles } from './js/model/listings/search';
 //
 // const testData = {
 //   title: 'test',
@@ -36,3 +37,5 @@ console.log(id);
 // await deleteListing(id);
 // await updateListing(testData, id);
 // await bidOnListing(bid, id);
+// await searchListings('macbook');
+// await searchProfiles('test');
