@@ -29,6 +29,7 @@ export async function readListing(id) {
     const response = await fetch(`${API_READ_LISTINGS}/${id}?_seller=true&_bids=true`);
     const singleListing = await response.json();
     console.log('singleListing');
+    console.log(singleListing);
     if (!response.ok) {
       throw new Error(singleListing.errors?.[0]?.message || 'Failed to fetch listing');
     }

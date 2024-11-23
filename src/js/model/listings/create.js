@@ -19,8 +19,8 @@ export const createListing = async function (testData) {
       alert(data.errors[0].message);
       throw new Error(data.errors[0].message);
     }
-    // console.log(data);
-    // console.log(response);
+    console.log(data);
+    console.log(response);
     return data;
   } catch (error) {
     // console.log(error);

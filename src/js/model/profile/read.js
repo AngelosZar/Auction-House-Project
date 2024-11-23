@@ -112,8 +112,8 @@ export async function readProfileListings(username, query = '') {
       throw new Error(data.errors?.[0]?.message || 'Failed to fetch profile listings');
     }
 
-    // console.log(data);
-    // console.log(response);
+    console.log(data);
+    console.log(response);
     // console.log(Promise.resolve(data));
     return data;
   } catch (error) {
@@ -137,3 +137,5 @@ export async function readProfileWins(username) {
   // Retrieve all listings won by profile.
   // The response is the same as the listings endpoint, and accepts the same optional query parameters and flags.
 }
+
+// readProfileListings('kimYong');
