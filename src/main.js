@@ -9,6 +9,7 @@ import { readListing } from './js/model/listings/readListings';
 import { deleteListing } from './js/model/listings/delete';
 import { bidOnListing } from './js/model/listings/bid';
 import { searchListings, searchProfiles } from './js/model/listings/search';
+import { filterByTag } from './js/model/listings/filter';
 //
 // const testData = {
 //   title: 'test',
@@ -38,4 +39,5 @@ const bid = {
 // await updateListing(testData, id);
 // await bidOnListing(bid, id);
 // await searchListings('macbook');
-await searchProfiles('kim');
+// await searchProfiles('kim');
+await filterByTag('laptop', true);

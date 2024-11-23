@@ -6,12 +6,6 @@ export async function searchListings(query) {
   try {
     const response = await fetch(`${API_SEARCH_LISTINGS}${query}`, {
       method: 'GET',
-      //   no need for headers here
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     Authorization: `Bearer ${accessToken}`,
-      //     'X-Noroff-API-Key': `${API_KEY}`,
-      //   },
     });
     const data = await response.json();
     if (!response.ok) {
