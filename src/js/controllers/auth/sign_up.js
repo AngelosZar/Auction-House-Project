@@ -7,11 +7,11 @@ export async function onSignUpUser(event) {
   const form = event.target;
   const password = form.password.value;
   const confirmPassword = form.confirmPassword.value;
-  const isPasswordValid = validatePassword(password, confirmPassword);
-  if (!isPasswordValid(password, confirmPassword)) {
+
+  if (!validatePassword(password, confirmPassword)) {
     return;
   }
-  // check again alert i not properly showing
+
   const userData = {
     name: form.username.value,
     email: form.email.value,
@@ -27,7 +27,7 @@ export async function onSignUpUser(event) {
 
   try {
     const res = await signUpApiCall(userData);
-    prompt('User created successfully');
+    alert('User created successfully');
     window.location.href = '/auth/login/';
   } catch (error) {
     throw error;
