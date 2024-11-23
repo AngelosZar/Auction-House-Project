@@ -3,45 +3,35 @@ import { returnToken } from '../../utilities/returnToken';
 import { API_KEY } from '../../utilities/constants';
 
 export const createListing = async function (testData) {
-  console.log('hei i am here to create a listing');
   const accessToken = returnToken();
   try {
-    const response = await fetch(`${API_READ_LISTINGS}`, {
+    const response = await fetch(API_READ_LISTINGS, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
         'X-Noroff-API-Key': `${API_KEY}`,
       },
+      body: JSON.stringify(testData),
     });
     const data = await response.json();
-    console.log(data);
+    if (!response.ok) {
+      alert(data.errors[0].message);
+      throw new Error(data.errors[0].message);
+    }
+    // console.log(data);
+    // console.log(response);
+    return data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error;
   }
 };
-// await createListing();
 
-// {
-//     "title": "string",
-//     "description": "string",
-//     "endsAt": "2024-11-22T20:50:21.899Z",
-//     "tags": [
-//       "string"
-//     ],
-//     "media": [
-//       {
-//         "url": "string",
-//         "alt": ""
-//       }
-//     ]
-//   }
-
+//
 const testData = {
-  title: 'Macbook Not pro',
+  title: 'test',
   description: 'This is a macbook pro , very good condition',
-  endsAt: '2024-11-22T20:50:21.899Z',
   tags: ['electronics'],
   media: [
     {
@@ -49,5 +39,5 @@ const testData = {
       alt: 'laptop',
     },
   ],
+  endsAt: '2025-12-26T20:50:21.899Z',
 };
-await createListing(testData);

@@ -14,4 +14,5 @@ export const WINS_QUERY = '_wins';
 
 export const listings = '_listings';
 
-export const API_READ_LISTINGS = `${API_BASE}/auction/listings`;
+export const API_READ_LISTINGS = `${API_BASE}/auction/listings
+`;

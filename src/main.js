@@ -11,3 +11,4 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('logOutBtn').addEventListener('click', logOut);
 });
 await testReadListings();
+// await createListing(testData);
