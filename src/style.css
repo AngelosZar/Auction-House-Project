@@ -61,6 +61,10 @@
 
 /* Btns for light and dark mode */
 @layer components {
+  .input-forms {
+    @apply w-full py-2 px-4 mb-6 border-2 border-green-3 rounded-lg text-text-black focus:outline-offset-2 focus:outline-green-1 dark:focus:outline-blue-400 focus:border-transparent dark:border-purple-dark;
+  }
+
   .btn {
     @apply inline-flex min-w-[120px] w-fit items-center justify-center 
            rounded-[8px] px-4 py-2  /* Standardized border-radius */
