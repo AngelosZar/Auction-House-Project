@@ -7,9 +7,7 @@
     <script type="module" src="../../src/main.js"></script>
   </head>
   <body>
-    <header
-      class="w-full bg-light-component dark:bg-black-bright border-y-2 dark:border-none mb-[10%]"
-    >
+    <header class="w-full bg-light-component dark:bg-black-bright border-y-2 dark:border-none">
       <section class="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3">
         <div>
           <a href="/"
@@ -125,93 +123,91 @@
     </header>
     <!-- main -->
     <!-- <main class="min-h-screen flex flex-col items-center justify-center"> -->
-    <main class="flex h-screen justify-center flex-col">
-      <section class="p-4 md:p-16 min-h-screen">
-        <h1 class="invisible">1</h1>
-
-        <div class="mx-auto py-8 px-4 bg-purple-dark rounded-lg shadow-lg">
-          <div class="max-w-md mx-auto p-16 md:p-8">
-            <h3 class="md:text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">
-              Sign up
-            </h3>
-            <p class="invisible">1</p>
-            <div class="flex justify-start">
-              <span class="invisible"><p>111111</p></span>
-              <form action="" id="register" method="post">
-                <div class="mb-4">
-                  <label for="email" class="block mb-2">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
-                    required
-                    placeholder="Email"
-                    maxlength="30"
-                    pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-                    title="Email must be a valid noroff email  ending with @stud.noroff.no "
-                    autocomplete="email"
-                  />
-                  <!-- add regex for email to be only norff  -->
-                </div>
-
-                <div class="mb-4">
-                  <label for="username" class="block mb-2">Username</label>
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
-                    required
-                    placeholder="Username"
-                    maxlength="20"
-                    autocomplete="username"
-                  />
-                </div>
-
-                <div class="mb-4">
-                  <label for="password" class="block mb-2">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
-                    placeholder="Password"
-                    required
-                    autocomplete="new-password"
-                  />
-                </div>
-
-                <div class="mb-4">
-                  <label for="confirmPassword" class="block mb-2">Confirm password</label>
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    class="w-full py-2 px-4 mb-6 rounded-lg text-text-black"
-                    placeholder="Confirm password"
-                    required
-                    autocomplete="confirm-password"
-                  />
-                </div>
-
-                <button class="btn btn-primary dark:btn btn-primary-dark" type="submit">
-                  Sign up
-                </button>
-
-                <div class="flex gap-2 items-center">
-                  <p class="mr-4">Already have an account?</p>
-                  <a href="/auth/sign_in/" class="btn btn-primary dark:btn btn-secondary-dark"
-                    >Sing in</a
-                  >
-                </div>
-              </form>
-              <span class="invisible"><p>111111</p></span>
-            </div>
-            <p class="invisible">1</p>
+    <main class="flex justify-center flex-coll">
+      <section class="mt-24 md:p-8 min-h-screen">
+        <div
+          class="max-w-xl mx-auto px-24 py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
+        >
+          <h4 class="font-bold mb-6 md:text-7xl md:mb-10 dark:text-white text-center">Sign up</h4>
+          <div class="max-w-xl mx-auto flex justify-between py-6">
+            <span
+              class="text-white text-sm px-4 py-2 bg-red-600 border-2 border-black dark:border-white rounded-lg"
+              >google</span
+            >
+            <span
+              class="text-white text-sm px-4 py-2 bg-black-bright border-2 border-black dark:border-white rounded-lg"
+              >apple</span
+            >
+            <span
+              class="text-white text-sm px-4 py-2 bg-blue-600 border-2 border-black dark:border-white rounded-lg"
+              >facebook</span
+            >
           </div>
+          <form id="signInForm" method="post" class="">
+            <div class="mb-4">
+              <label for="email" class="block mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="input-forms"
+                required
+                placeholder="Email"
+                maxlength="30"
+                pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
+                title="Email must be a valid noroff email ending with @stud.noroff.no"
+                autocomplete="email"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="username" class="block mb-2">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="input-forms"
+                required
+                placeholder="Username"
+                maxlength="20"
+                autocomplete="username"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="password" class="block mb-2">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="input-forms"
+                placeholder="Password"
+                required
+                autocomplete="new-password"
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="confirmPassword" class="block mb-2">Confirm password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                class="input-forms"
+                placeholder="Confirm password"
+                required
+                autocomplete="confirm-password"
+              />
+            </div>
+
+            <button class="btn btn-primary dark:btn-primary-dark" type="submit">Sign up</button>
+            <p class="invisible">1</p>
+            <div class="flex gap-2 items-center flex-wrap">
+              <p class="mr-8 text-xs md:text-lg">Already have an account?</p>
+              <a href="/auth/sign_in/" class="btn btn-secondary dark:btn-secondary-dark">Sign in</a>
+            </div>
+          </form>
         </div>
-        <h1 class="invisible">1</h1>
       </section>
     </main>
 
