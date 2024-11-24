@@ -4,8 +4,8 @@ export default {
     './src/**/*.{html,js}',
     './auth/**/*.{html,js}',
     './profile/**/*.{html,js}',
-    './*.{html,js}', // catches files in root
-    './src/main.js', // explicitly include main.js
+    './*.{html,js}',
+    './src/main.js',
   ],
   theme: {
     extend: {
