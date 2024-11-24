@@ -30,7 +30,7 @@ import { filterByTag } from './js/model/listings/filter';
 window.addEventListener('DOMContentLoaded', () => {
   router(window.location.pathname);
   document.getElementById('logOutBtn').addEventListener('click', logOut);
-  updateNavBar();
+  // updateNavBar();
 });
 // await testReadListings();
 // const bid = {

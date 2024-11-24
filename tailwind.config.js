@@ -1,9 +1,11 @@
 export default {
   content: [
-    './src/**/*.{js,jsx,ts,tsx}',
-    './src/js/**/*.{js,jsx,ts,tsx}',
     './index.html',
-    './src/style.css',
+    './src/**/*.{html,js}',
+    './auth/**/*.{html,js}',
+    './profile/**/*.{html,js}',
+    './*.{html,js}', // catches files in root
+    './src/main.js', // explicitly include main.js
   ],
   theme: {
     extend: {
