@@ -1,6 +1,7 @@
 import './style.css';
 import router from './js/router';
 import { logOut } from './js/utilities/logout';
+import { updateNavBar } from './js/utilities/updateNavBar';
 //
 import { testReadListings } from './js/model/listings/readListings';
 import { createListing } from './js/model/listings/create';
@@ -29,6 +30,7 @@ import { filterByTag } from './js/model/listings/filter';
 window.addEventListener('DOMContentLoaded', () => {
   router(window.location.pathname);
   document.getElementById('logOutBtn').addEventListener('click', logOut);
+  updateNavBar();
 });
 // await testReadListings();
 // const bid = {
