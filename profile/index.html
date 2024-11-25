@@ -123,37 +123,67 @@
         </div>
       </section>
     </header>
-    <main class="h-screen mx-auto max-w-[1440px] px-4">
-      <a
-        href="../profile/update/"
-        class="btn btn-primary dark:btn btn-primary-dark"
-        id="editProfile"
-        >Edit profile</a
+    <main class="h-screen mx-auto max-w-[1440px]">
+      <section
+        id="profile-banner-container"
+        class="flex flex-col border-b-2 dark:border-purple-dark bg-light-cards dark:bg-body-dark"
       >
-
-      <section class="relative h-28">
-        <img
-          src="https://images.unsplash.com/photo-1731432248686-af238c870acc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
-          alt="Banner"
-          class="max-w-[] max-h-20 object-cover"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1731432248686-af238c870acc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
-          alt="Profile"
-          class="absolute -bottom-12 left-12 w-24 h-24 rounded-full border-4 border-white object-cover"
-        />
+        <div class="lg:mb-18 relative mb-8 max-w-screen-2xl xs:mb-12 md:mb-14 lg:mb-20">
+          <img
+            alt="Profile Banner"
+            class="h-[15vh] w-full object-cover md:h-[20vh] lg:h-[30vh]"
+            src="https://images.unsplash.com/photo-1731432248686-af238c870acc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
+          />
+          <img
+            alt="User Avatar"
+            class="avatar-img top xs:left-6md:-bottom-14 absolute -bottom-5 left-4 h-20 w-20 rounded-full xs:-bottom-12 xs:h-28 xs:w-28 md:left-8 md:h-36 md:w-36 lg:-bottom-16 lg:left-10 lg:h-44 lg:w-44 xl:-bottom-20 xl:h-52 xl:w-52"
+            src="https://images.unsplash.com/photo-1731432248686-af238c870acc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
+          />
+        </div>
+        <div class="mx-6 xs:my-4 xs:text-xl md:mx-8 md:text-2xl xl:mx-12 self-end">
+          <h5 class="">User name = name</h5>
+          <p>Verified user ✌️</p>
+          <p>1000 points</p>
+          <a
+            href="../profile/update/"
+            class="btn btn-secondary dark:btn btn-secondary-dark"
+            id="editProfile"
+            >Edit profile</a
+          >
+        </div>
       </section>
-      <div class="pt-16 px-8">
-        <h5>User name = name</h5>
-        <p>Verified user ✌️</p>
-        <h6>1000 points</h6>
+
+      <!-- <section class="relative">
+        <div class="relative w-full">
+          <img
+            src="https://images.unsplash.com/photo-1731432248686-af238c870acc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
+            alt="Banner"
+            class="w-full max-h-60 object-cover"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1731432248686-af238c870acc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
+            alt="Profile"
+            class="absolute -bottom-12 left-12 w-28 h-28 xs:w-40 xs:h-40 xs:-bottom-20 rounded-full border-4 border-white object-cover"
+          />
+        </div>
+      </section>
+      <div class="absolute -bottom-2">
+        <div class="">
+          <h5>User name = name</h5>
+          <p>Verified user ✌️</p>
+          <h6>1000 points</h6>
+        </div>
       </div>
-      <div class="flex justify-center items-center h-20 bg-green-900">
-        <p class="text-red-700 p-4 bg">Test</p>
-      </div>
-      <div class="bg-purple-dark p-4 w-24 h-24 rounded-lg m-4 shadow-lg">
-        <p class="text-red-700 p-4 bg">Test</p>
-      </div>
+
+      <hr />
+      <section>
+        <a
+          href="../profile/update/"
+          class="btn btn-primary dark:btn btn-primary-dark"
+          id="editProfile"
+          >Edit profile</a
+        >
+      </section> -->
     </main>
     <footer
       class="bg-light-component px-4 py-8 lg:px-20 text-text-black dark:text-text-white border-y-2 dark:border-none dark:bg-black-bright"

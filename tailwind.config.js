@@ -13,6 +13,9 @@ export default {
         primary: ['Inter', 'sans-serif'],
         secondary: ['Work Sans', 'sans-serif'],
       },
+      screens: {
+        xs: '500px',
+      },
       colors: {
         body: {
           dark: '#0B1423',
