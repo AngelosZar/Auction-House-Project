@@ -2,15 +2,15 @@ export const initTabComponent = function () {
   console.log('working yo');
   const tabs = document.querySelectorAll('.tab');
   const tabContents = document.querySelectorAll('.tab-content');
-  console.log(tabs);
-  console.log(tabContents);
+  //   console.log(tabs);
+  //   console.log(tabContents);
   //
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
-      console.log('clicked');
-      console.log('Tab ID:', tab.id);
+      //   console.log('clicked');
+      //   console.log('Tab ID:', tab.id);
       const targetId = tab.id.replace('tab-', '');
-      console.log('Target Id:', targetId);
+      //   console.log('Target Id:', targetId);
       //
       tabContents.forEach((content) => {
         content.classList.add('hidden');
@@ -38,7 +38,7 @@ export const initTabComponent = function () {
           'dark:border-blue-400'
         );
         //   document.getElementById(targetId).classList.remove('hidden')
-        tab.classList.remove('border-transparent');
+        tab.classList.remove('border-transparent', 'border-none');
       }
     });
   });
