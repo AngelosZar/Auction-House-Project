@@ -15,6 +15,8 @@ export default {
       },
       screens: {
         xs: '500px',
+        c_900px: '900px',
+        c_1080px: '1080px',
       },
       colors: {
         body: {
