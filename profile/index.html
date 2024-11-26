@@ -175,7 +175,7 @@
             </li>
           </ul>
         </div>
-
+        <!-- inject inner html user-listings -->
         <div
           class="tab-content w-full block mt-8 px-8 justify-center md:justify-start"
           id="user-listings"
@@ -206,7 +206,7 @@
               >
             </div>
             <div
-              id="tab-1"
+              id="tab-2"
               class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"
             >
               <div class="flex max-w-md">
@@ -247,16 +247,18 @@
                 >Bid href</a
               >
             </div>
+          </section>
+          <div class="justify-end pt-4">
             <span class="">
               <p class="text-left">Previous page</p>
             </span>
-            <span>Maybe add icons</span>
             <span class="">
               <p class="text-right">Next page</p>
               <p class="text-right">view more</p>
             </span>
-          </section>
+          </div>
         </div>
+        <!-- inject inner html user-bids -->
         <div class="tab-content max-w-3xl hidden mt-8 px-8" id="users-bids">
           <section class="">
             <div>this will be card one-users-bid</div>
@@ -265,41 +267,73 @@
             <button>Pagination to view more</button>
           </section>
         </div>
+        <!--  create listing -->
         <div class="tab-content max-w-3xl hidden mt-8 px-8" id="create-listing">
-          <form action=""></form>
+          <section>
+            <div>
+              <h4>List a new item</h4>
+              <form action="">
+                <div>
+                  <label for="title">Title</label>
+                  <input type="text" id="title" name="title" class="input-forms" />
+                </div>
+                <div>
+                  <label for="description">Description</label>
+                  <textarea
+                    name="description"
+                    id="description"
+                    cols="10"
+                    rows="5"
+                    class="input-forms"
+                  ></textarea>
+                </div>
+                <div>
+                  <label for="category" class="relative">Category</label>
+                  <!-- fix window location -->
+                  <select name="category" id="category" class="input-forms">
+                    <!-- dont accepti this value promt user to change it or use none -->
+                    <option value="0">Select Category</option>
+                    <option value="1">Electronics</option>
+                    <option value="2">Home & Garden</option>
+                    <option value="3">Fashion & Accessories</option>
+                    <option value="4">Collectibles</option>
+                    <option value="5">Art & Antiques</option>
+                    <option value="6">Vehicles & Parts5</option>
+                    <option value="7">Sports & Outdoors</option>
+                    <option value="8">Toys & Hobbies</option>
+                    <option value="9">Books, Music & Movies</option>
+                    <option value="10">Industrial & Business</option>
+                    <option value="11">None of the above</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="end-auction-date"></label>
+                  <input
+                    type="date"
+                    name="end-auction-date"
+                    id="end-auction-date"
+                    class="input-forms"
+                  />
+                </div>
+                <div>
+                  <label for="starting-price">Starting price</label>
+                  <input
+                    type="number"
+                    name="starting-price"
+                    id="starting-price"
+                    class="input-forms"
+                  />
+                </div>
+                <div>
+                  <label for="image">Image</label>
+                  <input type="url" name="image" id="image" class="input-forms" />
+                </div>
+                <button class="btn btn-primary dark:btn-primary-dark" type="submit">Submit</button>
+              </form>
+            </div>
+          </section>
         </div>
       </section>
-      <!-- <section class="relative">
-        <div class="relative w-full">
-          <img
-            src="https://images.unsplash.com/photo-1731432248686-af238c870acc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
-            alt="Banner"
-            class="w-full max-h-60 object-cover"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1731432248686-af238c870acc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
-            alt="Profile"
-            class="absolute -bottom-12 left-12 w-28 h-28 xs:w-40 xs:h-40 xs:-bottom-20 rounded-full border-4 border-white object-cover"
-          />
-        </div>
-      </section>
-      <div class="absolute -bottom-2">
-        <div class="">
-          <h5>User name = name</h5>
-          <p>Verified user ✌️</p>
-          <h6>1000 points</h6>
-        </div>
-      </div>
-
-      <hr />
-      <section>
-        <a
-          href="../profile/update/"
-          class="btn btn-primary dark:btn btn-primary-dark"
-          id="editProfile"
-          >Edit profile</a
-        >
-      </section> -->
     </main>
     <footer
       class="bg-light-component px-4 py-8 lg:px-20 text-text-black dark:text-text-white border-y-2 dark:border-none dark:bg-black-bright mt-[1000px]"
