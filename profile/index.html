@@ -268,14 +268,26 @@
           </section>
         </div>
         <!--  create listing -->
-        <div class="tab-content max-w-3xl hidden mt-8 px-8" id="create-listing">
-          <section>
-            <div>
-              <h4>List a new item</h4>
+        <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="create-listing">
+          <section class="min-h-screen">
+            <div
+              class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
+            >
+              <h5 class="font-bold mb-4 md:text-5xl md:mb-10 dark:text-white text-center">
+                List a new item
+              </h5>
+              <!-- "font-bold mb-4 md:text-7xl md:mb-10 dark:text-white text-center" -->
               <form action="">
-                <div>
+                <div class="mb-2">
                   <label for="title">Title</label>
-                  <input type="text" id="title" name="title" class="input-forms" />
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    class="input-forms mt-1"
+                    required
+                    placeholder="Title of the product"
+                  />
                 </div>
                 <div>
                   <label for="description">Description</label>
@@ -284,13 +296,15 @@
                     id="description"
                     cols="10"
                     rows="5"
-                    class="input-forms"
+                    class="input-forms mt-1"
+                    maxlength="120"
+                    placeholder="Max 120 characters"
                   ></textarea>
                 </div>
-                <div>
+                <div class="mb-2">
                   <label for="category" class="relative">Category</label>
                   <!-- fix window location -->
-                  <select name="category" id="category" class="input-forms">
+                  <select name="category" id="category" class="input-forms mt-1" required>
                     <!-- dont accepti this value promt user to change it or use none -->
                     <option value="0">Select Category</option>
                     <option value="1">Electronics</option>
@@ -306,27 +320,42 @@
                     <option value="11">None of the above</option>
                   </select>
                 </div>
-                <div>
-                  <label for="end-auction-date"></label>
+                <div class="mb-2">
+                  <label for="end-auction-date">End auction at</label>
                   <input
                     type="date"
                     name="end-auction-date"
                     id="end-auction-date"
-                    class="input-forms"
+                    class="input-forms mt-1"
+                    required
                   />
                 </div>
-                <div>
+                <!-- test -->
+                <!-- test -->
+                <div class="mb-2">
                   <label for="starting-price">Starting price</label>
                   <input
                     type="number"
                     name="starting-price"
                     id="starting-price"
-                    class="input-forms"
+                    class="input-forms mt-1"
+                    required
+                    min="20"
+                    placeholder="Minimum Bid starts at 20NOK"
                   />
                 </div>
-                <div>
+                <div class="mb-2">
                   <label for="image">Image</label>
-                  <input type="url" name="image" id="image" class="input-forms" />
+                  <input
+                    type="url"
+                    name="image"
+                    id="image"
+                    class="input-forms mt-1"
+                    required
+                    placeholder="Only valid url"
+                    pattern="https://.*"
+                  />
+                  <!-- improve pattern// use regex maybe -->
                 </div>
                 <button class="btn btn-primary dark:btn-primary-dark" type="submit">Submit</button>
               </form>
