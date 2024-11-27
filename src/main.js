@@ -11,7 +11,7 @@ import { deleteListing } from './js/model/listings/delete';
 import { bidOnListing } from './js/model/listings/bid';
 import { searchListings, searchProfiles } from './js/model/listings/search';
 import { filterByTag } from './js/model/listings/filter';
-
+import { searchOverlay } from './js/views/searchOverlay';
 // In your app/route:
 
 //
@@ -31,6 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
   router(window.location.pathname);
   document.getElementById('logOutBtn').addEventListener('click', logOut);
   // updateNavBar();
+  searchOverlay();
 });
 // await testReadListings();
 // const bid = {
