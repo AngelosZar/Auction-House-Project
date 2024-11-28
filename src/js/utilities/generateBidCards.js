@@ -1,4 +1,5 @@
 import { readListings } from '../model/listings/readListings';
+import { formatDateTime } from '../utilities/formatDateTime';
 
 export async function generateBidCards() {
   try {
@@ -27,7 +28,7 @@ export const generateHtml = function (listings, parentContainer) {
     <p class="text-md font-semibold py-2">${listing.title}</p>
     <p>${listing.seller.name}</p>
     <div class="flex flex-col">
-      <p class="text-xs text-left">Ends at ${listing.endsAt}</p>
+      <p class="text-xs text-left">Ends at ${formatDateTime(listing.endsAt)}</p>
       <p class="text-xs text-left">Highest current bid : ${listings.bids}</p>
     </div>
     <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2">
