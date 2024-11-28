@@ -11,7 +11,6 @@ export async function testReadListings() {
 export async function readListings(limit = 12, offset = 1, active = true) {
   const page = Math.floor(offset / limit + 1);
   try {
-    // const response = await fetch(API_READ_LISTINGS);
     // const response = await fetch(`${API_READ_LISTINGS}?_seller=true&_bids=true`);
     const response = await fetch(
       `${API_READ_LISTINGS}?limit=${limit}&page=${+page}&_seller=true&_bids=true&_active=${active}`
