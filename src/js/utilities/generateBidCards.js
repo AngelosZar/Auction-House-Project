@@ -35,8 +35,11 @@ export const generateHtml = function (listings, parentContainer) {
       console.log(e.target.closest('[data-listing-id]').dataset.listingId);
       const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
       const highestBid = e.target.closest('[data-highest-bid]').dataset.highestBid;
-      const bidAmount = prompt('Enter your bid amount. min bid amount is ' + (highestBid + 1));
+      const bidAmount = prompt('Enter your bid amount. min bid amount is ' + (+highestBid + 1));
       console.log('bidamount:', bidAmount);
+      validateBid(bidAmount, highestBid);
+      // if (!validateBid(bidAmount, highestBid))
+      //   prompt('Enter your bid amount. min bid amount is ' + (+highestBid + 1));
       // verify that the number is a number and actully bigger than the highest bid
       // return the hightes bid
       // when number is 100 and highest bid is 101 why ?
@@ -69,4 +72,32 @@ export const createSingleBidCard = function (listing) {
   </a>`;
 
   return card;
+};
+
+export const validateBid = function (bidAmount, highestBid) {
+  bidAmount = Number(bidAmount);
+
+  if (isNaN(bidAmount)) {
+    alert('Please enter a valid number');
+    // if window closes do not promt user ?
+    // prompt('Enter your bid amount. min bid amount is ' + (highestBid + 1));
+    return false;
+  }
+
+  if (bidAmount < highestBid) {
+    alert('Please enter a bid higher than the current highest bid');
+    // prompt('Enter your bid amount. min bid amount is ' + (highestBid + 1));
+    return false;
+  }
+
+  if (bidAmount === highestBid) {
+    alert('Please enter a bid higher than the current highest bid');
+    // prompt('Enter your bid amount. min bid amount is ' + (highestBid + 1));
+    return false;
+  }
+
+  if (bidAmount + 1 > highestBid) alert('Thanks for your bid');
+  // redirect to the bid page?
+  // if single bid page just refresh the page
+  return true;
 };
