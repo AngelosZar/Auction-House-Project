@@ -20,30 +20,27 @@ export const generateHtml = function (listings, parentContainer) {
   listings.forEach((listing) => {
     const cards = createSingleBidCard(listing);
     parentContainer.insertAdjacentHTML('beforeend', cards);
-    // document.querySelector('#bid-for-Listing').addEventListener('click', (e) => {
-    //   e.preventDefault();
-    //   console.log('I am the bid button');
-    //   console.log('clicked');
-    // });
   });
-  //
+
   document.querySelectorAll('[data-bid-button]').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log('I am the bid button');
-      console.log('clicked');
-      console.log(e.target.closest('[data-listing-id]').dataset.listingId);
       const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
       const highestBid = e.target.closest('[data-highest-bid]').dataset.highestBid;
       const bidAmount = prompt('Enter your bid amount. min bid amount is ' + (+highestBid + 1));
-      console.log('bidamount:', bidAmount);
-      validateBid(bidAmount, highestBid);
-      // if (!validateBid(bidAmount, highestBid))
-      //   prompt('Enter your bid amount. min bid amount is ' + (+highestBid + 1));
-      // verify that the number is a number and actully bigger than the highest bid
-      // return the hightes bid
-      // when number is 100 and highest bid is 101 why ?
-      return listingId;
+      const isValidBid = validateBid(bidAmount, highestBid);
+      if (!isValidBid) return;
+      const bid = bidAmount;
+      console.log('bid:', bid);
+      return listingId, bid;
+    });
+  });
+
+  document.querySelectorAll('img').forEach((img) => {
+    img.addEventListener('click', (e) => {
+      e.preventDefault();
+      const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
+      console.log('listingId:', listingId);
     });
   });
 };
@@ -76,23 +73,20 @@ export const createSingleBidCard = function (listing) {
 
 export const validateBid = function (bidAmount, highestBid) {
   bidAmount = Number(bidAmount);
+  highestBid = Number(highestBid);
 
   if (isNaN(bidAmount)) {
     alert('Please enter a valid number');
-    // if window closes do not promt user ?
-    // prompt('Enter your bid amount. min bid amount is ' + (highestBid + 1));
     return false;
   }
 
   if (bidAmount < highestBid) {
     alert('Please enter a bid higher than the current highest bid');
-    // prompt('Enter your bid amount. min bid amount is ' + (highestBid + 1));
     return false;
   }
 
   if (bidAmount === highestBid) {
     alert('Please enter a bid higher than the current highest bid');
-    // prompt('Enter your bid amount. min bid amount is ' + (highestBid + 1));
     return false;
   }
 
