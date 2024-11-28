@@ -10,6 +10,8 @@ export const API_AUTH_REGISTER = `${API_AUTH}/register`;
 
 export const API_READ_PROFILES = `${API_BASE}/auction/profiles`;
 
+export const API_AUTH_KEY = `${API_AUTH}/create-api-key`;
+
 export const WINS_QUERY = '_wins';
 
 export const listings = '_listings';

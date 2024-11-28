@@ -24,7 +24,7 @@ export const searchOverlay = async function () {
               placeholder="Search for items"
               class="input-forms"
             />
-            <button class="btn btn-primary dark:btn-primary-dark mt-4 mb-[50%]">Search</button>
+            <button class="btn btn-primary dark:btn-primary-dark mt-4 mb-[50%]" id="OnSearch" >Search</button>
           </form>
         </div>
       </section>
@@ -44,3 +44,4 @@ export const searchOverlay = async function () {
     isOverlayOpen = !isOverlayOpen;
   });
 };
+// grabUserInput();
