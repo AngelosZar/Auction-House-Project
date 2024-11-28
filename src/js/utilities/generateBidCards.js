@@ -17,10 +17,11 @@ export const generateHtml = function (listings, parentContainer) {
   console.log('listings:', listings);
   listings.forEach((listing) => {
     const htmlContent = `<div class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md">
-    <div class="flex max-w-md pb-2">
+    <div class="w-full aspect-[4/3] overflow-hidden pb-2">
       <img
          src="${listing.media[0].url}"
         alt="${listing.media[0].alt}"
+        class="w-full h-full object-cover"
       />
     </div>
     <p class="text-md font-semibold py-2">${listing.title}</p>
