@@ -7,12 +7,12 @@
     <script type="module" src="../../src/main.js"></script>
   </head>
   <body>
-    <header class="w-full bg-light-component dark:bg-black-bright border-y-2 dark:border-none">
+    <header class="w-full bg-light-cards dark:bg-black-bright border-y-2 dark:border-none">
       <section class="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3">
         <div>
           <a href="/"
             ><img
-              src="/media/header_logos/grayscale-transparent.png"
+              src="../../media/header_logos/grayscale-transparent.png"
               alt="auction house logo"
               id="header-logo"
               class="max-w-[220px]"
@@ -25,6 +25,7 @@
               <!-- rethink about the style on hover -->
               <button
                 class="rounded-full p-2 transition-all duration-300 hover:bg-green-3 hover:dark:bg-purple-dark"
+                id="searchBtn"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,28 +72,28 @@
                 <ul class="py-2 font-bold">
                   <!-- [&>li]:hover:bg-dark-purple -->
                   <!-- add on focus later  -->
-                  <li>
+                  <li id="sign-up-link">
                     <a
                       href="/auth/sign_up/"
                       class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
                       >Register</a
                     >
                   </li>
-                  <li>
+                  <li id="sign-in-link">
                     <a
                       href="/auth/sign_in/"
                       class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
                       >Log in</a
                     >
                   </li>
-                  <li>
+                  <li id="profile-link">
                     <a
                       href="/profile/"
                       class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
                       >Profile</a
                     >
                   </li>
-                  <li>
+                  <li id="view-listings-link">
                     <a
                       href="/listing/view/"
                       class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
@@ -106,7 +107,7 @@
                       >List an item</a
                     >
                   </li>
-                  <li>
+                  <li id="log-out-link">
                     <a
                       href="#"
                       class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
@@ -124,7 +125,10 @@
 
     <main class="">
       <!-- <h1>hei i am the single page</h1> -->
-      <section class="grid grid-cols-1 md:grid-cols-2 md:py-8 gap-8 pt-16 pb-20">
+      <section
+        class="grid grid-cols-1 md:grid-cols-2 md:py-8 gap-8 pt-16 pb-20"
+        id="singleListingContainer"
+      >
         <div class="">
           <img
             src="https://images.unsplash.com/photo-1621262512331-88eb68dac8f6?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTR8fGF1Y3Rpb24lMjBzdGF0dWV8ZW58MHwwfDB8fHww"

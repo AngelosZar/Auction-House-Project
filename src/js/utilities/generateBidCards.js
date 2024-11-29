@@ -79,7 +79,7 @@ export const createSingleBidCard = function (listing) {
   <p>${listing?.seller.name}</p>
   <div class="flex flex-col">
     <p class="text-xs text-left">Ends at ${formatDateTime(listing?.endsAt)}</p>
-    <p class="text-xs text-left">Highest current bid : ${listing?.bids?.length > 0 ? Math.max(...listing.bids.map((bid) => bid.amount)) : 'No bids yet'}</p>
+    <p class="text-xs text-left">Highest current bid : ${listing?.bids?.length > 0 ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}</p>
   </div>
   <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2"   id="bid-for-Listing" 
   data-bid-button>
