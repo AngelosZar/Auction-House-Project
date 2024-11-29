@@ -1,4 +1,3 @@
-import { list } from 'postcss';
 import { readListings } from '../model/listings/readListings';
 import { formatDateTime } from '../utilities/formatDateTime';
 
@@ -16,7 +15,6 @@ export async function generateBidCards() {
 }
 
 export const generateHtml = function (listings, parentContainer) {
-  // console.log('listings:', listings);
   listings.forEach((listing) => {
     const cards = createSingleBidCard(listing);
     parentContainer.insertAdjacentHTML('beforeend', cards);
@@ -41,6 +39,8 @@ export const generateHtml = function (listings, parentContainer) {
       e.preventDefault();
       const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
       console.log('listingId:', listingId);
+      localStorage.setItem('listingId', listingId);
+      // window.location.href = '/biddings/single-listing/';
     });
   });
 };
