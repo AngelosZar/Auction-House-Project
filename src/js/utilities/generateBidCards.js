@@ -1,5 +1,6 @@
 import { readListings } from '../model/listings/readListings';
 import { formatDateTime } from '../utilities/formatDateTime';
+import { authGuard } from '../utilities/authGaurd';
 
 export async function generateBidCards() {
   try {
@@ -25,12 +26,15 @@ export const generateHtml = function (listings, parentContainer) {
       e.preventDefault();
       const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
       const highestBid = e.target.closest('[data-highest-bid]').dataset.highestBid;
-      const bidAmount = prompt('Enter your bid amount. min bid amount is ' + (+highestBid + 1));
-      const isValidBid = validateBid(bidAmount, highestBid);
-      if (!isValidBid) return;
-      const bid = bidAmount;
-      console.log('bid:', bid);
-      return listingId, bid;
+
+      if (authGuard()) {
+        const bidAmount = prompt('Enter your bid amount. min bid amount is ' + (+highestBid + 1));
+        const isValidBid = validateBid(bidAmount, highestBid);
+        if (!isValidBid) return;
+        const bid = bidAmount;
+        console.log('bid:', bid);
+        return listingId, bid;
+      }
     });
   });
 
@@ -43,6 +47,7 @@ export const generateHtml = function (listings, parentContainer) {
       // window.location.href = '/biddings/single-listing/';
     });
   });
+  // POST request to the backend to place the bid
 };
 
 export const createSingleBidCard = function (listing) {
