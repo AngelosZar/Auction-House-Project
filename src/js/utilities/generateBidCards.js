@@ -58,7 +58,7 @@ export const generateHtml = async function (listings, parentContainer) {
       const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
       console.log('listingId:', listingId);
       localStorage.setItem('listingId', listingId);
-      // window.location.href = '/biddings/single-listing/';
+      window.location.href = '/biddings/single-listing/';
     });
   });
 };
