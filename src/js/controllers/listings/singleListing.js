@@ -3,6 +3,8 @@ import { readListing } from '../../model/listings/readListings';
 import { singleListingContainer } from '../../views/listings/single_listing';
 import { createSingleListingCard } from '../../model/listings/singleListing';
 import { list } from 'postcss';
+//
+import { tabComponentHeader } from '../../model/listings/singleListing';
 // import { generateHtml } from '../../utilities/generateBidCards';
 
 async function renderHero() {
@@ -20,12 +22,15 @@ async function renderHero() {
 
     const card = createSingleListingCard(listing);
     parentContainer.insertAdjacentHTML('afterbegin', card);
+    //
   } catch (error) {
     console.log(error);
     throw error;
   }
 }
-
+async function renderTabs() {
+  //
+}
 async function main() {
   console.log('halo from the other side');
   await renderHero();
@@ -33,3 +38,7 @@ async function main() {
   console.log('i am the controller one more time');
 }
 document.addEventListener('DOMContentLoaded', main());
+
+const insertEventListeners = function () {
+  //
+};
