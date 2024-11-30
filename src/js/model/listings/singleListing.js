@@ -1,5 +1,6 @@
+import { list } from 'postcss';
 import { formatDateTime } from '../../utilities/formatDateTime';
-
+import { readProfile } from '../profile/read';
 export const createSingleListingCard = function (listing) {
   const listingHtml = `
 <div
@@ -82,7 +83,7 @@ export async function createTabs1Content(listing) {
   id="singleListingDetails"
 >
   <section
-    class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3"
+    class="grid grid-flow-row w-full justify-center md:max-w-2xl "
   >
     <div
       class="bg-light-cards dark:bg-purple-dark p-6 border-2 border-green-3 rounded-xl dark:border-purple-dark shadow-xl"
@@ -129,31 +130,44 @@ export async function createTabs2Content(listing) {
 `;
 }
 export async function createTabs3Content(listing) {
-  return `<div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="aboutSeller">
-          <section class="flex">
-            <div
-              class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
-            >
-              <h5 class="font-bold mb-4 md:text-5xl md:mb-10 dark:text-white text-center">
-                info about seller
-              </h5>
-              <div
-                class="flex border-2 rounded-xl border-green-2 dark:border-purple-dark px-2 py-4 justify-center max-w-[550px] h-auto bg-light-cards dark:bg-blue-dark shadow-lg"
-              >
-                <div>
-                  <img
-                    src="https://images.unsplash.com/photo-1561084746-f360502e5abe?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjJ8fGF1Y3Rpb24lMjBzdGF0dWV8ZW58MHx8MHx8fDA%3D"
-                    alt=""
-                    class="w-20 h-20 rounded-full mr-4"
-                  />
-                </div>
-                <div class="flex flex-col justify-center">
-                  <p class="mb-2 text-xl font-semibold">Ola Scandiman</p>
-                  <p>1000point// wins</p>
-                </div>
-              </div>
-            </div>
-          </section>
+  try {
+    const seller = listing.seller.name;
+    const response = await readProfile(seller);
+    const profile = response.data;
+    if (profile === null) {
+      throw new Error('Profile not found');
+    }
+    return `<div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="aboutSeller">
+    <section class="flex">
+      <div
+        class="w-full max-w-2xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
+      >
+      <div class="">
+         <img src="${profile.banner?.url}" alt="${profile.banner?.alt}" />
+      </div>
+        <div
+          class="flex border-2  flex-col  md:flex-row rounded-xl border-green-2 dark:border-purple-dark px-2 py-4 justify-center max-w-[550px] h-auto bg-light-cards dark:bg-blue-dark shadow-lg"
+        >
+          <div>
+            <img
+              src="${profile.avatar?.url || ''}"
+              alt="${profile.avatar?.alt || 'users avatar img'}"
+              class="w-28 h-28 md:w-36 md:h-36 rounded-full mr-4"
+            />
+          </div>
+          <div class="flex flex-col justify-center">
+            <p class="mb-2 text-xl font-semibold">${profile.name}</p>
+            <p>Credits :${profile.credits} </p>
+             <p>Listed items:${profile._count?.listings} </p>
+             <p>Wins :${profile._count.wins} </p>
+          </div>
         </div>
+      </div>
+    </section>
+  </div>
 `;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
