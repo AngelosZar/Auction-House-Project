@@ -9,11 +9,10 @@ import { validateBid } from '../../utilities/generateBidCards';
 import { bidOnListing } from '../../model/listings/bid';
 import { tabComponentOnSinglePage } from '../../views/listings/single_listing';
 import {
-  createTabsContent,
   tabComponentHeader,
-  tab1,
-  tab2,
-  tab3,
+  createTabs1Content,
+  createTabs2Content,
+  createTabs3Content,
 } from '../../model/listings/singleListing';
 // import { generateHtml } from '../../utilities/generateBidCards';
 
@@ -68,19 +67,22 @@ async function renderHero() {
 }
 //
 async function renderTabs() {
+  const listingId = localStorage.getItem('listingId');
   const parentContainer = tabComponentOnSinglePage;
   if (!parentContainer) {
     console.error('Container not found');
     return false;
   }
   try {
-    // const response = await readListing(listingId);
-    // const listing = response.data;
-    // console.log('listing:', listing);
+    const response = await readListing(listingId);
+    const listing = response.data;
+
+    console.log('listing:', listing.title);
     parentContainer.insertAdjacentHTML('beforeend', tabComponentHeader);
-    parentContainer.insertAdjacentHTML('beforeend', tab1);
-    parentContainer.insertAdjacentHTML('beforeend', tab2);
-    parentContainer.insertAdjacentHTML('beforeend', tab3);
+    parentContainer.insertAdjacentHTML('beforeend', await createTabs1Content(listing));
+    parentContainer.insertAdjacentHTML('beforeend', await createTabs2Content(listing));
+    parentContainer.insertAdjacentHTML('beforeend', await createTabs3Content(listing));
+
     initTabComponent();
     return true;
   } catch (error) {

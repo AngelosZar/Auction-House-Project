@@ -75,7 +75,8 @@ export const tabComponentHeader = `
   </div>
   `;
 //
-export const tab1 = `
+export async function createTabs1Content(listing) {
+  return `
 <div
 class="tab-content w-full block mt-8 px-8 justify-center md:justify-start"
 id="singleListingDetails"
@@ -86,7 +87,7 @@ id="singleListingDetails"
   <div
     class="bg-light-cards dark:bg-purple-dark p-6 border-2 border-green-3 rounded-xl dark:border-purple-dark shadow-xl"
   >
-    <h6 class="mb-4">About : product title</h6>
+    <h6 class="mb-4">About :${listing.title}</h6>
     <p>
       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
       Ipsum has been the industry's standard dummy text ever since the 1500s, when an
@@ -98,8 +99,9 @@ id="singleListingDetails"
 </section>
 </div>
 `;
-//
-export const tab2 = `
+}
+export async function createTabs2Content(listing) {
+  return `
   <div class="tab-content max-w-3xl hidden mt-8 px-8" id="singleListingBids">
           <section class="">
             <h6 class="mb-4">history about listing</h6>
@@ -112,9 +114,9 @@ export const tab2 = `
           </section>
   </div>
 `;
-//
-export const tab3 = `
-<div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="aboutSeller">
+}
+export async function createTabs3Content(listing) {
+  return `<div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="aboutSeller">
           <section class="flex">
             <div
               class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
@@ -141,7 +143,4 @@ export const tab3 = `
           </section>
         </div>
 `;
-//
-export async function createTabsContent(html) {
-  return html;
 }
