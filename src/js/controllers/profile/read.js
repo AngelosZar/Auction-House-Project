@@ -5,9 +5,11 @@ import {
   readProfileListings,
   readProfileWins,
 } from '../../model/profile/read';
+import { genHtmlProfileHero } from '../../model/profile/genHtml';
 import { returnToken } from '../../utilities/returnToken';
 import { initTabComponent } from '../../utilities/initTabComponent';
 import { authGuard } from '../../utilities/authGuard';
+import { profileBannerContainer } from '../../views/profile/viewProfile';
 
 export async function renderProfileHero() {
   authGuard();
@@ -16,7 +18,9 @@ export async function renderProfileHero() {
   try {
     const data = await readProfile(username);
     const currentUser = data.data;
+    const parentContainer = profileBannerContainer;
     console.log(currentUser);
+    profileBannerContainer.insertAdjacentHTML('beforeend', await genHtmlProfileHero(currentUser));
   } catch (error) {
     console.log(error);
   }
