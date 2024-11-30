@@ -78,25 +78,38 @@ export const tabComponentHeader = `
 export async function createTabs1Content(listing) {
   return `
 <div
-class="tab-content w-full block mt-8 px-8 justify-center md:justify-start"
-id="singleListingDetails"
+  class="tab-content w-full block mt-8 px-8 justify-center md:justify-start"
+  id="singleListingDetails"
 >
-<section
-  class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3"
->
-  <div
-    class="bg-light-cards dark:bg-purple-dark p-6 border-2 border-green-3 rounded-xl dark:border-purple-dark shadow-xl"
+  <section
+    class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3"
   >
-    <h6 class="mb-4">About :${listing.title}</h6>
-    <p>
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-      Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-      unknown printer took a galley of type and scrambled it to make a type specimen book.
-      It has survived not only five centuries, but also the leap into electronic
-      typesetting, remaining essentially unchanged.
-    </p>
-  </div>
-</section>
+    <div
+      class="bg-light-cards dark:bg-purple-dark p-6 border-2 border-green-3 rounded-xl dark:border-purple-dark shadow-xl"
+    >
+      <h5 class="mb-4 semi-bold text-green-2 dark:text-blue-400">
+        ${listing?.title || 'Untitled Listing'}
+      </h5>
+      <p class="mb-2">
+        <span class="font-semibold text-lg text-green-2 dark:text-blue-400">Seller:</span>
+        ${listing?.seller?.name || 'Unknown'}
+      </p>
+      <p class="mb-2">
+        <span class="font-semibold text-lg text-green-2 dark:text-blue-400">Description:</span>
+        ${listing?.description || 'No description provided.'}
+      </p>
+      <p class="mb-2">
+        <span class="font-semibold text-lg text-green-2 dark:text-blue-400">Current Price:</span
+        >Current Price: ${
+          listing?.bids?.length > 0 ? Math.max(...listing?.bids?.map((bid) => bid.amount)) : 1
+        }
+      </p>
+      <p class="mb-2">
+        <span class="font-semibold text-lg text-green-2 dark:text-blue-400">Ends at:</span>
+        ${formatDateTime(listing?.endsAt || new Date())}
+      </p>
+    </div>
+  </section>
 </div>
 `;
 }

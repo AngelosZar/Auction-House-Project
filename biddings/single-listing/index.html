@@ -317,42 +317,36 @@
 </html>
 <!-- <div> Icons made by <a href="https://www.flaticon.com/authors/noplubery" title="Noplubery"> Noplubery </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a></div> -->
 
-<!-- <div class="aspect-[4/3] overflow-hidden">
-  <img
-  src="${listing?.media[0]?.url}"
-  alt="${listing?.media[0]?.alt}"
-  class="w-full h-auto object-cover rounded-lg"
-/>
-</div> -->
-<!-- intentation -->
-<!-- <div
-  data-listing-id="${listing?.id}"
-  data-highest-bid="${listing?.bids?.length ? Math.max(...listing?.bids?.map((bid) => bid.amount)) : 1}"
+<div
+  class="tab-content w-full block mt-8 px-8 justify-center md:justify-start"
+  id="singleListingDetails"
 >
-  <div class="aspect-[4/3] overflow-hidden flex justify-center items-center">
-    <img
-      src="${listing?.media?.[0]?.url}"
-      alt="${listing?.media?.[0]?.alt}"
-      class="w-full h-full object-contain rounded-lg"
-    />
-  </div>
-  <div
-    class="bg-light-cards dark:bg-purple-dark py-4 px-4 flex flex-col md:flex-row md:w-max-[50%] rounded-xl shadow-lg w-full h-auto justify-between"
+  <section
+    class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3"
   >
-    <div class="space-y-2">
-      <h5>${listing?.title}</h5>
-      <p>Seller: ${listing?.seller?.name}</p>
-      <p>Description: ${listing?.description}</p>
-      <p>
-        Current Price: ${listing?.bids?.length > 0 ? Math.max(...listing?.bids?.map((bid) =>
-        bid.amount)) : 1}
+    <div
+      class="bg-light-cards dark:bg-purple-dark p-6 border-2 border-green-3 rounded-xl dark:border-purple-dark shadow-xl"
+    >
+      <h5 class="mb-4 semi-bold text-green-2 dark:text-blue-400">
+        ${listing?.title || 'Untitled Listing'}
+      </h5>
+      <p class="mb-2">
+        <span class="font-semibold text-lg text-green-2 dark:text-blue-400">Seller:</span>
+        ${listing?.seller?.name || 'Unknown'}
       </p>
-      <p>Ends at: ${formatDateTime(listing?.endsAt)}</p>
+      <p class="mb-2">
+        <span class="font-semibold text-lg text-green-2 dark:text-blue-400">Description:</span>
+        ${listing?.description || 'No description provided.'}
+      </p>
+      <p class="mb-2">
+        <span class="font-semibold text-lg text-green-2 dark:text-blue-400">Current Price:</span
+        >Current Price: ${ listing?.bids?.length > 0 ? Math.max(...listing?.bids?.map((bid) =>
+        bid.amount)) : 1 }
+      </p>
+      <p class="mb-2">
+        <span class="font-semibold text-lg text-green-2 dark:text-blue-400">Ends at:</span>
+        ${formatDateTime(listing?.endsAt || new Date())}
+      </p>
     </div>
-    <div class="flex justify-end mt-auto">
-      <a href="#" class="btn btn-secondary dark:btn-secondary-dark self-end" data-bid-button>
-        Place bid
-      </a>
-    </div>
-  </div>
-</div> -->
+  </section>
+</div>
