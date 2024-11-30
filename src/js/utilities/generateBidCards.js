@@ -1,6 +1,6 @@
 import { readListings } from '../model/listings/readListings';
 import { formatDateTime } from '../utilities/formatDateTime';
-import { authGuard } from '../utilities/authGaurd';
+import { authGuard } from './authGuard';
 import { bidOnListing } from '../model/listings/bid';
 import { readListing } from '../model/listings/readListings';
 

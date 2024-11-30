@@ -4,16 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction House</title>
-    <!-- <script type="module" src="/src/main.js"></script> -->
     <script type="module" src="/src/main.js"></script>
   </head>
   <body>
-    <header class="w-full bg-light-component dark:bg-black-bright border-y-2 dark:border-none">
+    <header class="w-full bg-light-cards dark:bg-black-bright border-y-2 dark:border-none">
       <section class="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3">
         <div>
           <a href="/"
             ><img
-              src="/media/header_logos/grayscale-transparent.png"
+              src="../../media/header_logos/grayscale-transparent.png"
               alt="auction house logo"
               id="header-logo"
               class="max-w-[220px]"
@@ -26,6 +25,7 @@
               <!-- rethink about the style on hover -->
               <button
                 class="rounded-full p-2 transition-all duration-300 hover:bg-green-3 hover:dark:bg-purple-dark"
+                id="searchBtn"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,6 @@
                       >Log in</a
                     >
                   </li>
-
                   <li id="profile-link">
                     <a
                       href="/profile/"
@@ -123,6 +122,7 @@
         </div>
       </section>
     </header>
+
     <main class="h-screen mx-auto max-w-[1440px]">
       <section
         id="profile-banner-container"

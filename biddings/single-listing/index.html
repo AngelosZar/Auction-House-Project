@@ -149,7 +149,7 @@
         </div> -->
       </section>
 
-      <section id="tab-component-on-singlePage" class="pt-24 lg:justify-center">
+      <section id="tab-component-on-singlePage" class="py-24 lg:justify-center">
         <!-- <div class="px-8 flex justify-center md:justify-start">
           <ul class="flex bg-light-cards dark:bg-purple-dark rounded-lg">
             <li
@@ -350,20 +350,3 @@
     </div>
   </section>
 </div> -->
-
-<div
-  class="bg-light-cards dark:bg-purple-dark p-6 border-2 border-green-3 rounded-xl dark:border-purple-dark shadow-xl max-w-2xl"
->
-  <div class="tab-content max-w-3xl hidden mt-8 px-8" id="singleListingBids">
-    <p class="font-semibold text-green-2 text-xl dark:text-blue-400 pb-4">
-      Listing was created: ${formatDateTime(data.created)}
-    </p>
-    <p class="font-semibold text-green-2 text-xl dark:text-blue-400">
-      Auction ends at: ${formatDateTime(data.endsAt)}
-    </p>
-
-    ${bidHistory.map((bid) => `
-    <p class="mb-2 mt-4">🟢 ${bid?.bidder?.name}: ${bid?.amount}</p>
-    `).join('')}
-  </div>
-</div>

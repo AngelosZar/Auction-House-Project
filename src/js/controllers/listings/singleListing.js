@@ -4,7 +4,7 @@ import { singleListingContainer } from '../../views/listings/single_listing';
 import { createSingleListingCard } from '../../model/listings/singleListing';
 import { list } from 'postcss';
 //
-import { authGuard } from '../../utilities/authGaurd';
+import { authGuard } from '../../utilities/authGuard';
 import { validateBid } from '../../utilities/generateBidCards';
 import { bidOnListing } from '../../model/listings/bid';
 import { tabComponentOnSinglePage } from '../../views/listings/single_listing';

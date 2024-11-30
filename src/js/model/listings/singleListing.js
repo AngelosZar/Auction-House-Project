@@ -204,6 +204,3 @@ export async function createTabs3Content(listing) {
     throw error;
   }
 }
-{
-  /* <p>🟢 user name bid : amount</p> */
-}
