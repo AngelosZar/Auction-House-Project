@@ -1,2 +1,2 @@
 export const profileBannerContainer = document.querySelector('#profile-banner-container');
-console.log(profileBannerContainer);
+export const tabComponentOnProfile = document.querySelector('#tab-component-on-profile');

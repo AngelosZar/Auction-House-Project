@@ -9,7 +9,13 @@ import { genHtmlProfileHero } from '../../model/profile/genHtml';
 import { returnToken } from '../../utilities/returnToken';
 import { initTabComponent } from '../../utilities/initTabComponent';
 import { authGuard } from '../../utilities/authGuard';
-import { profileBannerContainer } from '../../views/profile/viewProfile';
+import { profileBannerContainer, tabComponentOnProfile } from '../../views/profile/viewProfile';
+import {
+  renderProfileTabHeader,
+  renderProfileTab1Content,
+  renderProfileTab2Content,
+  renderProfileTab3Content,
+} from '../../model/profile/genHtml';
 
 export async function renderProfileHero() {
   authGuard();
@@ -18,9 +24,22 @@ export async function renderProfileHero() {
   try {
     const data = await readProfile(username);
     const currentUser = data.data;
-    const parentContainer = profileBannerContainer;
     console.log(currentUser);
     profileBannerContainer.insertAdjacentHTML('beforeend', await genHtmlProfileHero(currentUser));
+    tabComponentOnProfile.insertAdjacentHTML('beforeend', renderProfileTabHeader());
+    tabComponentOnProfile.insertAdjacentHTML(
+      'beforeend',
+      await renderProfileTab1Content(currentUser)
+    );
+    tabComponentOnProfile.insertAdjacentHTML(
+      'beforeend',
+      await renderProfileTab2Content(currentUser)
+    );
+    tabComponentOnProfile.insertAdjacentHTML(
+      'beforeend',
+      await renderProfileTab3Content(currentUser)
+    );
+    initTabComponent();
   } catch (error) {
     console.log(error);
   }
