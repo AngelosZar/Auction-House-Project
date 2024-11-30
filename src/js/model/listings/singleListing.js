@@ -49,21 +49,7 @@ export const createSingleListingCard = function (listing) {
   console.log('data-listing-id:', listing.id);
   return listingHtml;
 };
-// fix indentetion when done
-// fix the styling of the card maybe flex 50/50
 
-export function addEventListenersToSingleListingCard(listingId) {
-  const placeBidBtn = document.querySelector('#bid-for-Listing');
-  placeBidBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log('Place bid button clicked');
-    console.log(e.target);
-    // const listingId = e.currentTarget.closest('[data-listing-id]').dataset.listingId;
-    // console.log('listingId:', listingId);
-    // localStorage.setItem('listingId', listingId);
-    // window.location.href = '/biddings/single-listing/';
-  });
-}
 export const tabComponentHeader = function () {
   const html = `
   <div class="px-8 flex justify-center md:justify-start">
@@ -90,3 +76,73 @@ export const tabComponentHeader = function () {
   </div>;
   `;
 };
+
+export async function createTabsContent(html) {
+  return html;
+}
+//
+const tab1 = `<div
+class="tab-content w-full block mt-8 px-8 justify-center md:justify-start"
+id="singleListingDetails"
+>
+<section
+  class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3"
+>
+  <div
+    class="bg-light-cards dark:bg-purple-dark p-6 border-2 border-green-3 rounded-xl dark:border-purple-dark shadow-xl"
+  >
+    <h6 class="mb-4">About : product title</h6>
+    <p>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+      Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+      unknown printer took a galley of type and scrambled it to make a type specimen book.
+      It has survived not only five centuries, but also the leap into electronic
+      typesetting, remaining essentially unchanged.
+    </p>
+  </div>
+</section>
+</div>`;
+//
+const tab2 = `
+  <div class="tab-content max-w-3xl hidden mt-8 px-8" id="singleListingBids">
+          <section class="">
+            <h6 class="mb-4">history about listing</h6>
+            <p>🟢 user name bid : amount</p>
+            <p>🟢 user name bid : amount</p>
+            <p>🟢 user name bid : amount</p>
+            <p>🟢 user name bid : amount</p>
+            <p>🟢 user name bid : amount</p>
+            <p>🟢 user name bid : amount</p>
+          </section>
+  </div>
+`;
+//
+const tab3 = `
+<div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="aboutSeller">
+          <section class="flex">
+            <div
+              class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
+            >
+              <h5 class="font-bold mb-4 md:text-5xl md:mb-10 dark:text-white text-center">
+                info about seller
+              </h5>
+              <div
+                class="flex border-2 rounded-xl border-green-2 dark:border-purple-dark px-2 py-4 justify-center max-w-[550px] h-auto bg-light-cards dark:bg-blue-dark shadow-lg"
+              >
+                <div>
+                  <img
+                    src="https://images.unsplash.com/photo-1561084746-f360502e5abe?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjJ8fGF1Y3Rpb24lMjBzdGF0dWV8ZW58MHx8MHx8fDA%3D"
+                    alt=""
+                    class="w-20 h-20 rounded-full mr-4"
+                  />
+                </div>
+                <div class="flex flex-col justify-center">
+                  <p class="mb-2 text-xl font-semibold">Ola Scandiman</p>
+                  <p>1000point// wins</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+`;
+//

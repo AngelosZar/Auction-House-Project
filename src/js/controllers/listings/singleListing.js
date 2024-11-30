@@ -4,7 +4,6 @@ import { singleListingContainer } from '../../views/listings/single_listing';
 import { createSingleListingCard } from '../../model/listings/singleListing';
 import { list } from 'postcss';
 //
-import { addEventListenersToSingleListingCard } from '../../model/listings/singleListing';
 import { tabComponentHeader } from '../../model/listings/singleListing';
 import { authGuard } from '../../utilities/authGaurd';
 import { validateBid } from '../../utilities/generateBidCards';
@@ -61,7 +60,7 @@ async function renderHero() {
   }
 }
 async function renderTabs() {
-  //
+  // tabComponentHeader();
 }
 async function main() {
   console.log('halo from the other side');
@@ -70,7 +69,3 @@ async function main() {
   console.log('i am the controller one more time');
 }
 document.addEventListener('DOMContentLoaded', main());
-
-const insertEventListeners = function () {
-  //
-};
