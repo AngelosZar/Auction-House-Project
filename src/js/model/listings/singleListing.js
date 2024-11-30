@@ -114,20 +114,53 @@ export async function createTabs1Content(listing) {
 </div>
 `;
 }
+
+/** ...
+ * Creates HTML content for a tab displaying bid history and listing details
+ * @param {Promise  to Object} listing
+ * @returns {object} HTML object
+ * @bidHistory {Array} listing.bids - array of bids sorted from highest to lowest with a limit of 5
+ * @highestBids {Array} bidHistory - array of bids sorted from lowest to highest from bidHistory for rendering
+ * returns HTML content for the bid history tab
+ * Creates HTML content for a tab displaying bid history and listing details
+ *  * @throws {error} error - when data is not found
+ */
 export async function createTabs2Content(listing) {
-  return `
-  <div class="tab-content max-w-3xl hidden mt-8 px-8" id="singleListingBids">
-          <section class="">
-            <h6 class="mb-4">history about listing</h6>
-            <p>🟢 user name bid : amount</p>
-            <p>🟢 user name bid : amount</p>
-            <p>🟢 user name bid : amount</p>
-            <p>🟢 user name bid : amount</p>
-            <p>🟢 user name bid : amount</p>
-            <p>🟢 user name bid : amount</p>
-          </section>
+  try {
+    const data = await listing;
+    const bids = data.bids;
+
+    if (!listing) throw new Error('Data not found');
+
+    const bidHistory = bids.sort((a, b) => b.amount - a.amount).slice(0, 5);
+    const highestBids = bidHistory.sort((b, a) => b.amount - a.amount);
+
+    if (!data.bids || !Array.isArray(data.bids)) {
+      throw new Error('No bids found');
+    }
+    return `
+   
+  <div class="tab-content  hidden mt-8 px-8 max-w-2xl bg-light-cards dark:bg-purple-dark p-4 m-8 rounded-xl" id="singleListingBids">
+    <p class="font-semibold text-green-2 text-xl dark:text-blue-400 pb-4">
+      Listing was created: ${formatDateTime(data.created)}
+    </p>
+    <p class="font-semibold text-green-2 text-xl dark:text-blue-400">
+      Auction ends at: ${formatDateTime(data.endsAt)}
+    </p>
+
+    ${highestBids
+      .map(
+        (bid) => `
+    <p class="mb-2 mt-4">🟢 ${bid?.bidder?.name}: ${bid?.amount}</p>
+    `
+      )
+      .join('')}
   </div>
-`;
+
+  `;
+  } catch (error) {
+    console.log(error);
+  }
 }
 export async function createTabs3Content(listing) {
   try {
@@ -170,4 +203,7 @@ export async function createTabs3Content(listing) {
     console.log(error);
     throw error;
   }
+}
+{
+  /* <p>🟢 user name bid : amount</p> */
 }
