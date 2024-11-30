@@ -50,8 +50,7 @@ export const createSingleListingCard = function (listing) {
   return listingHtml;
 };
 
-export const tabComponentHeader = function () {
-  const html = `
+export const tabComponentHeader = `
   <div class="px-8 flex justify-center md:justify-start">
     <ul class="flex bg-light-cards dark:bg-purple-dark rounded-lg">
       <li
@@ -73,15 +72,11 @@ export const tabComponentHeader = function () {
         About Seller
       </li>
     </ul>
-  </div>;
+  </div>
   `;
-};
-
-export async function createTabsContent(html) {
-  return html;
-}
 //
-const tab1 = `<div
+export const tab1 = `
+<div
 class="tab-content w-full block mt-8 px-8 justify-center md:justify-start"
 id="singleListingDetails"
 >
@@ -101,9 +96,10 @@ id="singleListingDetails"
     </p>
   </div>
 </section>
-</div>`;
+</div>
+`;
 //
-const tab2 = `
+export const tab2 = `
   <div class="tab-content max-w-3xl hidden mt-8 px-8" id="singleListingBids">
           <section class="">
             <h6 class="mb-4">history about listing</h6>
@@ -117,7 +113,7 @@ const tab2 = `
   </div>
 `;
 //
-const tab3 = `
+export const tab3 = `
 <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="aboutSeller">
           <section class="flex">
             <div
@@ -146,3 +142,6 @@ const tab3 = `
         </div>
 `;
 //
+export async function createTabsContent(html) {
+  return html;
+}

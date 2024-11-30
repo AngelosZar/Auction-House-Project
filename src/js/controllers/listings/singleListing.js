@@ -4,10 +4,17 @@ import { singleListingContainer } from '../../views/listings/single_listing';
 import { createSingleListingCard } from '../../model/listings/singleListing';
 import { list } from 'postcss';
 //
-import { tabComponentHeader } from '../../model/listings/singleListing';
 import { authGuard } from '../../utilities/authGaurd';
 import { validateBid } from '../../utilities/generateBidCards';
 import { bidOnListing } from '../../model/listings/bid';
+import { tabComponentOnSinglePage } from '../../views/listings/single_listing';
+import {
+  createTabsContent,
+  tabComponentHeader,
+  tab1,
+  tab2,
+  tab3,
+} from '../../model/listings/singleListing';
 // import { generateHtml } from '../../utilities/generateBidCards';
 
 async function renderHero() {
@@ -59,13 +66,34 @@ async function renderHero() {
     throw error;
   }
 }
+//
 async function renderTabs() {
-  // tabComponentHeader();
+  const parentContainer = tabComponentOnSinglePage;
+  if (!parentContainer) {
+    console.error('Container not found');
+    return false;
+  }
+  try {
+    // const response = await readListing(listingId);
+    // const listing = response.data;
+    // console.log('listing:', listing);
+    parentContainer.insertAdjacentHTML('beforeend', tabComponentHeader);
+    parentContainer.insertAdjacentHTML('beforeend', tab1);
+    parentContainer.insertAdjacentHTML('beforeend', tab2);
+    parentContainer.insertAdjacentHTML('beforeend', tab3);
+    initTabComponent();
+    return true;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
 async function main() {
   console.log('halo from the other side');
   await renderHero();
-  initTabComponent();
+  renderTabs();
   console.log('i am the controller one more time');
 }
 document.addEventListener('DOMContentLoaded', main());
+
+// console.log(tabComponentOnSinglePage);
