@@ -1,4 +1,5 @@
 import { readProfileListings } from './read';
+import { formatDateTime } from '../../utilities/formatDateTime';
 export const genHtmlProfileHero = async function (currentUser) {
   return `
    <div class="lg:mb-18 relative mb-8 max-w-screen-2xl xs:mb-12 md:mb-14 lg:mb-20">
@@ -74,8 +75,8 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
           <p class="text-lg font-semibold py-2">${listing.title}</p>
           <p class="text-sm pb-2" >${listing.description}</p>
           <div class="flex flex-col">
-            <p class="text-xs text-left">Created ${listing.created}</p>
-            <p class="text-xs text-left">Ends in: ${listing.endsAt}</p>
+            <p class="text-xs text-left">Created ${formatDateTime(listing.created)}</p>
+            <p class="text-xs text-left">Ends in: ${formatDateTime(listing.endsAt)}</p>
             <p class="text-xs text-left">Highest current bid ${listing.highestBid || 0} nok</p>
           </div>
           <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2">
@@ -88,7 +89,7 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
 
     return `
     <div
-      class="tab-content w-full block mt-8 px-8 justify-center md:justify-start"
+      class="tab-content w-full block mt-8 px-8 justify-center md:justify-start pb-48"
       id="user-listings"
     >
       <section
@@ -96,8 +97,16 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
       >
         ${cards}
       </section>
+       <div class="flex justify-between px-8 pt-4">
+            <span class="">
+              <p class="text-left" data-page"previous">Previous page</p>
+            </span>
+            <span class="">
+              <p class="text-right" data-page"next">Next page</p>
+            </span>
+        </div>
     </div>
-    
+      
   `;
   } catch (error) {
     console.error(error);
