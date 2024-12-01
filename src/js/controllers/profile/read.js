@@ -16,6 +16,7 @@ import {
   renderProfileTab2Content,
   renderProfileTab3Content,
 } from '../../model/profile/genHtml';
+import { createListingForm } from '../../views/profile/viewProfile';
 
 export async function renderProfileHero() {
   authGuard();
@@ -27,37 +28,27 @@ export async function renderProfileHero() {
     console.log(currentUser);
     profileBannerContainer.insertAdjacentHTML('beforeend', await genHtmlProfileHero(currentUser));
     tabComponentOnProfile.insertAdjacentHTML('beforeend', renderProfileTabHeader());
-    tabComponentOnProfile.insertAdjacentHTML(
-      'beforeend',
-      await renderProfileTab1Content(currentUser, 6, 1)
-    );
-    tabComponentOnProfile.insertAdjacentHTML(
-      'beforeend',
-      await renderProfileTab2Content(currentUser, 6, 2)
-    );
-    tabComponentOnProfile.insertAdjacentHTML(
-      'beforeend',
-      await renderProfileTab3Content(currentUser)
-    );
-    console.log('currentUser:', currentUser);
+    const [tab1Content, tab2Content, tab3Content] = await Promise.all([
+      renderProfileTab1Content(currentUser, 6, 1),
+      renderProfileTab2Content(currentUser, 6, 1),
+      renderProfileTab3Content(),
+    ]);
+
+    tabComponentOnProfile.insertAdjacentHTML('beforeend', tab1Content);
+    tabComponentOnProfile.insertAdjacentHTML('beforeend', tab2Content);
+    tabComponentOnProfile.insertAdjacentHTML('beforeend', tab3Content);
+
     initTabComponent();
+    console.log(createListingForm);
   } catch (error) {
     console.log(error);
   }
-  // await readProfile();
-  // await readProfiles();
-  // await readProfile('zzz');
-  // returnToken();
-  // await readProfileListings('');
-  // const accessToken = returnToken();
-  // console.log(accessToken);
 }
 
 const profilePage = async function () {
   console.log('I am in the profile page');
   renderProfileHero();
   initTabComponent();
-  // await readProfileHandler();
 };
 
 await profilePage();

@@ -1,11 +1,7 @@
 import { API_READ_LISTINGS } from '../../utilities/constants';
 
 export async function testReadListings() {
-  //   console.log(API_READ_LISTINGS);
-  //   console.log('I am the testReadListings function');
-  //   await readListings();
   console.log('I run the readListings function');
-  //   await readListings();
 }
 
 export async function readListings(limit = 12, offset = 1, active = true) {

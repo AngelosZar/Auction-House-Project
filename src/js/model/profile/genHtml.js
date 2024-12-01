@@ -3,6 +3,8 @@ import { formatDateTime } from '../../utilities/formatDateTime';
 import { readProfileBids } from './read';
 import { readListing } from '../../model/listings/readListings';
 import { list } from 'postcss';
+import { createListingForm } from '../../views/profile/viewProfile';
+
 export const genHtmlProfileHero = async function (currentUser) {
   return `
    <div class="lg:mb-18 relative mb-8 max-w-screen-2xl xs:mb-12 md:mb-14 lg:mb-20">
@@ -124,29 +126,28 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
       data.map(async (listing) => {
         let listingId = listing.id;
         console.log(listingId);
-        return await readListing(listingId);
+        // return await readListing(listingId);
       })
     );
   } catch (error) {
     console.error(error);
     throw error;
   }
-  // return `
-  //  <div class="tab-content max-w-3xl hidden mt-8 px-8" id="users-bids">
-  //         <section class="">
-  //           <div>this will be card one-users-bid</div>
-  //           <div>this will be card two-users-bid</div>
-  //           <div>this will be card three-users-bid</div>
-  //           <button>Pagination to view more</button>
-  //         </section>
-  //       </div>
-  //   `;
-  //
+  return `
+   <div class="tab-content max-w-3xl hidden mt-8 px-8" id="users-bids">
+          <section class="">
+            <div>this will be card one-users-bid</div>
+            <div>this will be card two-users-bid</div>
+            <div>this will be card three-users-bid</div>
+            <button>Pagination to view more</button>
+          </section>
+        </div>
+    `;
 };
 
 export const renderProfileTab3Content = async function () {
-  return `
-   <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="create-listing">
+  const html = `
+  <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="create-listing">
           <section class="min-h-screen">
             <div
               class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
@@ -154,8 +155,8 @@ export const renderProfileTab3Content = async function () {
               <h5 class="font-bold mb-4 md:text-5xl md:mb-10 dark:text-white text-center">
                 List a new item
               </h5>
-      
-              <form action="">
+
+              <form action="" id="create-listing-form">
                 <div class="mb-2">
                   <label for="title">Title</label>
                   <input
@@ -181,9 +182,8 @@ export const renderProfileTab3Content = async function () {
                 </div>
                 <div class="mb-2">
                   <label for="category" class="relative">Category</label>
-               
+
                   <select name="category" id="category" class="input-forms mt-1" required>
-                  
                     <option value="0">Select Category</option>
                     <option value="1">Electronics</option>
                     <option value="2">Home & Garden</option>
@@ -208,7 +208,7 @@ export const renderProfileTab3Content = async function () {
                     required
                   />
                 </div>
-         
+
                 <div class="mb-2">
                   <label for="starting-price">Starting price</label>
                   <input
@@ -232,12 +232,106 @@ export const renderProfileTab3Content = async function () {
                     placeholder="Only valid url"
                     pattern="https://.*"
                   />
-             
                 </div>
                 <button class="btn btn-primary dark:btn-primary-dark" type="submit">Submit</button>
               </form>
             </div>
           </section>
         </div>
- `;
+`;
+  return html;
 };
+
+/* <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="create-listing-form">
+<section class="min-h-screen">
+  <div
+    class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
+  >
+    <h5 class="font-bold mb-4 md:text-5xl md:mb-10 dark:text-white text-center">
+      List a new item
+    </h5>
+
+    <form action="">
+      <div class="mb-2">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="input-forms mt-1"
+          required
+          placeholder="Title of the product"
+        />
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <textarea
+          name="description"
+          id="description"
+          cols="10"
+          rows="5"
+          class="input-forms mt-1"
+          maxlength="120"
+          placeholder="Max 120 characters"
+        ></textarea>
+      </div>
+      <div class="mb-2">
+        <label for="category" class="relative">Category</label>
+
+        <select name="category" id="category" class="input-forms mt-1" required>
+          <option value="0">Select Category</option>
+          <option value="1">Electronics</option>
+          <option value="2">Home & Garden</option>
+          <option value="3">Fashion & Accessories</option>
+          <option value="4">Collectibles</option>
+          <option value="5">Art & Antiques</option>
+          <option value="6">Vehicles & Parts5</option>
+          <option value="7">Sports & Outdoors</option>
+          <option value="8">Toys & Hobbies</option>
+          <option value="9">Books, Music & Movies</option>
+          <option value="10">Industrial & Business</option>
+          <option value="11">None of the above</option>
+        </select>
+      </div>
+      <div class="mb-2">
+        <label for="end-auction-date">End auction at</label>
+        <input
+          type="date"
+          name="end-auction-date"
+          id="end-auction-date"
+          class="input-forms mt-1"
+          required
+        />
+      </div>
+
+      <div class="mb-2">
+        <label for="starting-price">Starting price</label>
+        <input
+          type="number"
+          name="starting-price"
+          id="starting-price"
+          class="input-forms mt-1"
+          required
+          min="20"
+          placeholder="Minimum Bid starts at 20NOK"
+        />
+      </div>
+      <div class="mb-2">
+        <label for="image">Image</label>
+        <input
+          type="url"
+          name="image"
+          id="image"
+          class="input-forms mt-1"
+          required
+          placeholder="Only valid url"
+          pattern="https://.*"
+        />
+      </div>
+      <button class="btn btn-primary dark:btn-primary-dark" type="submit">Submit</button>
+    </form>
+  </div>
+</section>
+</div> */
+
+// await readListing('ff98e567-ebe0-41bc-889b-2533a5860014');

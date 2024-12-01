@@ -2,6 +2,7 @@ export const initTabComponent = function () {
   console.log('working yo');
   const tabs = document.querySelectorAll('.tab');
   const tabContents = document.querySelectorAll('.tab-content');
+  const createListingForm = document.querySelector('#create-listing-form');
   //   console.log(tabs);
   //   console.log(tabContents);
   //
@@ -42,4 +43,6 @@ export const initTabComponent = function () {
       }
     });
   });
+
+  console.log(createListingForm);
 };
