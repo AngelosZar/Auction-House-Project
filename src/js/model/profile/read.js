@@ -92,21 +92,33 @@ export async function readProfile(username, query = '') {
   }
 }
 
-export async function readProfileListings(username, query = '') {
+export async function readProfileListings(
+  username,
+  limit = 12,
+  offset = 1,
+  query = '',
+  seller = true,
+  bids = true,
+  active = true
+) {
   //GET
   // /auction/profiles/<name>/listings
   // Retrieve all listings created by profile.
   // The response is the same as the listings endpoint, and accepts the same optional query parameters and flags.
   try {
     const accessToken = returnToken();
-    const response = await fetch(`${API_READ_PROFILES}/${username}/listings${query}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-        'X-Noroff-API-Key': API_KEY,
-      },
-    });
+    const page = Math.floor(offset / limit + 1);
+    const response = await fetch(
+      `${API_READ_PROFILES}/${username}/listings${query}?limit=${limit}&page=${page}&_seller=${seller}&_bids=${bids}&_active=${active}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+          'X-Noroff-API-Key': API_KEY,
+        },
+      }
+    );
     const data = await response.json();
     if (!response.ok) {
       throw new Error(data.errors?.[0]?.message || 'Failed to fetch profile listings');

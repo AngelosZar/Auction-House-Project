@@ -1,3 +1,4 @@
+import { readProfileListings } from './read';
 export const genHtmlProfileHero = async function (currentUser) {
   return `
    <div class="lg:mb-18 relative mb-8 max-w-screen-2xl xs:mb-12 md:mb-14 lg:mb-20">
@@ -52,91 +53,57 @@ export const renderProfileTabHeader = function () {
 `;
 };
 
-export const renderProfileTab1Content = async function (currentUser) {
-  return ` <div
-          class="tab-content w-full block mt-8 px-8 justify-center md:justify-start"
-          id="user-listings"
+export const renderProfileTab1Content = async function (currentUser, cardNumber, page) {
+  try {
+    const userData = await readProfileListings(currentUser.name, cardNumber, page);
+    console.log(userData);
+    const cards = userData.data
+      .map((listing) => {
+        console.log('listing:', listing);
+        return `
+        <div
+          id="card-${listing.id}"
+          class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"
         >
-          <section
-            class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3"
-          >
-            <!-- md:col-span-3 md:grid-flow-col -->
-            <div
-              id="tab-1"
-              class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"
-            >
-              <div class="flex max-w-md">
-                <img
-                  src="https://images.pexels.com/photos/15282059/pexels-photo-15282059/free-photo-of-a-view-of-the-ocean-from-a-ferry.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt=""
-                />
-              </div>
-              <p class="text-sm py-2">title of the product .. might be fucking long</p>
-              <p>seller</p>
-
-              <div class="flex flex-col">
-                <p class="text-xs text-left">Ends in 2 days</p>
-                <p class="text-xs text-left">Highest current bid 100nok</p>
-              </div>
-              <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2"
-                >Bid href</a
-              >
-            </div>
-            <div
-              id="tab-2"
-              class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"
-            >
-              <div class="flex max-w-md">
-                <img
-                  src="https://images.pexels.com/photos/15282059/pexels-photo-15282059/free-photo-of-a-view-of-the-ocean-from-a-ferry.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt=""
-                />
-              </div>
-              <p class="text-sm py-2">${currentUser.title}</p>
-              <p>${currentUser.title}</p>
-
-              <div class="flex flex-col">
-                <p class="text-xs text-left">Ends in 2 days</p>
-                <p class="text-xs text-left">Highest current bid 100nok</p>
-              </div>
-              <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2"
-                >Bid href</a
-              >
-            </div>
-            <div
-              id="tab-3"
-              class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"
-            >
-              <div class="flex max-w-md">
-                <img
-                  src="https://images.pexels.com/photos/15282059/pexels-photo-15282059/free-photo-of-a-view-of-the-ocean-from-a-ferry.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt=""
-                />
-              </div>
-              <p class="text-sm py-2">title of the product .. might be fucking long</p>
-              <p>seller</p>
-
-              <div class="flex flex-col">
-                <p class="text-xs text-left">Ends in 2 days</p>
-                <p class="text-xs text-left">Highest current bid 100nok</p>
-              </div>
-              <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2"
-                >Bid href</a
-              >
-            </div>
-          </section>
-          <div class="justify-end pt-4">
-            <span class="">
-              <p class="text-left">Previous page</p>
-            </span>
-            <span class="">
-              <p class="text-right">Next page</p>
-              <p class="text-right">view more</p>
-            </span>
+          <div class="flex max-w-md">
+            <img
+              src="${listing.media?.[0]?.url}"
+              alt="${listing.media?.[0]?.alt}"
+            />
           </div>
+          <p class="text-lg font-semibold py-2">${listing.title}</p>
+          <p class="text-sm pb-2" >${listing.description}</p>
+          <div class="flex flex-col">
+            <p class="text-xs text-left">Created ${listing.created}</p>
+            <p class="text-xs text-left">Ends in: ${listing.endsAt}</p>
+            <p class="text-xs text-left">Highest current bid ${listing.highestBid || 0} nok</p>
+          </div>
+          <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2">
+            Edit listing
+          </a>
         </div>
-        `;
+      `;
+      })
+      .join('');
+
+    return `
+    <div
+      class="tab-content w-full block mt-8 px-8 justify-center md:justify-start"
+      id="user-listings"
+    >
+      <section
+        class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3"
+      >
+        ${cards}
+      </section>
+    </div>
+    
+  `;
+  } catch (error) {
+    console.error(error);
+  }
 };
+
 export const renderProfileTab2Content = async function () {
   return `
    <div class="tab-content max-w-3xl hidden mt-8 px-8" id="users-bids">

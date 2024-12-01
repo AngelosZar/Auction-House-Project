@@ -29,7 +29,7 @@ export async function renderProfileHero() {
     tabComponentOnProfile.insertAdjacentHTML('beforeend', renderProfileTabHeader());
     tabComponentOnProfile.insertAdjacentHTML(
       'beforeend',
-      await renderProfileTab1Content(currentUser)
+      await renderProfileTab1Content(currentUser, 6, 1)
     );
     tabComponentOnProfile.insertAdjacentHTML(
       'beforeend',
@@ -39,6 +39,7 @@ export async function renderProfileHero() {
       'beforeend',
       await renderProfileTab3Content(currentUser)
     );
+    console.log('currentUser:', currentUser);
     initTabComponent();
   } catch (error) {
     console.log(error);
