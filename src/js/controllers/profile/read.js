@@ -33,7 +33,7 @@ export async function renderProfileHero() {
     );
     tabComponentOnProfile.insertAdjacentHTML(
       'beforeend',
-      await renderProfileTab2Content(currentUser)
+      await renderProfileTab2Content(currentUser, 6, 2)
     );
     tabComponentOnProfile.insertAdjacentHTML(
       'beforeend',

@@ -1,5 +1,8 @@
 import { readProfileListings } from './read';
 import { formatDateTime } from '../../utilities/formatDateTime';
+import { readProfileBids } from './read';
+import { readListing } from '../../model/listings/readListings';
+import { list } from 'postcss';
 export const genHtmlProfileHero = async function (currentUser) {
   return `
    <div class="lg:mb-18 relative mb-8 max-w-screen-2xl xs:mb-12 md:mb-14 lg:mb-20">
@@ -57,10 +60,10 @@ export const renderProfileTabHeader = function () {
 export const renderProfileTab1Content = async function (currentUser, cardNumber, page) {
   try {
     const userData = await readProfileListings(currentUser.name, cardNumber, page);
-    console.log(userData);
+    // console.log(userData);
     const cards = userData.data
       .map((listing) => {
-        console.log('listing:', listing);
+        // console.log('listing:', listing);
         return `
         <div
           id="card-${listing.id}"
@@ -113,19 +116,34 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
   }
 };
 
-export const renderProfileTab2Content = async function () {
-  return `
-   <div class="tab-content max-w-3xl hidden mt-8 px-8" id="users-bids">
-          <section class="">
-            <div>this will be card one-users-bid</div>
-            <div>this will be card two-users-bid</div>
-            <div>this will be card three-users-bid</div>
-            <button>Pagination to view more</button>
-          </section>
-        </div>
-    `;
+export const renderProfileTab2Content = async function (currentUser, cardNumber, page) {
+  try {
+    const { data } = await readProfileBids(currentUser.name, cardNumber, page);
+    console.log(data);
+    await Promise.all(
+      data.map(async (listing) => {
+        let listingId = listing.id;
+        console.log(listingId);
+        return await readListing(listingId);
+      })
+    );
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+  // return `
+  //  <div class="tab-content max-w-3xl hidden mt-8 px-8" id="users-bids">
+  //         <section class="">
+  //           <div>this will be card one-users-bid</div>
+  //           <div>this will be card two-users-bid</div>
+  //           <div>this will be card three-users-bid</div>
+  //           <button>Pagination to view more</button>
+  //         </section>
+  //       </div>
+  //   `;
   //
 };
+
 export const renderProfileTab3Content = async function () {
   return `
    <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="create-listing">

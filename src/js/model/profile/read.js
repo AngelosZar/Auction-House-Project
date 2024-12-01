@@ -39,7 +39,7 @@ export async function readProfiles(limit = 12, page = 1, query = '_wins') {
     // console.log('data', data);
     return data;
   } catch (error) {
-    console.error(error);
+    throw new Error(error);
   }
 }
 
@@ -84,11 +84,11 @@ export async function readProfile(username, query = '') {
     if (!response.ok) {
       throw new Error(userData.errors?.[0]?.message || 'Failed to fetch profile');
     }
-    console.log(userData);
+    // console.log(userData);
     // console.log(Promise.resolve(userData));
     return userData;
   } catch (error) {
-    console.error(error);
+    throw new Error(error);
   }
 }
 
@@ -124,12 +124,12 @@ export async function readProfileListings(
       throw new Error(data.errors?.[0]?.message || 'Failed to fetch profile listings');
     }
 
-    console.log(data);
-    console.log(response);
+    // console.log(data);
+    // console.log(response);
     // console.log(Promise.resolve(data));
     return data;
   } catch (error) {
-    console.error(error);
+    throw new Error(error);
   }
   // status  200 but no listings found.
 }
@@ -141,7 +141,7 @@ export async function readProfileBids(username, limit = 12, offset = 1) {
   const page = Math.floor(offset / limit + 1);
   try {
     const response = await fetch(
-      `${API_READ_PROFILES}/${username}/listings?limit=${limit}&page=${+page}&_seller=true&_bids=true`,
+      `${API_READ_PROFILES}/${username}/bids?limit=${limit}&page=${+page}&_listings=true&_wins=true`,
       {
         method: 'GET',
         headers: {
@@ -156,9 +156,9 @@ export async function readProfileBids(username, limit = 12, offset = 1) {
       throw new Error(error.errors?.[0]?.message || 'Failed to fetch profile bids');
     }
     const data = await response.json();
-    console.log('route: model/profile/read.js');
-    console.log(data);
-    console.log(response);
+    // console.log('route: model/profile/read.js');
+    // console.log(data);
+    // console.log(response);
     return data;
   } catch (error) {
     console.error(error);
@@ -187,14 +187,14 @@ export async function readProfileWins(username, limit = 12, offset = 1) {
       throw new Error(error.errors?.[0]?.message || 'Failed to fetch profile wins');
     }
     const data = await response.json();
-    console.log('route: model/profile/read.js');
-    console.log(data);
-    console.log(response);
+    // console.log('route: model/profile/read.js');
+    // console.log(data);
+    // console.log(response);
   } catch (error) {
     console.error(error);
   }
 }
 
 // readProfileListings('kimYong');
-// readProfileBids('kimYong');
+readProfileBids('kimYong');
 // readProfileWins('kimYong', 12, 1);
