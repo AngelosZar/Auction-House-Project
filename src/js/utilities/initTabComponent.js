@@ -2,7 +2,8 @@ export const initTabComponent = function () {
   console.log('working yo');
   const tabs = document.querySelectorAll('.tab');
   const tabContents = document.querySelectorAll('.tab-content');
-  const createListingForm = document.querySelector('#create-listing-form');
+  const form = document.querySelector('#create-listing-form');
+  const btnCreateList = document.querySelector('#btnCreateList');
   //   console.log(tabs);
   //   console.log(tabContents);
   //
@@ -44,5 +45,41 @@ export const initTabComponent = function () {
     });
   });
 
-  console.log(createListingForm);
+  // console.log(createListingForm);
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const listingData = {
+      title: formData.get('title'),
+      description: formData.get('description'),
+      tags: [formData.get('category')],
+      endsAt: formData.get('end-auction-date'),
+      media: [
+        {
+          url: formData.get('image-url'),
+          alt: formData.get('image-alt'),
+        },
+      ],
+    };
+
+    if (formData.get('starting-price')) {
+      listingData._amount = Number(formData.get('starting-price'));
+    }
+    console.log('Data to send to API:', listingData);
+    // make api call
+  });
 };
+
+// {
+//   "title": "string", // Required
+//   "description": "string", // Optional
+//   "tags": ["string"], // Optional
+//   "media": [
+//     {
+//       "url": "https://url.com/image.jpg",
+//       "alt": "string"
+//     }
+//   ], // Optional
+//   "endsAt": "2020-01-01T00:00:00.000Z" // Required - Instance of new Date()
+// }

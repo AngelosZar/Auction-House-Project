@@ -39,7 +39,6 @@ export async function renderProfileHero() {
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab3Content);
 
     initTabComponent();
-    console.log(createListingForm);
   } catch (error) {
     console.log(error);
   }

@@ -156,7 +156,7 @@ export const renderProfileTab3Content = async function () {
                 List a new item
               </h5>
 
-              <form action="" id="create-listing-form">
+              <form action="submit" id="create-listing-form">
                 <div class="mb-2">
                   <label for="title">Title</label>
                   <input
@@ -187,7 +187,7 @@ export const renderProfileTab3Content = async function () {
                     <option value="0">Select Category</option>
                     <option value="1">Electronics</option>
                     <option value="2">Home & Garden</option>
-                    <option value="3">Fashion & Accessories</option>
+                    <option value="Fashion & Accessories">Fashion & Accessories</option>
                     <option value="4">Collectibles</option>
                     <option value="5">Art & Antiques</option>
                     <option value="6">Vehicles & Parts5</option>
@@ -199,14 +199,17 @@ export const renderProfileTab3Content = async function () {
                   </select>
                 </div>
                 <div class="mb-2">
-                  <label for="end-auction-date">End auction at</label>
+                  <label for="end-auction-date">End auction at  /</label>
+                    <span class="">Format: YYYY-MM-DD 24:00></span>
                   <input
-                    type="date"
+                    type="datetime-local"
                     name="end-auction-date"
                     id="end-auction-date"
                     class="input-forms mt-1"
+                    placeholder="YYYY-MM-DD 24:00"
                     required
                   />
+                 
                 </div>
 
                 <div class="mb-2">
@@ -217,8 +220,8 @@ export const renderProfileTab3Content = async function () {
                     id="starting-price"
                     class="input-forms mt-1"
                     required
-                    min="20"
-                    placeholder="Minimum Bid starts at 20NOK"
+                    min="1"
+                    placeholder="Minimum Bid starts at 1 NOK"
                   />
                 </div>
                 <div class="mb-2">
@@ -233,7 +236,17 @@ export const renderProfileTab3Content = async function () {
                     pattern="https://.*"
                   />
                 </div>
-                <button class="btn btn-primary dark:btn-primary-dark" type="submit">Submit</button>
+               <div class="mb-2">
+                 <label for="image-alt">Image Alt</label>
+                 <input
+                   type="text"
+                   name="image-alt"
+                   id="image-alt"
+                   class="input-forms"
+                   placeholder="Alternative text"
+                 />
+               </div>
+                <button class="btn btn-primary dark:btn-primary-dark" type="submit" id="btnCreateList" >Submit</button>
               </form>
             </div>
           </section>
