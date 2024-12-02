@@ -1,3 +1,5 @@
+import { searchListings } from '../model/listings/search';
+
 export const searchOverlay = async function () {
   const parentContainer = document.querySelector('main');
   const searchBtn = document.querySelector('#searchBtn');
@@ -24,14 +26,14 @@ export const searchOverlay = async function () {
               placeholder="Search for items"
               class="input-forms"
             />
-            <button class="btn btn-primary dark:btn-primary-dark mt-4 mb-[50%]" id="OnSearch" >Search</button>
+            <button class="btn btn-primary dark:btn-primary-dark mt-4 mb-[50%]" id="onSearch" >Search</button>
           </form>
         </div>
       </section>
   `;
 
   //   event listener on searc hbtn
-  searchBtn.addEventListener('click', (e) => {
+  searchBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     if (!isOverlayOpen) {
       parentContainer.insertAdjacentHTML('afterbegin', searchOverlayContent);
@@ -39,9 +41,19 @@ export const searchOverlay = async function () {
       document.querySelector('#searchContainer').remove();
       // can be clicked and inserted only once ..
       // pressing again on search btn closes the searchOverlay. toggle visibility // seperate function /event listener to toggle
-      // console.log(e.target);
+      console.log(e.target);
     }
     isOverlayOpen = !isOverlayOpen;
+
+    const searchInput = document.querySelector('#search');
+    const searchBtn = document.querySelector('#onSearch');
+    searchBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const searchValue = searchInput.value;
+      console.log(searchValue);
+      await searchListings(searchValue);
+      searchInput.value = '';
+    });
   });
 };
 // grabUserInput();
