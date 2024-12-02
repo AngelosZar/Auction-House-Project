@@ -3,7 +3,6 @@ export const initTabComponent = async function () {
   console.log('working yo');
   const tabs = document.querySelectorAll('.tab');
   const tabContents = document.querySelectorAll('.tab-content');
-  const form = document.querySelector('#create-listing-form');
   const btnCreateList = document.querySelector('#btnCreateList');
   //   console.log(tabs);
   //   console.log(tabContents);
@@ -47,7 +46,7 @@ export const initTabComponent = async function () {
   });
 
   // console.log(createListingForm);
-
+  const form = document.querySelector('#create-listing-form');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
@@ -56,18 +55,17 @@ export const initTabComponent = async function () {
       description: formData.get('description'),
       tags: [formData.get('category')],
       endsAt: formData.get('end-auction-date'),
-      media: [
-        {
-          url: formData.get('image-url').toString(),
-          alt: formData.get('image-alt') || 'image',
-        },
-      ],
+      media: Array.from(formData.getAll('image-url')).map((url, index) => ({
+        url: url,
+        alt: formData.get('image-alt')[index],
+      })),
     };
-    const startingPrice = formData.get('starting-price');
+    // const startingPrice = formData.get('starting-price');
     if (formData.get('starting-price')) {
-      listingData._amount = Number(formData.get('starting-price'));
+      listingData._amount = Number(formData.get('starting-price') || +1);
     }
-    console.log('Data to send to API:', listingData);
+
+    console.log('formData to send to API:', listingData);
     // make api call\
     try {
       await createListing(listingData);
@@ -76,6 +74,34 @@ export const initTabComponent = async function () {
       throw error;
     }
   });
+
+  // Render more image inputs mulfunctioning for now / check on later
+  // document.querySelector('#addMoreImgs').addEventListener('click', (e) => {
+  //   e.preventDefault();
+  //   console.log(e.target);
+  //   const container = document.querySelector('#imgs-container');
+  //   const newInput = document.createElement('div');
+  //   newInput.className = 'imgs-group-container';
+  //   newInput.innerHTML = `
+  //    <input
+  //     type="url"
+  //     name="image-url"
+  //     class="input-forms mt-1"
+  //     required
+  //     placeholder="Only valid url"
+  //     pattern="https://.*"
+  //   />
+  //   <input
+  //     type="text"
+  //     name="image-alt"
+  //     class="input-forms mt-1"
+  //     required
+  //     placeholder="Image alt text"
+  //   />
+  //   <button class="bg-red-600 border-2 border-white rounded-lg px-4 py-2 remove-img mb-4">Remove</button>
+  //   `;
+  //   container.appendChild(newInput);
+  // });
 };
 
 // {

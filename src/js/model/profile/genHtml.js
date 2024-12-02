@@ -184,7 +184,7 @@ export const renderProfileTab3Content = async function () {
                   <label for="category" class="relative">Category</label>
 
                   <select name="category" id="category" class="input-forms mt-1" required>
-                    <option value="0">Select Category</option>
+                    <option value="">Select Category</option>
                     <option value="Electronics">Electronics</option>
                     <option value="Home & Garden">Home & Garden</option>
                     <option value="Fashion & Accessories">Fashion & Accessories</option>
@@ -195,7 +195,7 @@ export const renderProfileTab3Content = async function () {
                     <option value="Toys & Hobbies">Toys & Hobbies</option>
                     <option value="Books, Music & Movies">Books, Music & Movies</option>
                     <option value="Industrial & Business">Industrial & Business</option>
-                    <option value="0">None of the above</option>
+                    <option value="">None of the above</option>
                   </select>
                 </div>
                 <div class="mb-2">
@@ -224,29 +224,33 @@ export const renderProfileTab3Content = async function () {
                     placeholder="Minimum Bid starts at 1 NOK"
                   />
                 </div>
-                <div class="mb-2">
-                  <label for="image">Image</label>
-                  <input
-                    type="url"
-                    name="image-url"
-                    id="image"
-                    class="input-forms mt-1"
-                    required
-                    placeholder="Only valid url"
-                    pattern="https://.*"
-                  />
-                </div>
-               <div class="mb-2">
-                 <label for="image-alt">Image Alt</label>
-                 <input
-                   type="text"
-                   name="image-alt"
-                   id="image-alt"
-                   class="input-forms"
-                   placeholder="Alternative text"
-                 />
+             <div class="mb-2">
+               <label for="images">Images</label>
+               <div id="imgs-container">
+                 <div class="imgs-group-container">
+                   <input
+                     type="url"
+                     name="image-url"
+                     id="image"
+                     class="input-forms mt-1"
+                     required
+                     placeholder="Only valid url"
+                     pattern="https://.*"
+                   />
+
+                   <input
+                     type="text"
+                     name="image-alt"
+                     id="image-alt"
+                     class="input-forms mt-1"
+                     required
+                     placeholder="Image alt text"
+                   />
+                   <a href="#" class="btn btn-secondary dark:btn-secondary-dark mb-4" id="addMoreImgs">add link</a>
+                 </div>
                </div>
-                <button class="btn btn-primary dark:btn-primary-dark" type="submit" id="btnCreateList" >Submit</button>
+             </div>
+                <button class="btn btn-primary dark:btn-primary-dark " type="submit" id="btnCreateList" >Submit</button>
               </form>
             </div>
           </section>
