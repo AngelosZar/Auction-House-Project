@@ -5,18 +5,21 @@ import {
   readProfileListings,
   readProfileWins,
 } from '../../model/profile/read';
-import { genHtmlProfileHero } from '../../model/profile/genHtml';
 import { returnToken } from '../../utilities/returnToken';
 import { initTabComponent } from '../../utilities/initTabComponent';
 import { authGuard } from '../../utilities/authGuard';
-import { profileBannerContainer, tabComponentOnProfile } from '../../views/profile/viewProfile';
 import {
+  profileBannerContainer,
+  tabComponentOnProfile,
+  createListingForm,
+} from '../../views/profile/viewProfile';
+import {
+  genHtmlProfileHero,
   renderProfileTabHeader,
   renderProfileTab1Content,
   renderProfileTab2Content,
   renderProfileTab3Content,
 } from '../../model/profile/genHtml';
-import { createListingForm } from '../../views/profile/viewProfile';
 
 export async function renderProfileHero() {
   authGuard();

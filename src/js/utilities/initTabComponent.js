@@ -47,6 +47,7 @@ export const initTabComponent = async function () {
 
   // console.log(createListingForm);
   const form = document.querySelector('#create-listing-form');
+  if (!form) return;
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
