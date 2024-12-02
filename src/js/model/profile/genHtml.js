@@ -185,17 +185,17 @@ export const renderProfileTab3Content = async function () {
 
                   <select name="category" id="category" class="input-forms mt-1" required>
                     <option value="0">Select Category</option>
-                    <option value="1">Electronics</option>
-                    <option value="2">Home & Garden</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Home & Garden">Home & Garden</option>
                     <option value="Fashion & Accessories">Fashion & Accessories</option>
-                    <option value="4">Collectibles</option>
-                    <option value="5">Art & Antiques</option>
-                    <option value="6">Vehicles & Parts5</option>
-                    <option value="7">Sports & Outdoors</option>
-                    <option value="8">Toys & Hobbies</option>
-                    <option value="9">Books, Music & Movies</option>
-                    <option value="10">Industrial & Business</option>
-                    <option value="11">None of the above</option>
+                    <option value="Collectibles">Collectibles</option>
+                    <option value="Art & Antiques">Art & Antiques</option>
+                    <option value="Vehicles & Parts">Vehicles & Parts</option>
+                    <option value="Sports & Outdoors">Sports & Outdoors</option>
+                    <option value="Toys & Hobbies">Toys & Hobbies</option>
+                    <option value="Books, Music & Movies">Books, Music & Movies</option>
+                    <option value="Industrial & Business">Industrial & Business</option>
+                    <option value="0">None of the above</option>
                   </select>
                 </div>
                 <div class="mb-2">
