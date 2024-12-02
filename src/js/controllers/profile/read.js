@@ -47,7 +47,7 @@ export async function renderProfileHero() {
 const profilePage = async function () {
   console.log('I am in the profile page');
   renderProfileHero();
-  initTabComponent();
+  await initTabComponent();
 };
 
 await profilePage();

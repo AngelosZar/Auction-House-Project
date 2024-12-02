@@ -228,7 +228,7 @@ export const renderProfileTab3Content = async function () {
                   <label for="image">Image</label>
                   <input
                     type="url"
-                    name="image"
+                    name="image-url"
                     id="image"
                     class="input-forms mt-1"
                     required

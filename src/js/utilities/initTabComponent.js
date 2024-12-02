@@ -1,4 +1,5 @@
-export const initTabComponent = function () {
+import { createListing } from '../model/listings/create';
+export const initTabComponent = async function () {
   console.log('working yo');
   const tabs = document.querySelectorAll('.tab');
   const tabContents = document.querySelectorAll('.tab-content');
@@ -47,7 +48,7 @@ export const initTabComponent = function () {
 
   // console.log(createListingForm);
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
     const listingData = {
@@ -57,17 +58,23 @@ export const initTabComponent = function () {
       endsAt: formData.get('end-auction-date'),
       media: [
         {
-          url: formData.get('image-url'),
-          alt: formData.get('image-alt'),
+          url: formData.get('image-url').toString(),
+          alt: formData.get('image-alt') || 'image',
         },
       ],
     };
-
+    const startingPrice = formData.get('starting-price');
     if (formData.get('starting-price')) {
       listingData._amount = Number(formData.get('starting-price'));
     }
     console.log('Data to send to API:', listingData);
-    // make api call
+    // make api call\
+    try {
+      await createListing(listingData);
+      form.reset();
+    } catch (error) {
+      throw error;
+    }
   });
 };
 
