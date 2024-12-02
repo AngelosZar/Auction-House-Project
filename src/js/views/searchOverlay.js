@@ -1,5 +1,6 @@
 import { searchListings } from '../model/listings/search';
-
+import { generateHtml, createSingleBidCard } from '../utilities/generateBidCards';
+//
 export const searchOverlay = async function () {
   const parentContainer = document.querySelector('main');
   const searchBtn = document.querySelector('#searchBtn');
@@ -7,7 +8,7 @@ export const searchOverlay = async function () {
 
   const searchOverlayContent = `
      <section
-        class="relative bg-light-component dark:bg-purple-dark border-y-2 dark:border-none flex flex-col justify-center items-center h-lvh"
+        class="relative bg-light-component dark:bg-purple-dark border-y-2 dark:border-none flex flex-col justify-center items-center h-lvh w-full"
         id="searchContainer"
       >
         <div class="flex justify-center items-center py-16">
@@ -29,6 +30,7 @@ export const searchOverlay = async function () {
             <button class="btn btn-primary dark:btn-primary-dark mt-4 mb-[50%]" id="onSearch" >Search</button>
           </form>
         </div>
+        <div class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3 h-full" id="searchResultCard"></div>
       </section>
   `;
 
@@ -51,9 +53,27 @@ export const searchOverlay = async function () {
       e.preventDefault();
       const searchValue = searchInput.value;
       console.log(searchValue);
-      await searchListings(searchValue);
-      searchInput.value = '';
+      try {
+        const data = await searchListings(searchValue);
+        const listings = data.data;
+        console.log('listings:', listings);
+        const parentContainer = document.querySelector('#searchResultCard');
+        await generateHtml(listings, parentContainer);
+        searchInput.value = '';
+      } catch (error) {
+        throw new Error(error);
+      }
     });
   });
 };
 // grabUserInput();
+// generateHtmlOnSearch = async function (listings) {
+//   const parentContainer = document.querySelector('#searchResultCard');
+//   parentContainer.innerHTML = '';
+//   await generateHtml(listings, parentContainer);
+// };
+// e.preventDefault();
+// const searchValue = searchInput.value;
+// console.log(searchValue);
+// await searchListings(searchValue);
+// searchInput.value = '';
