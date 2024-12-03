@@ -5,12 +5,7 @@ export const collectProfileChangesData = (e) => {
   const form = e.target;
   console.log(form);
   console.log(e.target);
-  // const hasValue =
-  //   form.bio.value ||
-  //   form['avatar-url'].value ||
-  //   form['avatar-alt'].value ||
-  //   form['banner-url'].value ||
-  //   form['banner-alt'].value;
+
   if (!form.bio.value && !form['avatar-url'].value && !form['banner-url'].value) {
     alert('Please fill at least one field: Bio, Avatar URL, or Banner URL');
     return null;
@@ -18,33 +13,23 @@ export const collectProfileChangesData = (e) => {
   //
   const userData = {};
   if (form.bio.value) userData.bio = form.bio.value;
+
   if (form['avatar-url'].value) {
     userData.avatar = {
       url: form['avatar-url'].value,
       alt: form['avatar-alt'].value || '',
     };
   }
+
   if (form['banner-url'].value) {
     userData.banner = {
       url: form['banner-url'].value,
       alt: form['banner-alt'].value || '',
     };
   }
+
   console.log(userData);
   return userData;
-  // } else {
-  //   return {
-  //     bio: form.bio.value || '',
-  //     avatar: {
-  //       url: form['avatar-url'].value,
-  //       alt: form['avatar-alt'].value || '',
-  //     },
-  //     banner: {
-  //       url: form['banner-url'].value,
-  //       alt: form['banner-alt'].value || '',
-  //     },
-  //   };
-  // }
 };
 
 // {

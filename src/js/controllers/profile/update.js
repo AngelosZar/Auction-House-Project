@@ -44,17 +44,18 @@ const updateProfile = async function () {
   // console.log(username);
   try {
     updateProfileForm.addEventListener('submit', async function (e) {
-      console.log('e.target', e.target);
       e.preventDefault();
+      console.log('e.target', e.target);
       const userData = collectProfileChangesData(e);
       console.log(userData);
       if (userData === false) return;
-      await updateProfileApiCall(username, userData);
+      const data = await updateProfileApiCall(username, userData);
+      console.log(data);
+      updateProfileForm.reset();
+      window.location.reload();
     });
   } catch (error) {
     throw new Error(error);
-  } finally {
-    updateProfileForm.reset();
   }
 };
 await renderHeroOnProfilePage();
