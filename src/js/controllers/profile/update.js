@@ -1,14 +1,16 @@
-import { updateProfileApiCall } from '../../model/profile/update';
-import { collectProfileChanges } from '../../views/profile/updateProfile';
-import { testData } from '../../model/profile/update';
-import { renderProfileHero } from './read';
-import { parse } from 'dotenv';
+// import { updateProfileApiCall } from '../../model/profile/update';
+// import { collectProfileChanges } from '../../views/profile/updateProfile';
+// import { testData } from '../../model/profile/update';
+// import { renderProfileHero } from './read';
+// import { parse } from 'dotenv';
 import { authGuard } from '../../utilities/authGuard';
 import { updateProfileBannerContainer } from '../../views/profile/viewProfile';
 import { readProfile } from '../../model/profile/read';
 import { genHtmlProfileHeroOnUpdatePage } from '../../model/profile/genHtml';
+import { updateProfileForm, collectProfileChangesData } from '../../views/profile/updateProfile';
+import { updateProfileApiCall } from '../../model/profile/update';
 
-const updateProfilePage = async function () {
+const renderHeroOnProfilePage = async function () {
   authGuard();
   const data = JSON.parse(localStorage.getItem('currentUser'));
   const username = data.name;
@@ -34,5 +36,27 @@ const updateProfilePage = async function () {
     console.log(error);
   }
 };
-await updateProfilePage();
+
+const updateProfile = async function () {
+  const data = JSON.parse(localStorage.getItem('currentUser'));
+  const username = data.name;
+
+  // console.log(username);
+  try {
+    updateProfileForm.addEventListener('submit', async function (e) {
+      console.log('e.target', e.target);
+      e.preventDefault();
+      const userData = collectProfileChangesData(e);
+      console.log(userData);
+      if (userData === false) return;
+      await updateProfileApiCall(username, userData);
+    });
+  } catch (error) {
+    throw new Error(error);
+  } finally {
+    updateProfileForm.reset();
+  }
+};
+await renderHeroOnProfilePage();
+await updateProfile();
 // test

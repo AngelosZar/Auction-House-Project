@@ -133,7 +133,7 @@
             Update Your profile information
           </h4>
 
-          <form id="update" method="post" class="">
+          <form method="post" class="" id="update-profile-form">
             <div class="mb-4">
               <label for="bio" class="block mb-2">Bio</label>
               <textarea
@@ -143,7 +143,7 @@
                 rows="3"
                 class="input-forms"
                 class="w-full p-2 border-2 border-light-cards dark:border-purple-dark rounded-lg"
-                placeholder="Bio "
+                placeholder="Bio"
               ></textarea>
             </div>
 
@@ -156,6 +156,7 @@
                 id="avatar-url"
                 class="input-forms"
                 placeholder="Only valid url Will be accepted"
+                pattern="https?://.+"
               />
               <small>Alternative text</small>
               <input type="text" name="avatar-alt" id="avatar-alt" class="input-forms" />
@@ -170,6 +171,7 @@
                 id="banner-url"
                 class="input-forms"
                 placeholder="Only valid url Will be accepted"
+                pattern="https?://.+"
               />
               <small>Alternative text</small>
               <input type="text" name="banner-alt" id="banner-alt" class="input-forms" />
@@ -187,7 +189,6 @@
                   <a href="/profile/" class="">Back </a></span
                 >profile page
               </p>
-              <!-- <a href="/auth/sign_in/" class="">Back</a> -->
             </div>
           </form>
         </div>
