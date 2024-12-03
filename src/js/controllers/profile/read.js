@@ -29,6 +29,7 @@ export async function renderProfileHero() {
     const data = await readProfile(username);
     const currentUser = data.data;
     console.log(currentUser);
+    profileBannerContainer.classList.add('z-10');
     profileBannerContainer.insertAdjacentHTML('beforeend', await genHtmlProfileHero(currentUser));
     tabComponentOnProfile.insertAdjacentHTML('beforeend', renderProfileTabHeader());
     const [tab1Content, tab2Content, tab3Content] = await Promise.all([
@@ -51,5 +52,4 @@ const profilePage = async function () {
   await renderProfileHero();
   await initTabComponent();
 };
-
 await profilePage();

@@ -1,8 +1,3 @@
-// import { updateProfileApiCall } from '../../model/profile/update';
-// import { collectProfileChanges } from '../../views/profile/updateProfile';
-// import { testData } from '../../model/profile/update';
-// import { renderProfileHero } from './read';
-// import { parse } from 'dotenv';
 import { authGuard } from '../../utilities/authGuard';
 import { updateProfileBannerContainer } from '../../views/profile/viewProfile';
 import { readProfile } from '../../model/profile/read';
@@ -40,8 +35,6 @@ const renderHeroOnProfilePage = async function () {
 const updateProfile = async function () {
   const data = JSON.parse(localStorage.getItem('currentUser'));
   const username = data.name;
-
-  // console.log(username);
   try {
     updateProfileForm.addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -52,12 +45,12 @@ const updateProfile = async function () {
       const data = await updateProfileApiCall(username, userData);
       console.log(data);
       updateProfileForm.reset();
+      window.scrollTo(0, 0);
       window.location.reload();
     });
   } catch (error) {
     throw new Error(error);
   }
 };
-await renderHeroOnProfilePage();
-await updateProfile();
-// test
+
+await Promise.all([renderHeroOnProfilePage(), updateProfile()]);

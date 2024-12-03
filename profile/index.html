@@ -8,7 +8,9 @@
   </head>
   <body>
     <header class="w-full bg-light-cards dark:bg-black-bright border-y-2 dark:border-none">
-      <section class="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3">
+      <section
+        class="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3 relative z-50"
+      >
         <div>
           <a href="/"
             ><img
@@ -20,9 +22,7 @@
         </div>
         <div class="mr-4 items-center gap-4">
           <nav class="flex gap-4">
-            <!-- serch btn and dropdown -->
             <div class="group relative">
-              <!-- rethink about the style on hover -->
               <button
                 class="rounded-full p-2 transition-all duration-300 hover:bg-green-3 hover:dark:bg-purple-dark"
                 id="searchBtn"
@@ -126,240 +126,10 @@
     <main class="h-screen mx-auto max-w-[1440px]">
       <section
         id="profile-banner-container"
-        class="flex flex-col border-b-2 dark:border-purple-dark bg-light-cards dark:bg-body-dark"
-      >
-        <!-- <div class="lg:mb-18 relative mb-8 max-w-screen-2xl xs:mb-12 md:mb-14 lg:mb-20">
-          <img
-            alt="Profile Banner"
-            class="h-[15vh] w-full object-cover md:h-[20vh] lg:h-[30vh]"
-            src="https://images.unsplash.com/photo-1731432248686-af238c870acc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
-          />
-          <img
-            alt="User Avatar"
-            class="avatar-img top xs:left-6md:-bottom-14 absolute -bottom-5 left-4 h-20 w-20 rounded-full xs:-bottom-12 xs:h-28 xs:w-28 md:left-8 md:h-36 md:w-36 lg:-bottom-16 lg:left-10 lg:h-44 lg:w-44 xl:-bottom-20 xl:h-52 xl:w-52"
-            src="https://images.unsplash.com/photo-1731432248686-af238c870acc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
-          />
-        </div>
-        <div class="mx-6 xs:my-4 xs:text-xl md:mx-8 md:text-2xl xl:mx-12 self-end">
-          <h5 class="">User name = name</h5>
-          <p>Verified user ✌️</p>
-          <p>1000 points</p>
-          <a
-            href="../profile/update/"
-            class="btn btn-secondary dark:btn btn-secondary-dark"
-            id="editProfile"
-            >Edit profile</a
-          >
-        </div> -->
-      </section>
-      <section id="tab-component-on-profile" class="pt-24 lg:justify-center">
-        <!-- <div class="px-8 flex justify-center md:justify-start">
-          <ul class="flex bg-light-cards dark:bg-purple-dark rounded-lg">
-            <li
-              id="tab-user-listings"
-              class="tab p-5 border-b-4 md:px-8 font-bold text-green-2 dark:text-blue-400 border-green-2 dark:border-blue-400 cursor-pointer bg-light-cards dark:bg-purple-dark rounded-lg"
-            >
-              My listings
-            </li>
-            <li
-              id="tab-users-bids"
-              class="tab p-5 border-b-4 md:px-8 border-none cursor-pointer bg-light-cards dark:bg-purple-dark rounded-lg"
-            >
-              My bids
-            </li>
-            <li
-              id="tab-create-listing"
-              class="tab p-5 border-b-4 md:px-8 border-none cursor-pointer bg-light-cards dark:bg-purple-dark rounded-lg"
-            >
-              Create listing
-            </li>
-          </ul>
-        </div> -->
-        <!-- inject inner html user-listings -->
-        <!-- <div
-          class="tab-content w-full block mt-8 px-8 justify-center md:justify-start"
-          id="user-listings"
-        >
-          <section
-            class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3"
-          >
-            <div
-              id="tab-1"
-              class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"
-            >
-              <div class="flex max-w-md">
-                <img
-                  src="https://images.pexels.com/photos/15282059/pexels-photo-15282059/free-photo-of-a-view-of-the-ocean-from-a-ferry.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt=""
-                />
-              </div>
-              <p class="text-sm py-2">title of the product .. might be fucking long</p>
-              <p>seller</p>
+        class="flex flex-col border-b-2 dark:border-purple-dark bg-light-cards dark:bg-body-dark z-0"
+      ></section>
 
-              <div class="flex flex-col">
-                <p class="text-xs text-left">Ends in 2 days</p>
-                <p class="text-xs text-left">Highest current bid 100nok</p>
-              </div>
-              <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2"
-                >Bid href</a
-              >
-            </div>
-            <div
-              id="tab-2"
-              class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"
-            >
-              <div class="flex max-w-md">
-                <img
-                  src="https://images.pexels.com/photos/15282059/pexels-photo-15282059/free-photo-of-a-view-of-the-ocean-from-a-ferry.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt=""
-                />
-              </div>
-              <p class="text-sm py-2">title of the product .. might be fucking long</p>
-              <p>seller</p>
-
-              <div class="flex flex-col">
-                <p class="text-xs text-left">Ends in 2 days</p>
-                <p class="text-xs text-left">Highest current bid 100nok</p>
-              </div>
-              <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2"
-                >Bid href</a
-              >
-            </div>
-            <div
-              id="tab-3"
-              class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"
-            >
-              <div class="flex max-w-md">
-                <img
-                  src="https://images.pexels.com/photos/15282059/pexels-photo-15282059/free-photo-of-a-view-of-the-ocean-from-a-ferry.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt=""
-                />
-              </div>
-              <p class="text-sm py-2">title of the product .. might be fucking long</p>
-              <p>seller</p>
-
-              <div class="flex flex-col">
-                <p class="text-xs text-left">Ends in 2 days</p>
-                <p class="text-xs text-left">Highest current bid 100nok</p>
-              </div>
-              <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2"
-                >Bid href</a
-              >
-            </div>
-          </section>
-          <div class="justify-end pt-4">
-            <span class="">
-              <p class="text-left">Previous page</p>
-            </span>
-            <span class="">
-              <p class="text-right">Next page</p>
-              <p class="text-right">view more</p>
-            </span>
-          </div>
-        </div> -->
-
-        <!-- <div class="tab-content max-w-3xl hidden mt-8 px-8" id="users-bids">
-          <section class="">
-            <div>this will be card one-users-bid</div>
-            <div>this will be card two-users-bid</div>
-            <div>this will be card three-users-bid</div>
-            <button>Pagination to view more</button>
-          </section>
-        </div> -->
-
-        <!--  create listing -->
-        <!-- <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="create-listing">
-          <section class="min-h-screen">
-            <div
-              class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
-            >
-              <h5 class="font-bold mb-4 md:text-5xl md:mb-10 dark:text-white text-center">
-                List a new item
-              </h5>
-
-              <form action="">
-                <div class="mb-2">
-                  <label for="title">Title</label>
-                  <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    class="input-forms mt-1"
-                    required
-                    placeholder="Title of the product"
-                  />
-                </div>
-                <div>
-                  <label for="description">Description</label>
-                  <textarea
-                    name="description"
-                    id="description"
-                    cols="10"
-                    rows="5"
-                    class="input-forms mt-1"
-                    maxlength="120"
-                    placeholder="Max 120 characters"
-                  ></textarea>
-                </div>
-                <div class="mb-2">
-                  <label for="category" class="relative">Category</label>
-
-                  <select name="category" id="category" class="input-forms mt-1" required>
-                    <option value="0">Select Category</option>
-                    <option value="1">Electronics</option>
-                    <option value="2">Home & Garden</option>
-                    <option value="3">Fashion & Accessories</option>
-                    <option value="4">Collectibles</option>
-                    <option value="5">Art & Antiques</option>
-                    <option value="6">Vehicles & Parts5</option>
-                    <option value="7">Sports & Outdoors</option>
-                    <option value="8">Toys & Hobbies</option>
-                    <option value="9">Books, Music & Movies</option>
-                    <option value="10">Industrial & Business</option>
-                    <option value="11">None of the above</option>
-                  </select>
-                </div>
-                <div class="mb-2">
-                  <label for="end-auction-date">End auction at</label>
-                  <input
-                    type="date"
-                    name="end-auction-date"
-                    id="end-auction-date"
-                    class="input-forms mt-1"
-                    required
-                  />
-                </div>
-
-                <div class="mb-2">
-                  <label for="starting-price">Starting price</label>
-                  <input
-                    type="number"
-                    name="starting-price"
-                    id="starting-price"
-                    class="input-forms mt-1"
-                    required
-                    min="20"
-                    placeholder="Minimum Bid starts at 20NOK"
-                  />
-                </div>
-                <div class="mb-2">
-                  <label for="image">Image</label>
-                  <input
-                    type="url"
-                    name="image"
-                    id="image"
-                    class="input-forms mt-1"
-                    required
-                    placeholder="Only valid url"
-                    pattern="https://.*"
-                  />
-                </div>
-                <button class="btn btn-primary dark:btn-primary-dark" type="submit">Submit</button>
-              </form>
-            </div>
-          </section>
-        </div> -->
-      </section>
+      <section id="tab-component-on-profile" class="pt-24 lg:justify-center"></section>
     </main>
     <footer
       class="bg-light-component px-4 py-8 lg:px-20 text-text-black dark:text-text-white border-y-2 dark:border-none dark:bg-black-bright mt-[1000px]"

@@ -7,10 +7,10 @@ import { readProfileBids } from './read';
 
 export const genHtmlProfileHero = async function (currentUser) {
   return `
-   <div class="lg:mb-18 relative mb-8 max-w-screen-2xl xs:mb-12 md:mb-14 lg:mb-20">
+        <div class="lg:mb-18 relative mb-8 max-w-screen-2xl xs:mb-12 md:mb-14 lg:mb-20 z-0">
           <img
             alt="Profile Banner"
-            class="h-[15vh] w-full object-cover md:h-[20vh] lg:h-[30vh]"
+            class="h-[15vh] w-full object-cover md:h-[20vh] lg:h-[30vh] z-0"
             src="${currentUser.banner?.url}"
           />
           <img
@@ -40,7 +40,7 @@ export const genHtmlProfileHero = async function (currentUser) {
  */
 export const genHtmlProfileHeroOnUpdatePage = async function (currentUser) {
   return `
-   <div class="lg:mb-18 relative mb-8 max-w-screen-2xl xs:mb-12 md:mb-14 lg:mb-20 " >
+   <div class="lg:mb-18 relative mb-8 max-w-screen-2xl xs:mb-12 md:mb-14 lg:mb-20 z-0" >
           <img
             alt="Profile Banner"
             class="h-[15vh] w-full object-cover md:h-[20vh] lg:h-[30vh]"
