@@ -123,9 +123,74 @@
         </div>
       </section>
     </header>
-    <main class="h-screen mx-auto max-w-[1440px] px-4">
-      <section id="update-profile-banner-container">
-        <!--  -->
+    <main class="mx-auto max-w-[1440px] px-4">
+      <section id="update-profile-banner-container"></section>
+      <section id="update-profile-form-container" class="mt-24 md:p-8 min-h-screen">
+        <div
+          class="max-w-xl mx-auto px-24 py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
+        >
+          <h4 class="font-bold mb-6 md:text-5xl md:mb-10 dark:text-white text-center">
+            Update Your profile information
+          </h4>
+
+          <form id="update" method="post" class="">
+            <div class="mb-4">
+              <label for="bio" class="block mb-2">Bio</label>
+              <textarea
+                name="bio"
+                id="bio"
+                cols="10"
+                rows="3"
+                class="input-forms"
+                class="w-full p-2 border-2 border-light-cards dark:border-purple-dark rounded-lg"
+                placeholder="Bio "
+              ></textarea>
+            </div>
+
+            <div class="mb-4">
+              <label for="avatar" class="block mb-2">Avatar</label>
+              <small>Url</small>
+              <input
+                type="url"
+                name="avatar-url"
+                id="avatar-url"
+                class="input-forms"
+                placeholder="Only valid url Will be accepted"
+              />
+              <small>Alternative text</small>
+              <input type="text" name="avatar-alt" id="avatar-alt" class="input-forms" />
+            </div>
+
+            <div class="mb-4">
+              <label for="banner" class="block mb-2">Banner</label>
+              <small>Url</small>
+              <input
+                type="url"
+                name="banner-url"
+                id="banner-url"
+                class="input-forms"
+                placeholder="Only valid url Will be accepted"
+              />
+              <small>Alternative text</small>
+              <input type="text" name="banner-alt" id="banner-alt" class="input-forms" />
+            </div>
+            <!-- <div class="mb-4"></div> -->
+
+            <button class="btn btn-primary dark:btn-primary-dark" type="submit">Update</button>
+            <p class="invisible">1</p>
+            <div class="flex gap-2 items-center flex-wrap">
+              <p class="mr-8 text-xs md:text-lg text-end">
+                Go
+                <span
+                  class="text-green-2 dark:text-white hover:text-green-3 hover:decoration-green-3 hover:underline dark:hover:text-white dark:hover:font-extrabold dark:hover:underline dark:hover:decoration-blue-dark"
+                >
+                  <a href="/profile/" class="">Back </a></span
+                >profile page
+              </p>
+              <!-- <a href="/auth/sign_in/" class="">Back</a> -->
+            </div>
+          </form>
+        </div>
       </section>
     </main>
     <footer
