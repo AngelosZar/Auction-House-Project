@@ -1,6 +1,5 @@
 import { initTabComponent } from '../../utilities/initTabComponent';
 import { readListing } from '../../model/listings/readListings';
-import { list } from 'postcss';
 //
 import { authGuard } from '../../utilities/authGuard';
 import { validateBid } from '../../utilities/generateBidCards';
@@ -39,6 +38,7 @@ async function renderHero() {
     document.querySelector('[data-bid-button]').addEventListener('click', async (e) => {
       e.preventDefault();
       const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
+      if (!listingId) return;
       const highestBid = e.target.closest('[data-highest-bid]').dataset.highestBid;
       //
       if (authGuard()) {
@@ -58,6 +58,7 @@ async function renderHero() {
       img.addEventListener('click', (e) => {
         e.preventDefault();
         const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
+        if (!listingId) return;
         console.log('listingId:', listingId);
         localStorage.setItem('listingId', listingId);
         window.location.href = '/biddings/single-listing/';
@@ -94,11 +95,16 @@ async function renderTabs() {
   }
 }
 async function main() {
-  console.log('halo from the other side');
-  await renderHero();
-  renderTabs();
-  console.log('i am the controller one more time');
+  try {
+    console.log('halo from the other side');
+    await renderHero();
+    await renderTabs();
+    console.log('i am the controller one more time');
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 }
-document.addEventListener('DOMContentLoaded', main());
+document.addEventListener('DOMContentLoaded', await main());
 
 // console.log(tabComponentOnSinglePage);

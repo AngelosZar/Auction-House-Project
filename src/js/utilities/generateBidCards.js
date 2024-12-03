@@ -2,7 +2,7 @@ import { readListings } from '../model/listings/readListings';
 import { formatDateTime } from '../utilities/formatDateTime';
 import { authGuard } from './authGuard';
 import { bidOnListing } from '../model/listings/bid';
-import { readListing } from '../model/listings/readListings';
+// import { readListing } from '../model/listings/readListings';
 
 export async function generateBidCards() {
   try {
@@ -28,6 +28,7 @@ export const generateHtml = async function (listings, parentContainer) {
       e.preventDefault();
       const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
       const highestBid = e.target.closest('[data-highest-bid]').dataset.highestBid;
+      if (!listingId) return;
 
       if (authGuard()) {
         const bidAmount = prompt('Enter your bid amount. min bid amount is ' + (+highestBid + 1));

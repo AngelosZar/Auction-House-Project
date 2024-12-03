@@ -1,5 +1,6 @@
 import { searchListings } from '../model/listings/search';
-import { generateHtml, createSingleBidCard } from '../utilities/generateBidCards';
+import { generateHtml } from '../utilities/generateBidCards';
+// import { generateHtml, createSingleBidCard } from '../utilities/generateBidCards';
 //
 export const searchOverlay = async function () {
   const parentContainer = document.querySelector('main');
@@ -33,7 +34,7 @@ export const searchOverlay = async function () {
         <div class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3 h-full" id="searchResultCard"></div>
       </section>
   `;
-
+  if (!searchBtn) return;
   //   event listener on searc hbtn
   searchBtn.addEventListener('click', async (e) => {
     e.preventDefault();
