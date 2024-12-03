@@ -2,14 +2,12 @@ import { readListings } from '../model/listings/readListings';
 import { formatDateTime } from '../utilities/formatDateTime';
 import { authGuard } from './authGuard';
 import { bidOnListing } from '../model/listings/bid';
-// import { readListing } from '../model/listings/readListings';
 
 export async function generateBidCards() {
   try {
     const data = await readListings();
     const listings = data.data;
     const parentContainer = document.querySelector('#live-auctions-container');
-    // console.log(parentContainer);
     generateHtml(listings, parentContainer);
   } catch (error) {
     console.log(error);
@@ -28,27 +26,18 @@ export const generateHtml = async function (listings, parentContainer) {
       e.preventDefault();
       const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
       const highestBid = e.target.closest('[data-highest-bid]').dataset.highestBid;
-      if (!listingId) return;
 
       if (authGuard()) {
         const bidAmount = prompt('Enter your bid amount. min bid amount is ' + (+highestBid + 1));
         const isValidBid = validateBid(bidAmount, highestBid);
+
         if (!isValidBid) return;
-        // const bid = bidAmount;
         const bid = {
           amount: Number(bidAmount),
         };
-        console.log('bid:', bid);
-        // return listingId, bid;
+
         await bidOnListing(bid, listingId);
         window.location.reload();
-        // await generateBidCards();
-        // console.log('Listing data:', listing);
-        // console.log('Listing in generateHtml:', listing);
-        // cannot refresh the page  getting errors
-        // const updatedListing = await readListing(listingId);
-        // const cardWithBid = document.querySelector(`[data-listing-id="${listingId}"]`);
-        // cardWithBid.innerHTML = createSingleBidCard(updatedListing);
       }
     });
   });
@@ -88,7 +77,7 @@ export const createSingleBidCard = function (listing) {
   data-bid-button>
     Bid
   </a>`;
-  // console.log('Listing in createSingleBidCard:', listing);
+
   return card;
 };
 
