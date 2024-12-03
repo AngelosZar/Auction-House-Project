@@ -1,18 +1,8 @@
-import {
-  readProfile,
-  readProfiles,
-  readProfileBids,
-  readProfileListings,
-  readProfileWins,
-} from '../../model/profile/read';
-import { returnToken } from '../../utilities/returnToken';
+import { readProfile } from '../../model/profile/read';
+
 import { initTabComponent } from '../../utilities/initTabComponent';
 import { authGuard } from '../../utilities/authGuard';
-import {
-  profileBannerContainer,
-  tabComponentOnProfile,
-  createListingForm,
-} from '../../views/profile/viewProfile';
+import { profileBannerContainer, tabComponentOnProfile } from '../../views/profile/viewProfile';
 import {
   genHtmlProfileHero,
   renderProfileTabHeader,
@@ -29,7 +19,6 @@ export async function renderProfileHero() {
     const data = await readProfile(username);
     const currentUser = data.data;
     console.log(currentUser);
-    profileBannerContainer.classList.add('z-10');
     profileBannerContainer.insertAdjacentHTML('beforeend', await genHtmlProfileHero(currentUser));
     tabComponentOnProfile.insertAdjacentHTML('beforeend', renderProfileTabHeader());
     const [tab1Content, tab2Content, tab3Content] = await Promise.all([
