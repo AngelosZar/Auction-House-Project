@@ -54,57 +54,69 @@ export const searchOverlay = async function () {
             />
           </svg>
         </button>
-        <div id="searchResultCards" class=""></div>
+        <div id="searchResultCards" class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3"></div>
       </section>
   `;
-  if (!searchBtn) return;
-  //   event listener on searc hbtn
   searchBtn.addEventListener('click', async (e) => {
     e.preventDefault();
+
     if (!isOverlayOpen) {
       parentContainer.insertAdjacentHTML('afterbegin', searchOverlayContent);
+      document.querySelector('#onSearch')?.addEventListener('click', searchHandler);
+
+      document.querySelector('#close-search-container')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector('#searchContainer')?.remove();
+      });
     } else {
-      document.querySelector('#searchContainer').remove();
-      // can be clicked and inserted only once ..
-      // pressing again on search btn closes the searchOverlay. toggle visibility // seperate function /event listener to toggle
-      console.log(e.target);
+      document.querySelector('#searchContainer')?.remove();
     }
     isOverlayOpen = !isOverlayOpen;
-
-    const searchInput = document.querySelector('#search');
-    const searchBtn = document.querySelector('#onSearch');
-    // guard clause for yet another null pointer
-    if (!searchBtn) return;
-    searchBtn.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const searchValue = searchInput.value;
-      console.log(searchValue);
-      try {
-        const data = await searchListings(searchValue);
-        const listings = data.data;
-        console.log('listings:', listings);
-        const parentContainer = document.querySelector('#searchResultCard');
-        searchContainerHeader.innerHTML = '';
-        parentContainer.innerHTML = '';
-        parentContainer.classList.add('bg-light-cards', 'dark:bg-red-400', 'mb-8', 'h-full');
-        await generateHtml(listings, parentContainer);
-        // await generateHtml(listings, parentContainer);
-        searchInput.value = '';
-      } catch (error) {
-        throw new Error(error);
-      }
-    });
   });
-};
-// grabUserInput();
-// const generateHtmlOnSearch = async function (listings) {
-//   const parentContainer = document.querySelector('#searchResultCard');
-//   parentContainer.innerHTML = '';
-//   await generateHtml(listings, parentContainer);
-// };
+  //
+  const searchHandler = async (e) => {
+    e.preventDefault();
+    const searchInput = document.querySelector('#search');
+    const searchValue = search.value;
+    console.log(searchValue);
+    //
+    try {
+      const data = await searchListings(searchValue);
+      const listings = data.data;
+      console.log('listings:', listings);
+      const parentContainer = document.querySelector('#searchResultCards');
+      parentContainer.innerHTML = '';
 
-// e.preventDefault();
-// const searchValue = searchInput.value;
-// console.log(searchValue);
-// await searchListings(searchValue);
-// searchInput.value = '';
+      await generateHtml(listings, parentContainer);
+      searchInput.value = '';
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+};
+
+//     const searchInput = document.querySelector('#search');
+//     const searchBtn = document.querySelector('#onSearch');
+//     // guard clause for yet another null pointer
+//     if (!searchBtn) return;
+//     searchBtn.addEventListener('click', async (e) => {
+//       e.preventDefault();
+//       const searchValue = searchInput.value;
+//       console.log(searchValue);
+//       try {
+//         const data = await searchListings(searchValue);
+//         const listings = data.data;
+//         console.log('listings:', listings);
+//         const parentContainer = document.querySelector('#searchResultCard');
+//         searchContainerHeader.innerHTML = '';
+//         parentContainer.innerHTML = '';
+//         parentContainer.classList.add('bg-light-cards', 'dark:bg-red-400', 'mb-8', 'h-full');
+//         await generateHtml(listings, parentContainer);
+//         // await generateHtml(listings, parentContainer);
+//         searchInput.value = '';
+//       } catch (error) {
+//         throw new Error(error);
+//       }
+//     });
+//   });
+// };
