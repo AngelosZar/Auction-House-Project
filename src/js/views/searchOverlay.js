@@ -8,34 +8,53 @@ export const searchOverlay = async function () {
   let isOverlayOpen = false;
 
   const searchOverlayContent = `
-     <section
-        class="fixed inset-0 z-50 bg-light-component dark:bg-purple-dark "
+      <section
+        class="fixed inset-0 z-50 bg-light-component dark:bg-purple-dark"
         id="searchContainer"
       >
-        <div class="container mx-auto px-4 py-8" id='searchContainerHeader'>
+        <div class="container mx-auto px-4 py-8" id="searchContainerHeader">
           <div class="flex flex-col items-center mb-8">
-            <img src="./media/header_logos/grayscale-transparent.png" alt="logo" 
-            class="max-w-sm mb-4" />
-            <h1 class="text-4xl font-extrabold text-center mt-4">
-              Search for treasures 
-            </h1>
+            <img
+              src="./media/header_logos/grayscale-transparent.png"
+              alt="logo"
+              class="max-w-xs mb-4"
+            />
+            <h1 class="text-4xl font-extrabold text-center mt-4">Search for treasures</h1>
           </div>
         </div>
 
         <div class="mb-2 max-w-2xl mx-auto">
-          <form action="submit" class="flex flex-col gap-4 md:flex-row>
+          <form action="submit" class="flex flex-col gap-4 md:flex-row">
             <input
               type="text"
               name="search"
               id="search"
               placeholder="Search for items"
-              class="input-forms"
+              class="input-forms "
             />
-            <button class="btn btn-primary dark:btn-primary-dark mt-4   h-auto" id="onSearch" >Search</button>
+            <button
+              class="btn btn-primary dark:btn-primary-dark mt-4 h-auto md:w-auto w-full"
+              id="onSearch"
+            >
+              Search
+            </button>
           </form>
         </div>
-          <!-- add close btn top 2 to 6 . +event listener-->
-        <div class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3 h-full" id="searchResultCard"></div>
+
+        <button
+          class="fixed top-4 right-4 text text-green-3 hover:text-green-1 dark:text-purple-light dark:hover:text-white"
+          id="close-search-container"
+        >
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="4"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        <div id="searchResultCards" class=""></div>
       </section>
   `;
   if (!searchBtn) return;
