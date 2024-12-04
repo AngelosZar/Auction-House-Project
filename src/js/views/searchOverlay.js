@@ -9,18 +9,21 @@ export const searchOverlay = async function () {
 
   const searchOverlayContent = `
      <section
-        class="relative bg-light-component dark:bg-purple-dark border-y-2 dark:border-none flex flex-col justify-center items-center h-lvh w-full"
+        class="fixed inset-0 z-50 bg-light-component dark:bg-purple-dark "
         id="searchContainer"
       >
-        <div class="flex justify-center items-center py-16">
-          <div class="max-w-md">
-            <img src="./media/header_logos/grayscale-transparent.png" alt="" srcset="" />
+        <div class="container mx-auto px-4 py-8" id='searchContainerHeader'>
+          <div class="flex flex-col items-center mb-8">
+            <img src="./media/header_logos/grayscale-transparent.png" alt="logo" 
+            class="max-w-sm mb-4" />
             <h1 class="text-4xl font-extrabold text-center mt-4">
-              Search for treasures
+              Search for treasures 
+            </h1>
           </div>
         </div>
-        <div class="w-full max-w-2xl px-8">
-          <form action="" class="flex flex-col items-center  w-full ">
+
+        <div class="mb-2 max-w-2xl mx-auto">
+          <form action="submit" class="flex flex-col gap-4 md:flex-row>
             <input
               type="text"
               name="search"
@@ -28,9 +31,10 @@ export const searchOverlay = async function () {
               placeholder="Search for items"
               class="input-forms"
             />
-            <button class="btn btn-primary dark:btn-primary-dark mt-4 mb-[50%]" id="onSearch" >Search</button>
+            <button class="btn btn-primary dark:btn-primary-dark mt-4   h-auto" id="onSearch" >Search</button>
           </form>
         </div>
+          <!-- add close btn top 2 to 6 . +event listener-->
         <div class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3 h-full" id="searchResultCard"></div>
       </section>
   `;
@@ -50,6 +54,8 @@ export const searchOverlay = async function () {
 
     const searchInput = document.querySelector('#search');
     const searchBtn = document.querySelector('#onSearch');
+    // guard clause for yet another null pointer
+    if (!searchBtn) return;
     searchBtn.addEventListener('click', async (e) => {
       e.preventDefault();
       const searchValue = searchInput.value;
@@ -59,7 +65,11 @@ export const searchOverlay = async function () {
         const listings = data.data;
         console.log('listings:', listings);
         const parentContainer = document.querySelector('#searchResultCard');
+        searchContainerHeader.innerHTML = '';
+        parentContainer.innerHTML = '';
+        parentContainer.classList.add('bg-light-cards', 'dark:bg-red-400', 'mb-8', 'h-full');
         await generateHtml(listings, parentContainer);
+        // await generateHtml(listings, parentContainer);
         searchInput.value = '';
       } catch (error) {
         throw new Error(error);
@@ -68,11 +78,12 @@ export const searchOverlay = async function () {
   });
 };
 // grabUserInput();
-// generateHtmlOnSearch = async function (listings) {
+// const generateHtmlOnSearch = async function (listings) {
 //   const parentContainer = document.querySelector('#searchResultCard');
 //   parentContainer.innerHTML = '';
 //   await generateHtml(listings, parentContainer);
 // };
+
 // e.preventDefault();
 // const searchValue = searchInput.value;
 // console.log(searchValue);

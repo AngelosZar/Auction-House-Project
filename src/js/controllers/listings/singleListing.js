@@ -29,16 +29,15 @@ async function renderHero() {
     const response = await readListing(listingId);
     // console.log('Raw response:', response);
     const listing = response.data;
-
     // console.log(listing);
 
     const card = createSingleListingCard(listing);
+    if (!card) return;
     parentContainer.insertAdjacentHTML('afterbegin', card);
     //
     document.querySelector('[data-bid-button]').addEventListener('click', async (e) => {
       e.preventDefault();
       const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
-      if (!listingId) return;
       const highestBid = e.target.closest('[data-highest-bid]').dataset.highestBid;
       //
       if (authGuard()) {
@@ -57,6 +56,7 @@ async function renderHero() {
     document.querySelectorAll('img').forEach((img) => {
       img.addEventListener('click', (e) => {
         e.preventDefault();
+        if (!e.target.closest('[data-listing-id]')) return;
         const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
         if (!listingId) return;
         console.log('listingId:', listingId);
