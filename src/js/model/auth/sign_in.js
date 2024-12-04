@@ -1,5 +1,5 @@
 import { API_AUTH_LOGIN } from '../../utilities/constants';
-
+import { getApiKey } from '../../utilities/apiKey';
 /**
  *
  * @param {object} data -user email and password
@@ -40,7 +40,8 @@ export const signInApiCall = async (data) => {
     };
 
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
+    const apiKey = await getApiKey();
+    console.log(apiKey);
     return result;
   } catch (error) {
     return error;
