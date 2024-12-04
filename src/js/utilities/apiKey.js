@@ -12,9 +12,13 @@ import { API_AUTH_KEY } from './constants';
 // };
 
 export async function getApiKey(userCredentials) {
+  // const envApiKey = import.meta.env.import.meta.env.VITE_API_KEY;
+  // if (envApiKey) return envApiKey;
+  // const localApiKey = localStorage.getItem('API_KEY');
+  // if (localApiKey) return localApiKey;
+
   try {
     const token = await returnToken();
-
     const response = await fetch(API_AUTH_KEY, {
       method: 'POST',
       headers: {
@@ -28,9 +32,8 @@ export async function getApiKey(userCredentials) {
     if (response.ok) {
       const data = await response.json();
       const apiKey = data.data.key;
-      // console.dir(data, { depth: null });
-      // console.log(apiKey);
-      localStorage.setItem('API_KEY1', apiKey1);
+      localStorage.setItem('API_KEY', apiKey);
+      import.meta.env.VITE_RUNTIME_API_KEY = apiKey;
       return apiKey;
     }
   } catch (error) {

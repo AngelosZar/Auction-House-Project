@@ -32,6 +32,8 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('logOutBtn').addEventListener('click', logOut);
   // updateNavBar();
   searchOverlay();
+  const env = import.meta.env.VITE_API_KEY;
+  console.log(env);
 });
 // await testReadListings();
 // const bid = {

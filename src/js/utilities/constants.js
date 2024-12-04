@@ -1,6 +1,6 @@
 export const API_BASE = 'https://v2.api.noroff.dev';
 
-export const API_KEY = localStorage.getItem('apiKey') || 'b8ccaf6e-4043-4f1e-bd7e-a02728a0f022';
+export const API_KEY = localStorage.getItem('apiKey') || import.meta.env.VITE_API_KEY || '';
 
 export const API_AUTH = `${API_BASE}/auth`;
 
