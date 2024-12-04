@@ -29,7 +29,9 @@ import { searchOverlay } from './js/views/searchOverlay';
 // };
 window.addEventListener('DOMContentLoaded', () => {
   router(window.location.pathname);
-  document.getElementById('logOutBtn').addEventListener('click', logOut);
+  // const logOutBtn = document.getElementById('logOutBtn');
+  // logOutBtn?.addEventListener('click', logOut);
+  document.getElementById('logOutBtn')?.addEventListener('click', logOut);
   // updateNavBar();
   searchOverlay();
 });

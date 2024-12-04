@@ -4,15 +4,17 @@ import { generateHtml } from '../utilities/generateBidCards';
 //
 export const searchOverlay = async function () {
   const parentContainer = document.querySelector('main');
+  parentContainer.classList.add('max-w-[1440px]');
   const searchBtn = document.querySelector('#searchBtn');
   let isOverlayOpen = false;
 
   const searchOverlayContent = `
       <section
-        class="fixed inset-0 z-50 bg-light-component dark:bg-purple-dark"
+        class="fixed inset-0 z-50 bg-light-component dark:bg-purple-dark overflow-y-auto "
         id="searchContainer"
       >
-        <div class="container mx-auto px-4 py-8" id="searchContainerHeader">
+      <div class="max-w-[1440px] mx-auto relative">
+        <div class="container mx-auto px-4 pt-20 pb-8" id="searchContainerHeader">
           <div class="flex flex-col items-center mb-8">
             <img
               src="./media/header_logos/grayscale-transparent.png"
@@ -24,16 +26,16 @@ export const searchOverlay = async function () {
         </div>
 
         <div class="mb-2 max-w-2xl mx-auto">
-          <form action="submit" class="flex flex-col gap-4 md:flex-row">
+          <form action="submit" class="flex flex-col justify-center gap-4 md:flex-row px-4">
             <input
               type="text"
               name="search"
               id="search"
               placeholder="Search for items"
-              class="input-forms "
+              class="input-forms md:mt-6"
             />
             <button
-              class="btn btn-primary dark:btn-primary-dark mt-4 h-auto md:w-auto w-full"
+              class="btn btn-primary dark:btn-primary-dark mt-4 md:mt-0 md:self-center h-auto md:w-auto self-end"
               id="onSearch"
             >
               Search
@@ -42,7 +44,7 @@ export const searchOverlay = async function () {
         </div>
 
         <button
-          class="fixed top-4 right-4 text text-green-3 hover:text-green-1 dark:text-purple-light dark:hover:text-white"
+          class="absolute top-4 right-4 text text-green-3 hover:text-green-1 dark:text-purple-light dark:hover:text-white"
           id="close-search-container"
         >
           <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -54,8 +56,9 @@ export const searchOverlay = async function () {
             />
           </svg>
         </button>
-        <div id="searchResultCards" class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3"></div>
-      </section>
+        <div id="searchResultCards" class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3 max-w[1440px]"></div>
+      </div>
+    </section>
   `;
   searchBtn.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -84,15 +87,19 @@ export const searchOverlay = async function () {
       const data = await searchListings(searchValue);
       const listings = data.data;
       console.log('listings:', listings);
+      //
       const parentContainer = document.querySelector('#searchResultCards');
+      const headerContainer = document.querySelector('#searchContainerHeader');
+      //
+      headerContainer.innerHTML = `<h1 class="text-4xl font-extrabold text-center mt-4">Search results for "${searchValue}"</h1>`;
       parentContainer.innerHTML = '';
-
       await generateHtml(listings, parentContainer);
       searchInput.value = '';
     } catch (error) {
       throw new Error(error);
     }
   };
+  // add pagination
 };
 
 //     const searchInput = document.querySelector('#search');
