@@ -1,3 +1,4 @@
+import { list } from 'postcss';
 import { searchListings } from '../model/listings/search';
 import { generateHtml } from '../utilities/generateBidCards';
 // import { generateHtml, createSingleBidCard } from '../utilities/generateBidCards';
@@ -91,6 +92,11 @@ export const searchOverlay = async function () {
       const parentContainer = document.querySelector('#searchResultCards');
       const headerContainer = document.querySelector('#searchContainerHeader');
       //
+      if (listings.length === 0) {
+        headerContainer.innerHTML = `<h1 class="text-4xl font-extrabold text-center mt-4">There are no results for "${searchValue}"</h1>`;
+        parentContainer.innerHTML = '';
+        return;
+      }
       headerContainer.innerHTML = `<h1 class="text-4xl font-extrabold text-center mt-4">Search results for "${searchValue}"</h1>`;
       parentContainer.innerHTML = '';
       await generateHtml(listings, parentContainer);
@@ -101,6 +107,7 @@ export const searchOverlay = async function () {
   };
   // add pagination
 };
+// Cookie “__Secure-ENID” has been rejected because it is in a cross-site context and its “SameSite” is “Lax” or “Strict”.
 
 //     const searchInput = document.querySelector('#search');
 //     const searchBtn = document.querySelector('#onSearch');
