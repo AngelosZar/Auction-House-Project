@@ -6,13 +6,14 @@ export const createSingleListingCard = function (listing) {
 <div
   data-listing-id="${listing?.id}"
   data-highest-bid="${listing?.bids?.length ? Math.max(...listing?.bids?.map((bid) => bid.amount)) : 1}"
+  data-seller-name="${listing.seller.name}"
   class="grid grid-cols-1 md:grid-cols-2 md:py-8 gap-8 pt-16 pb-20 px-4"
 >
   <div class="aspect-[4/3] overflow-hidden flex justify-center items-center">
     <img
       src="${listing?.media?.[0]?.url || ''}"
       alt="${listing?.media?.[0]?.alt || 'Image of the listing'}"
-      class="w-full h-full object-cover rounded-lg"
+      class="w-full h-full object-cover rounded-lg "
     />
   </div>
 
@@ -35,6 +36,7 @@ export const createSingleListingCard = function (listing) {
       <span class="mt-4 justify-end align-bottom">
         <a
           href="#"
+          id="bid-for-Listing-btn"
           class="btn btn-secondary dark:btn-secondary-dark self-end"
           data-bid-button
         >

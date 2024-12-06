@@ -17,6 +17,26 @@ import {
   createSingleListingCard,
 } from '../../model/listings/singleListing';
 // import { generateHtml } from '../../utilities/generateBidCards';
+export const checkSellerAndHideBtn = function () {
+  const observer = new MutationObserver(() => {
+    const bidBtn = document.querySelector('#bid-for-Listing-btn');
+
+    if (!bidBtn) return;
+    if (bidBtn) {
+      const seller = document.querySelector('[data-seller-name]')?.dataset.sellerName;
+      const user = JSON.parse(localStorage.getItem('currentUser'));
+      const currentUser = user.name;
+      if (currentUser === seller) {
+        bidBtn.style.display = 'none';
+      }
+      observer.disconnect();
+    }
+  });
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+};
 
 async function renderHero() {
   const listingId = localStorage.getItem('listingId');
@@ -35,6 +55,15 @@ async function renderHero() {
     if (!card) return;
     parentContainer.insertAdjacentHTML('afterbegin', card);
     //
+    // const user = JSON.parse(localStorage.getItem('currentUser'));
+    // const currentUser = user.name;
+    // console.log(currentUser);
+    // if (listing.seller.name === 'currentUser') {
+    //   document.querySelector('#bid-for-Listing-btn').remove();
+    //   console.log('');
+    //   console.log(listing.seller.name);
+    // }
+
     document.querySelector('[data-bid-button]').addEventListener('click', async (e) => {
       e.preventDefault();
       const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
@@ -52,18 +81,19 @@ async function renderHero() {
         window.location.reload();
       }
     });
-
-    document.querySelectorAll('img').forEach((img) => {
-      img.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (!e.target.closest('[data-listing-id]')) return;
-        const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
-        if (!listingId) return;
-        console.log('listingId:', listingId);
-        localStorage.setItem('listingId', listingId);
-        window.location.href = '/biddings/single-listing/';
-      });
-    });
+    // should i delete  this or no ?
+    // document.querySelectorAll('img').forEach((img) => {
+    //   img.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     if (!e.target.closest('[data-listing-id]')) return;
+    //     const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
+    //     if (!listingId) return;
+    //     console.log('listingId:', listingId);
+    //     localStorage.setItem('listingId', listingId);
+    //     window.location.href = '/biddings/single-listing/';
+    //   });
+    // });
+    checkSellerAndHideBtn();
   } catch (error) {
     console.log(error);
     throw error;
