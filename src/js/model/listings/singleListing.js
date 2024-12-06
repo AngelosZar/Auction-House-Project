@@ -33,7 +33,7 @@ export const createSingleListingCard = function (listing) {
         <p class="mb-2" >Ends at: ${formatDateTime(listing?.endsAt || new Date())}</p>
       </div>
 
-      <span class="mt-4 justify-end align-bottom">
+      <span class="mt-4 justify-end align-bottom" id="switchToCurrentUserEditBtn" data-listing-buttons>
         <a
           href="#"
           id="bid-for-Listing-btn"
@@ -45,9 +45,7 @@ export const createSingleListingCard = function (listing) {
       </span>
     </div>
   </div>
-</div>
-
-  `;
+</div>`;
 
   console.log('data-listing-id:', listing.id);
   return listingHtml;

@@ -26,8 +26,21 @@ export const checkSellerAndHideBtn = function () {
       const seller = document.querySelector('[data-seller-name]')?.dataset.sellerName;
       const user = JSON.parse(localStorage.getItem('currentUser'));
       const currentUser = user.name;
+      const btnContainer = document.querySelector('#switchToCurrentUserEditBtn');
+
       if (currentUser === seller) {
-        bidBtn.style.display = 'none';
+        // bidBtn.style.display = 'none';
+        bidBtn.remove();
+        const html = `
+          <a
+          href="#"
+          id="bid-for-Listing-btn"
+          class="btn btn-secondary dark:btn-secondary-dark self-end"
+          data-bid-button
+        >
+          Edit Listing
+        </a>`;
+        btnContainer.insertAdjacentHTML('beforeend', html);
       }
       observer.disconnect();
     }
