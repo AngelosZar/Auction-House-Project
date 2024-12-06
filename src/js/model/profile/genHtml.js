@@ -90,16 +90,15 @@ export const renderProfileTabHeader = function () {
 export const renderProfileTab1Content = async function (currentUser, cardNumber, page) {
   try {
     const userData = await readProfileListings(currentUser.name, cardNumber, page);
-    // console.log(userData);
+    console.log('userdata', userData);
     const cards = userData.data
       .map((listing) => {
-        // console.log('listing:', listing);
+        console.log('Processing listing:', listing);
         return `
-        <div
-          id="card-${listing.id}"
-          class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"
-        >
-          <div class="flex max-w-md">
+       <div class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md" 
+       data-listing-id="${listing.id}" data-tags="${listing.tags?.[0]?.substring(0, 2)}" 
+       data-highest-bid='${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' ">
+          <div class="flex max-w-md listing-image">
             <img
               src="${listing.media?.[0]?.url}"
               alt="${listing.media?.[0]?.alt}"
@@ -119,7 +118,6 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
       `;
       })
       .join('');
-
     return `
     <div
       class="tab-content w-full block mt-8 px-8 justify-center md:justify-start pb-48"
@@ -380,3 +378,37 @@ export const renderProfileTab3Content = async function () {
 </div> */
 
 // await readListing('ff98e567-ebe0-41bc-889b-2533a5860014');
+
+/**
+ * It sets a mutation observer to listen for click on images on the renderProfileTab1Content html and redirects to the single-listing page
+ * @function renderProfileTab1Content
+ * @description then stores the listingId in the local storage and redirects to the single-listing page.
+ */
+export const initImgsObserver = function () {
+  console.log('i am woking and connected');
+  const observer = new MutationObserver((mutations) => {
+    console.log('i am a mutation observer');
+    const images = document.querySelectorAll('.listing-image');
+
+    if (!images.length) {
+      console.log('No images found yet');
+      return;
+    }
+    if (images.length) {
+      images.forEach((image) => {
+        image.addEventListener('click', (e) => {
+          e.preventDefault();
+          const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
+          localStorage.setItem('listingId', listingId);
+          window.location.href = '/biddings/single-listing/';
+        });
+      });
+      observer.disconnect();
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+};

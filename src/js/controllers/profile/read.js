@@ -9,6 +9,7 @@ import {
   renderProfileTab1Content,
   renderProfileTab2Content,
   renderProfileTab3Content,
+  initImgsObserver,
 } from '../../model/profile/genHtml';
 
 export async function renderProfileHero() {
@@ -23,6 +24,7 @@ export async function renderProfileHero() {
     tabComponentOnProfile.insertAdjacentHTML('beforeend', renderProfileTabHeader());
     const [tab1Content, tab2Content, tab3Content] = await Promise.all([
       renderProfileTab1Content(currentUser, 6, 1),
+      initImgsObserver(),
       renderProfileTab2Content(currentUser, 6, 1),
       renderProfileTab3Content(),
     ]);
