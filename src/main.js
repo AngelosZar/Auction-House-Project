@@ -3,7 +3,6 @@ import router from './js/router';
 import { logOut } from './js/utilities/logout';
 import { updateNavBar } from './js/utilities/updateNavBar';
 //
-import { testReadListings } from './js/model/listings/readListings';
 import { createListing } from './js/model/listings/create';
 import { updateListing } from './js/model/listings/update';
 import { readListing } from './js/model/listings/readListings';

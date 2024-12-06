@@ -1,9 +1,5 @@
 import { API_READ_LISTINGS } from '../../utilities/constants';
 
-export async function testReadListings() {
-  console.log('I run the readListings function');
-}
-
 export async function readListings(limit = 12, offset = 1, active = true) {
   const page = Math.floor(offset / limit + 1);
   try {
@@ -12,7 +8,7 @@ export async function readListings(limit = 12, offset = 1, active = true) {
       `${API_READ_LISTINGS}?limit=${limit}&page=${+page}&_seller=true&_bids=true&_active=${active}`
     );
     const results = await response.json();
-    console.log(results.data);
+    // console.log(results.data);
     if (!response.ok) {
       throw new Error(results.errors?.[0]?.message || 'Failed to fetch listings');
     }
@@ -40,3 +36,4 @@ export async function readListing(id) {
 }
 
 // await readListing('ff98e567-ebe0-41bc-889b-2533a5860014');
+// await readListing('bc9a5786-7876-463e-ba5c-b349f2efaeaf');

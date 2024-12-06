@@ -45,7 +45,8 @@ export const createSingleListingCard = function (listing) {
       </span>
     </div>
   </div>
-</div>`;
+</div>
+`;
 
   console.log('data-listing-id:', listing.id);
   return listingHtml;

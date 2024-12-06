@@ -43,7 +43,7 @@ export const checkSellerAndHideBtn = function () {
         
            <a
           href="#"
-          class="font-medium text-red-500 hover:underline self-end pl-4"
+          class="font-medium text-red-500 hover:underline self-end pl-4 delete-listing-btn"
           data-bid-button
         >
           Delete Listing
@@ -97,7 +97,6 @@ async function renderHero() {
         const bid = {
           amount: Number(bidAmount),
         };
-        console.log('bid:', bid);
         await bidOnListing(bid, listingId);
         window.location.reload();
       }
@@ -147,15 +146,11 @@ async function renderTabs() {
 }
 async function main() {
   try {
-    console.log('halo from the other side');
     await renderHero();
     await renderTabs();
-    console.log('i am the controller one more time');
   } catch (error) {
     console.log(error);
     throw error;
   }
 }
 document.addEventListener('DOMContentLoaded', await main());
-
-// console.log(tabComponentOnSinglePage);

@@ -93,7 +93,6 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
     console.log('userdata', userData);
     const cards = userData.data
       .map((listing) => {
-        console.log('Processing listing:', listing);
         return `
        <div class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md" 
        data-listing-id="${listing.id}" data-tags="${listing.tags?.[0]?.substring(0, 2)}" 
@@ -142,9 +141,7 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
         </div>
     </div>
   `;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 };
 
 export const renderProfileTab2Content = async function (currentUser, cardNumber, page) {
@@ -175,6 +172,7 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
 };
 
 export const renderProfileTab3Content = async function () {
+  console.log('something is wrong here');
   const html = `
   <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="create-listing">
           <section class="min-h-screen">
@@ -283,8 +281,7 @@ export const renderProfileTab3Content = async function () {
               </form>
             </div>
           </section>
-        </div>
-`;
+        </div>`;
   return html;
 };
 

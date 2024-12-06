@@ -1,4 +1,4 @@
-import { readProfile } from '../../model/profile/read';
+import { readProfile, readProfileBids, readProfileWins } from '../../model/profile/read';
 
 import { initTabComponent } from '../../utilities/initTabComponent';
 import { authGuard } from '../../utilities/authGuard';
@@ -12,7 +12,7 @@ import {
   initImgsObserver,
 } from '../../model/profile/genHtml';
 
-export async function renderProfileHero() {
+export async function renderProfilePage() {
   authGuard();
   const data = JSON.parse(localStorage.getItem('currentUser'));
   const username = data.name;
@@ -24,7 +24,6 @@ export async function renderProfileHero() {
     tabComponentOnProfile.insertAdjacentHTML('beforeend', renderProfileTabHeader());
     const [tab1Content, tab2Content, tab3Content] = await Promise.all([
       renderProfileTab1Content(currentUser, 6, 1),
-      initImgsObserver(),
       renderProfileTab2Content(currentUser, 6, 1),
       renderProfileTab3Content(),
     ]);
@@ -34,13 +33,16 @@ export async function renderProfileHero() {
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab3Content);
 
     initTabComponent();
+    initImgsObserver();
   } catch (error) {
     console.log(error);
   }
 }
 
 const profilePage = async function () {
-  await renderProfileHero();
+  await renderProfilePage();
   await initTabComponent();
+  await readProfileBids('kimYong');
+  await readProfileWins('kimYong', 12, 1);
 };
 await profilePage();
