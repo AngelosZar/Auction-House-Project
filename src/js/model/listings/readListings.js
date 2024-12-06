@@ -14,7 +14,7 @@ export async function readListings(limit = 12, offset = 1, active = true) {
     }
     return results;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error;
   }
 }
@@ -23,14 +23,14 @@ export async function readListing(id) {
   try {
     const response = await fetch(`${API_READ_LISTINGS}/${id}?_seller=true&_bids=true`);
     const singleListing = await response.json();
-    console.log('singleListing');
-    console.log(singleListing);
+    // console.log('singleListing');
+    // console.log(singleListing);
     if (!response.ok) {
       throw new Error(singleListing.errors?.[0]?.message || 'Failed to fetch listing');
     }
     return singleListing;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error;
   }
 }

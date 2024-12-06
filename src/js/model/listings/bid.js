@@ -19,9 +19,9 @@ export const bidOnListing = async function (bid, id) {
       alert(data.errors[0].message);
       throw new Error(data.errors[0].message);
     }
-    console.log(' route :model.listings.bid.js');
-    console.log(data);
-    console.log(response);
+    // console.log(' route :model.listings.bid.js');
+    // console.log(data);
+    // console.log(response);
     return data;
   } catch (error) {
     // console.log(error);

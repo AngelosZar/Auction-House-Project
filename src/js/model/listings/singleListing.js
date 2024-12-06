@@ -9,13 +9,7 @@ export const createSingleListingCard = function (listing) {
   data-seller-name="${listing.seller.name}"
   class="grid grid-cols-1 md:grid-cols-2 md:py-8 gap-8 pt-16 pb-20 px-4"
 >
-  <div class="aspect-[4/3] overflow-hidden flex justify-center items-center">
-    <img
-      src="${listing?.media?.[0]?.url || ''}"
-      alt="${listing?.media?.[0]?.alt || 'Image of the listing'}"
-      class="w-full h-full object-cover rounded-lg "
-    />
-  </div>
+ 
 
   <div
     class="bg-light-cards dark:bg-purple-dark py-4 px-4 flex flex-col md:flex-row rounded-xl shadow-lg w-full h-auto justify-between"
@@ -48,7 +42,7 @@ export const createSingleListingCard = function (listing) {
 </div>
 `;
 
-  console.log('data-listing-id:', listing.id);
+  // console.log('data-listing-id:', listing.id);
   return listingHtml;
 };
 
@@ -160,7 +154,7 @@ export async function createTabs2Content(listing) {
 
   `;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 }
 export async function createTabs3Content(listing) {
@@ -201,7 +195,18 @@ export async function createTabs3Content(listing) {
   </div>
 `;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error;
   }
+}
+
+// previus html
+{
+  /* <div class="aspect-[4/3] overflow-hidden flex justify-center items-center">
+<img
+  src="${listing?.media?.[0]?.url || ''}"
+  alt="${listing?.media?.[0]?.alt || 'Image of the listing'}"
+  class="w-full h-full object-cover rounded-lg "
+/>
+</div> */
 }
