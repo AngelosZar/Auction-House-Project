@@ -39,6 +39,14 @@ export const checkSellerAndHideBtn = function () {
           data-bid-button
         >
           Edit Listing
+        </a>
+        
+           <a
+          href="#"
+          class="font-medium text-red-500 hover:underline self-end pl-4"
+          data-bid-button
+        >
+          Delete Listing
         </a>`;
         btnContainer.insertAdjacentHTML('beforeend', html);
       }
