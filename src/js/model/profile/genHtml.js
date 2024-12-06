@@ -111,9 +111,13 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
             <p class="text-xs text-left">Ends in: ${formatDateTime(listing.endsAt)}</p>
             <p class="text-xs text-left">Highest current bid ${listing.highestBid || 0} nok</p>
           </div>
-          <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2">
-            Edit listing
-          </a>
+          <div>
+            <span
+              ><a href="#" class="font-medium text-green-2 dark:text-blue-400 hover:underline pr-2">Edit</a></span
+            >
+            <span> <a href="#" class="font-medium text-red-600 hover:underline">Delete</a></span>
+          </div>
+
         </div>
       `;
       })
@@ -137,7 +141,6 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
             </span>
         </div>
     </div>
-      
   `;
   } catch (error) {
     console.error(error);
