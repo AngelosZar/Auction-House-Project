@@ -43,7 +43,7 @@ export async function renderProfilePage() {
 const profilePage = async function () {
   await renderProfilePage();
   await initTabComponent();
-  await readProfileBids('kimYong');
-  await readProfileWins('kimYong', 12, 1);
+  // await readProfileBids('kimYong');
+  // await readProfileWins('kimYong', 12, 1);
 };
 await profilePage();

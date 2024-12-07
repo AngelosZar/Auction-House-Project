@@ -1,7 +1,7 @@
 import { API_READ_LISTINGS } from '../../utilities/constants';
 import { returnToken } from '../../utilities/returnToken';
 import { API_KEY } from '../../utilities/constants';
-
+console.log(API_KEY);
 export const bidOnListing = async function (bid, id) {
   const accessToken = returnToken();
   try {
@@ -19,16 +19,12 @@ export const bidOnListing = async function (bid, id) {
       alert(data.errors[0].message);
       throw new Error(data.errors[0].message);
     }
-    // console.log(' route :model.listings.bid.js');
-    // console.log(data);
-    // console.log(response);
+    console.log(' route :model.listings.bid.js');
+    console.log(data);
+    console.log(response);
     return data;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     throw error;
   }
-};
-
-const bid = {
-  //   amount: 10, // Required
 };

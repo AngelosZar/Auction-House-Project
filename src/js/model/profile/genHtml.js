@@ -1,6 +1,8 @@
 import { readProfileListings } from './read';
 import { formatDateTime } from '../../utilities/formatDateTime';
 import { readProfileBids } from './read';
+import { readListing } from '../../model/listings/readListings';
+// import { readListing } from '../listings/readListings';
 // import { readListing } from '../../model/listings/readListings';
 // import { list } from 'postcss';
 // import { createListingForm } from '../../views/profile/viewProfile';
@@ -148,28 +150,68 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
 export const renderProfileTab2Content = async function (currentUser, cardNumber, page) {
   try {
     const { data } = await readProfileBids(currentUser.name, cardNumber, page);
-    // console.log(data);
-    await Promise.all(
-      data.map(async (listing) => {
-        let listingId = listing.id;
-        // console.log(listingId);
-        // return await readListing(listingId);
+    const listings = await Promise.all(
+      data.map(async (bid) => {
+        try {
+          const listing = await readListing(bid.listing.id);
+          return listing;
+        } catch (error) {
+          console.error(error);
+          return null;
+        }
       })
     );
+    const validListings = listings.filter((listing) => listing !== null);
+    const cards = validListings
+      .map((validListing) => {
+        console.log('listing', validListing);
+        return `
+       <div class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md pb-16" 
+       data-listing-id="${validListing.id}" data-tags="${validListing.tags?.[0]?.substring(0, 2)}" 
+       data-highest-bid='${validListing?.bids?.length ? Math.max(...validListing.bids.map((bid) => bid.amount)) : Number(1)}' ">
+           <div class="w-full aspect-[4/3] overflow-hidden pb-2 ">
+               <img
+                 src="${validListing?.media[0]?.url}"
+                alt="${validListing?.media[0]?.alt}"
+                class="w-full h-full object-cover"
+                />
+            </div>
+          <p class="text-lg font-semibold py-2">${validListing.title}</p>
+          <p class="text-sm pb-2" >${validListing.description}</p>
+          <div class="flex flex-col">
+            <p class="text-xs text-left">Created ${formatDateTime(validListing.created)}</p>
+            <p class="text-xs text-left">Ends in: ${formatDateTime(validListing.endsAt)}</p>
+            <p class="text-xs text-left">Highest current bid ${validListing.highestBid || 0} nok</p>
+          </div>
+
+        </div>
+      `;
+      })
+      .join('');
+    return `
+    <div
+      class="tab-content w-full block mt-8 px-8 justify-center md:justify-start pb-48"
+      id="users-bids"
+    >
+      <section
+        class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3"
+      >
+        ${cards}
+      </section>
+       <div class="flex justify-between px-8 pt-4">
+            <span class="">
+              <p class="text-left" data-page"previous">Previous page</p>
+            </span>
+            <span class="">
+              <p class="text-right" data-page"next">Next page</p>
+            </span>
+        </div>
+    </div>
+  `;
   } catch (error) {
     console.error(error);
     throw error;
   }
-  return `
-   <div class="tab-content max-w-3xl hidden mt-8 px-8 pb-16" id="users-bids">
-          <section class="">
-            <div>this will be card one-users-bid</div>
-            <div>this will be card two-users-bid</div>
-            <div>this will be card three-users-bid</div>
-            <button>Pagination to view more</button>
-          </section>
-        </div>
-    `;
 };
 
 export const renderProfileTab3Content = async function () {
@@ -413,3 +455,5 @@ export const initImgsObserver = function () {
     subtree: true,
   });
 };
+
+await readListing('bc9a5786-7876-463e-ba5c-b349f2efaeaf');

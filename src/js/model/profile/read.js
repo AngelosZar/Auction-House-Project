@@ -139,7 +139,7 @@ export async function readProfileListings(
 export async function readProfileBids(username, limit = 12, offset = 1) {
   const accessToken = returnToken();
   const page = Math.floor(offset / limit + 1);
-  console.log('halo');
+  // console.log('halo');
   try {
     const response = await fetch(
       `${API_READ_PROFILES}/${username}/bids?limit=${limit}&page=${+page}&_listings=true&_wins=true`,
