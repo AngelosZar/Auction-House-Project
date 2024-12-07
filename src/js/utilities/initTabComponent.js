@@ -1,6 +1,10 @@
 import { createListing } from '../model/listings/create';
+let isInitialized = false;
+
 export const initTabComponent = async function () {
-  console.log('working yo');
+  if (isInitialized) return;
+  isInitialized = true;
+  // console.log('working yo');
   const tabs = document.querySelectorAll('.tab');
   const tabContents = document.querySelectorAll('.tab-content');
   const btnCreateList = document.querySelector('#btnCreateList');
@@ -48,6 +52,7 @@ export const initTabComponent = async function () {
   // console.log(createListingForm);
   const form = document.querySelector('#create-listing-form');
   if (!form) return;
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
@@ -75,36 +80,35 @@ export const initTabComponent = async function () {
       throw error;
     }
   });
-
-  // Render more image inputs mulfunctioning for now / check on later
-  // document.querySelector('#addMoreImgs').addEventListener('click', (e) => {
-  //   e.preventDefault();
-  //   console.log(e.target);
-  //   const container = document.querySelector('#imgs-container');
-  //   const newInput = document.createElement('div');
-  //   newInput.className = 'imgs-group-container';
-  //   newInput.innerHTML = `
-  //    <input
-  //     type="url"
-  //     name="image-url"
-  //     class="input-forms mt-1"
-  //     required
-  //     placeholder="Only valid url"
-  //     pattern="https://.*"
-  //   />
-  //   <input
-  //     type="text"
-  //     name="image-alt"
-  //     class="input-forms mt-1"
-  //     required
-  //     placeholder="Image alt text"
-  //   />
-  //   <button class="bg-red-600 border-2 border-white rounded-lg px-4 py-2 remove-img mb-4">Remove</button>
-  //   `;
-  //   container.appendChild(newInput);
-  // });
 };
 
+// Render more image inputs mulfunctioning for now / check on later
+// document.querySelector('#addMoreImgs').addEventListener('click', (e) => {
+//   e.preventDefault();
+//   console.log(e.target);
+//   const container = document.querySelector('#imgs-container');
+//   const newInput = document.createElement('div');
+//   newInput.className = 'imgs-group-container';
+//   newInput.innerHTML = `
+//    <input
+//     type="url"
+//     name="image-url"
+//     class="input-forms mt-1"
+//     required
+//     placeholder="Only valid url"
+//     pattern="https://.*"
+//   />
+//   <input
+//     type="text"
+//     name="image-alt"
+//     class="input-forms mt-1"
+//     required
+//     placeholder="Image alt text"
+//   />
+//   <button class="bg-red-600 border-2 border-white rounded-lg px-4 py-2 remove-img mb-4">Remove</button>
+//   `;
+//   container.appendChild(newInput);
+// });
 // {
 //   "title": "string", // Required
 //   "description": "string", // Optional

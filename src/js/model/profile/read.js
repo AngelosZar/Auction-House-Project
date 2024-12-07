@@ -18,7 +18,7 @@ export async function readProfiles(limit = 12, page = 1, query = '_wins') {
     const { data } = await response.json();
     data.forEach((user) => {
       let name, email, credits, listings, wins, avatarUrl, avatarAlt, bannerUrl, bannerAlt, bio;
-      console.log(user);
+      // console.log(user);
       const userData = {
         data: {
           name,
@@ -157,12 +157,13 @@ export async function readProfileBids(username, limit = 12, offset = 1) {
       throw new Error(error.errors?.[0]?.message || 'Failed to fetch profile bids');
     }
     const data = await response.json();
-    console.log('route: model/profile/read.js');
-    console.log(data);
-    console.log(response);
+    // console.log('route: model/profile/read.js');
+    // console.log(data);
+    // console.log(response);
     return data;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
+    throw new Error(error);
   }
 }
 
@@ -188,11 +189,12 @@ export async function readProfileWins(username, limit = 12, offset = 1) {
       throw new Error(error.errors?.[0]?.message || 'Failed to fetch profile wins');
     }
     const data = await response.json();
-    console.log('route: model/profile/read.js');
-    console.log(data);
-    console.log(response);
+    // console.log('route: model/profile/read.js');
+    // console.log(data);
+    // console.log(response);
   } catch (error) {
-    console.error(error);
+    // console.error(error);
+    throw new Error(error);
   }
 }
 

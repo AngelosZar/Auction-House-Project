@@ -90,7 +90,7 @@ export const renderProfileTabHeader = function () {
 export const renderProfileTab1Content = async function (currentUser, cardNumber, page) {
   try {
     const userData = await readProfileListings(currentUser.name, cardNumber, page);
-    console.log('userdata', userData);
+    // console.log('userdata', userData);
     const cards = userData.data
       .map((listing) => {
         return `
@@ -147,11 +147,11 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
 export const renderProfileTab2Content = async function (currentUser, cardNumber, page) {
   try {
     const { data } = await readProfileBids(currentUser.name, cardNumber, page);
-    console.log(data);
+    // console.log(data);
     await Promise.all(
       data.map(async (listing) => {
         let listingId = listing.id;
-        console.log(listingId);
+        // console.log(listingId);
         // return await readListing(listingId);
       })
     );
@@ -172,7 +172,7 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
 };
 
 export const renderProfileTab3Content = async function () {
-  console.log('something is wrong here');
+  // console.log('something is wrong here');
   const html = `
   <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="create-listing">
           <section class="min-h-screen">
@@ -385,13 +385,13 @@ export const renderProfileTab3Content = async function () {
  * @description then stores the listingId in the local storage and redirects to the single-listing page.
  */
 export const initImgsObserver = function () {
-  console.log('i am woking and connected');
+  // console.log('i am woking and connected');
   const observer = new MutationObserver((mutations) => {
-    console.log('i am a mutation observer');
+    // console.log('i am a mutation observer');
     const images = document.querySelectorAll('.listing-image');
 
     if (!images.length) {
-      console.log('No images found yet');
+      // console.log('No images found yet');
       return;
     }
     if (images.length) {
