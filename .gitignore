@@ -4,3 +4,6 @@ dist
 .prettier-cache
 .env
 .DS_Store
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/

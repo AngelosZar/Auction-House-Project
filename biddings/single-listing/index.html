@@ -124,10 +124,13 @@
     </header>
 
     <main class="">
-      <section id="carousel-section" class="relative w-full max-w-lg" data-carousel="slider">
+      <section id="carousel-section" class="relative w-full" data-carousel="slider">
         <!-- make main div . insert adjacent html for each img  -->
-        <div class="relative h-60 overflow-hidden rounded-lg md:h-96" id="carousel-component">
-          <div class="duration-700 ease-in-out" data-carousel-slide>
+        <div
+          class="relative h-56 min-h-[240px] overflow-hidden rounded-lg md:h-96"
+          id="carousel-component"
+        >
+          <div class="duration-700 ease-in-out" data-carousel="slide">
             <!-- <div class="class-hidden duration-700 ease-in-out"> -->
             <!-- horizonatal -->
             <img
@@ -137,7 +140,7 @@
               class="absolute block w-full"
             />
           </div>
-          <div class="hidden duration-700 ease-in-out">
+          <div class="hidden duration-700 ease-in-out" data-carousel="slide">
             <img
               src="https://images.pexels.com/photos/17785619/pexels-photo-17785619/free-photo-of-arch-on-a-street-in-pisa.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               alt=""
@@ -146,7 +149,7 @@
             />
           </div>
           <!-- portrait img -->
-          <div class="hidden duration-700 ease-in-out">
+          <div class="hidden duration-700 ease-in-out" data-carousel="slide">
             <img
               src="https://images.unsplash.com/photo-1719339837808-8f4a7d3b7096?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NXx8fGVufDB8fHx8fA%3D%3D"
               alt=""
