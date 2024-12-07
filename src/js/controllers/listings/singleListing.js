@@ -16,6 +16,7 @@ import {
   createTabs3Content,
   createSingleListingCard,
 } from '../../model/listings/singleListing';
+import { initCarousel } from '../../model/listings/carousel';
 // import { generateHtml } from '../../utilities/generateBidCards';
 export const checkSellerAndHideBtn = function () {
   const observer = new MutationObserver(() => {
@@ -63,7 +64,7 @@ async function renderHero() {
   const listingId = localStorage.getItem('listingId');
   const parentContainer = singleListingContainer;
   if (!parentContainer) {
-    console.error('Container not found');
+    // console.error('Container not found');
     return;
   }
   try {
@@ -115,7 +116,7 @@ async function renderHero() {
     // });
     checkSellerAndHideBtn();
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error;
   }
 }
@@ -124,14 +125,14 @@ async function renderTabs() {
   const listingId = localStorage.getItem('listingId');
   const parentContainer = tabComponentOnSinglePage;
   if (!parentContainer) {
-    console.error('Container not found');
+    // console.error('Container not found');
     return false;
   }
   try {
     const response = await readListing(listingId);
     const listing = response.data;
 
-    console.log('listing:', listing.title);
+    // console.log('listing:', listing.title);
     parentContainer.insertAdjacentHTML('beforeend', tabComponentHeader);
     parentContainer.insertAdjacentHTML('beforeend', await createTabs1Content(listing));
     parentContainer.insertAdjacentHTML('beforeend', await createTabs2Content(listing));
@@ -140,7 +141,7 @@ async function renderTabs() {
     initTabComponent();
     return true;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error;
   }
 }
@@ -148,8 +149,9 @@ async function main() {
   try {
     await renderHero();
     await renderTabs();
+    await initCarousel();
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error;
   }
 }

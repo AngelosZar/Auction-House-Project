@@ -26,6 +26,7 @@ export async function renderProfilePage() {
       renderProfileTab1Content(currentUser, 6, 1),
       renderProfileTab2Content(currentUser, 6, 1),
       renderProfileTab3Content(),
+      initImgsObserver(),
     ]);
 
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab1Content);
@@ -33,9 +34,9 @@ export async function renderProfilePage() {
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab3Content);
 
     initTabComponent();
-    initImgsObserver();
+    // initImgsObserver();
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 }
 

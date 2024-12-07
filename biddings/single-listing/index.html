@@ -124,30 +124,34 @@
     </header>
 
     <main class="">
-      <section id="carousel" class="relative w-full" data-carousel="slide">
+      <section id="carousel-section" class="relative w-full max-w-lg" data-carousel="slider">
         <!-- make main div . insert adjacent html for each img  -->
-        <div class="relative h-60 overflow-hidden ease-in-out rounded-lg md:h-96">
-          <div class="class-hidden duration-700 ease-in-out">
+        <div class="relative h-60 overflow-hidden rounded-lg md:h-96" id="carousel-component">
+          <div class="duration-700 ease-in-out" data-carousel-slide>
+            <!-- <div class="class-hidden duration-700 ease-in-out"> -->
+            <!-- horizonatal -->
             <img
-              src="https://images.unsplash.com/photo-1719339837808-8f4a7d3b7096?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NXx8fGVufDB8fHx8fA%3D%3D"
+              src="https://images.pexels.com/photos/27798074/pexels-photo-27798074/free-photo-of-faroe-islands-6.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               alt=""
               srcset=""
+              class="absolute block w-full"
             />
           </div>
-          <div class="class-hidden duration-700 ease-in-out">
+          <div class="hidden duration-700 ease-in-out">
             <img
-              src="https://images.unsplash.com/photo-1719339837808-8f4a7d3b7096?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NXx8fGVufDB8fHx8fA%3D%3D"
+              src="https://images.pexels.com/photos/17785619/pexels-photo-17785619/free-photo-of-arch-on-a-street-in-pisa.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               alt=""
               srcset=""
+              class="absolute block w-full"
             />
           </div>
-
-          <div class="class-hidden duration-700 ease-in-out">
+          <!-- portrait img -->
+          <div class="hidden duration-700 ease-in-out">
             <img
               src="https://images.unsplash.com/photo-1719339837808-8f4a7d3b7096?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NXx8fGVufDB8fHx8fA%3D%3D"
               alt=""
               srcset=""
-              class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+              class="absolute block w-full"
             />
           </div>
           <!-- buttons -->
@@ -155,7 +159,7 @@
             <button
               id="carousel-btn-previous"
               type="button "
-              class="absolute top-0 end-0 start-0 z-30 flex-items-center justify-centerjustify-center h-full px-4 cursor-pointer group focus:outline-none"
+              class="absolute top-10 end-10 start-0 z-30 flex-items-center justify-centerjustify-center h-full px-4 cursor-pointer group focus:outline-none"
               data-carousel-prev
             >
               <span
@@ -167,14 +171,18 @@
             <button
               id="carousel-btn-next"
               type="button "
-              class="absolute top-0 end-0 start-0 z-30 flex-items-center justify-centerjustify-center h-full px-4 cursor-pointer group focus:outline-none"
+              class="absolute top-10 end-0 start-10 z-30 flex-items-center justify-centerjustify-center h-full px-4 cursor-pointer group focus:outline-none"
               data-carousel-prev
             >
-              <span class="inline-flex items-center justify-center w-10 h-10 rounded-full"
+              <span
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full dark:bg-blue-dark"
                 >&raquo;
               </span>
             </button>
-            <div id="carousel-dots"></div>
+            <div
+              id="carousel-dots"
+              class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2"
+            ></div>
           </div>
         </div>
       </section>
