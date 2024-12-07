@@ -97,12 +97,13 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
        <div class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md" 
        data-listing-id="${listing.id}" data-tags="${listing.tags?.[0]?.substring(0, 2)}" 
        data-highest-bid='${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' ">
-          <div class="flex max-w-md listing-image">
-            <img
-              src="${listing.media?.[0]?.url}"
-              alt="${listing.media?.[0]?.alt}"
-            />
-          </div>
+           <div class="w-full aspect-[4/3] overflow-hidden pb-2">
+               <img
+                 src="${listing?.media[0]?.url}"
+                alt="${listing?.media[0]?.alt}"
+                class="w-full h-full object-cover"
+                />
+            </div>
           <p class="text-lg font-semibold py-2">${listing.title}</p>
           <p class="text-sm pb-2" >${listing.description}</p>
           <div class="flex flex-col">
