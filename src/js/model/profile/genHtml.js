@@ -20,7 +20,7 @@ export const genHtmlProfileHero = async function (currentUser) {
           />
         </div>
         <div class="mx-6 xl:mx-12 self-end">
-          <h5 class="font-semibold text-green-2 dark:text-purple-light pb-2" >${currentUser.name}</h5>
+          <h6 class="font-semibold text-green-2 dark:text-purple-light pb-2" >${currentUser.name}</h6>
           <p class="pb-1" >Verified user ✌️</p>
           <p class="pb-1" >Credit Points: ${currentUser.credits}</p>
           <a
@@ -94,10 +94,10 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
     const cards = userData.data
       .map((listing) => {
         return `
-       <div class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md" 
+       <div class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md pb-16" 
        data-listing-id="${listing.id}" data-tags="${listing.tags?.[0]?.substring(0, 2)}" 
        data-highest-bid='${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' ">
-           <div class="w-full aspect-[4/3] overflow-hidden pb-2">
+           <div class="w-full aspect-[4/3] overflow-hidden pb-2 ">
                <img
                  src="${listing?.media[0]?.url}"
                 alt="${listing?.media[0]?.alt}"
@@ -161,7 +161,7 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
     throw error;
   }
   return `
-   <div class="tab-content max-w-3xl hidden mt-8 px-8" id="users-bids">
+   <div class="tab-content max-w-3xl hidden mt-8 px-8 pb-16" id="users-bids">
           <section class="">
             <div>this will be card one-users-bid</div>
             <div>this will be card two-users-bid</div>
@@ -175,7 +175,7 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
 export const renderProfileTab3Content = async function () {
   // console.log('something is wrong here');
   const html = `
-  <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="create-listing">
+  <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0 pb-16" id="create-listing">
           <section class="min-h-screen">
             <div
               class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
