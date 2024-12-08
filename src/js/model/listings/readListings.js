@@ -39,19 +39,10 @@ export async function readListing(id) {
       // console.log('Failed to fetch listing');
     }
     const { data: singleListing } = await response.json();
-    console.log('singleListing');
-    // console.log(data);
-    console.log(singleListing);
-
+    // console.log('singleListing');
     return singleListing;
   } catch (error) {
     console.log(error);
-    // console.log(singleListing.errors?.[0]?.message || 'Failed to fetch listing');
-    // throw new Error(singleListing.errors?.[0]?.message || 'Failed to fetch listing');
     throw new Error('Failed to fetch listing');
   }
 }
-//
-// await readListing('fa12ce17-5c81-4970-8ba9-116a4a3c7751');//
-// await readListing('bc9a5786-7876-463e-ba5c-b349f2efaeaf');
-// await readListings();

@@ -74,7 +74,7 @@ export const tabComponentHeader = `
 export async function createTabs1Content(listing) {
   return `
 <div
-  class="tab-content w-full block mt-8 px-8 justify-center md:justify-start"
+  class="tab-content hidden w-full  mt-8 px-8 justify-center md:justify-start"
   id="singleListingDetails"
 >
   <section
@@ -198,15 +198,4 @@ export async function createTabs3Content(listing) {
     // console.log(error);
     throw error;
   }
-}
-
-// previus html
-{
-  /* <div class="aspect-[4/3] overflow-hidden flex justify-center items-center">
-<img
-  src="${listing?.media?.[0]?.url || ''}"
-  alt="${listing?.media?.[0]?.alt || 'Image of the listing'}"
-  class="w-full h-full object-cover rounded-lg "
-/>
-</div> */
 }

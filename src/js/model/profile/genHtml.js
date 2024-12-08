@@ -92,14 +92,13 @@ export const renderProfileTabHeader = function () {
 export const renderProfileTab1Content = async function (currentUser, cardNumber, page) {
   try {
     const userData = await readProfileListings(currentUser.name, cardNumber, page);
-    // console.log('userdata', userData);
     const cards = userData.data
       .map((listing) => {
         return `
-       <div class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md pb-16" 
+       <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md " 
        data-listing-id="${listing.id}" data-tags="${listing.tags?.[0]?.substring(0, 2)}" 
        data-highest-bid='${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' ">
-           <div class="w-full aspect-[4/3] overflow-hidden pb-2 ">
+           <div class="w-full aspect-[4/3] overflow-hidden pb-2" data-listing-link>
                <img
                  src="${listing?.media[0]?.url}"
                 alt="${listing?.media[0]?.alt}"
@@ -111,7 +110,7 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
           <div class="flex flex-col">
             <p class="text-xs text-left">Created ${formatDateTime(listing.created)}</p>
             <p class="text-xs text-left">Ends in: ${formatDateTime(listing.endsAt)}</p>
-            <p class="text-xs text-left">Highest current bid ${listing.highestBid || 0} nok</p>
+            <p class="text-xs text-left">Highest current bid ${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' nok</p>
           </div>
           <div>
             <span
@@ -126,7 +125,7 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
       .join('');
     return `
     <div
-      class="tab-content w-full block mt-8 px-8 justify-center md:justify-start pb-48"
+      class="tab-content block w-full mt-8 px-8 justify-center md:justify-start pb-48"
       id="user-listings"
     >
       <section
@@ -164,16 +163,17 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
     const validListings = listings.filter((listing) => listing !== null);
     const cards = validListings
       .map((validListing) => {
-        console.log('listing', validListing);
+        // console.log('listing', validListing);
+        // console.log(validListing.id);
         return `
-       <div class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md pb-16" 
+       <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md" 
        data-listing-id="${validListing.id}" data-tags="${validListing.tags?.[0]?.substring(0, 2)}" 
        data-highest-bid='${validListing?.bids?.length ? Math.max(...validListing.bids.map((bid) => bid.amount)) : Number(1)}' ">
-           <div class="w-full aspect-[4/3] overflow-hidden pb-2 ">
+           <div class="w-full aspect-[4/3] overflow-hidden pb-2"  data-listing-link >
                <img
                  src="${validListing?.media[0]?.url}"
                 alt="${validListing?.media[0]?.alt}"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover "
                 />
             </div>
           <p class="text-lg font-semibold py-2">${validListing.title}</p>
@@ -181,7 +181,7 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
           <div class="flex flex-col">
             <p class="text-xs text-left">Created ${formatDateTime(validListing.created)}</p>
             <p class="text-xs text-left">Ends in: ${formatDateTime(validListing.endsAt)}</p>
-            <p class="text-xs text-left">Highest current bid ${validListing.highestBid || 0} nok</p>
+            <p class="text-xs text-left">Highest current bid ${validListing?.bids?.length ? Math.max(...validListing.bids.map((bid) => bid.amount)) : Number(1)}' nok</p>
           </div>
 
         </div>
@@ -190,7 +190,7 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
       .join('');
     return `
     <div
-      class="tab-content w-full block mt-8 px-8 justify-center md:justify-start pb-48"
+      class="tab-content w-full hidden mt-8 px-8 justify-center md:justify-start pb-48"
       id="users-bids"
     >
       <section
@@ -428,18 +428,14 @@ export const renderProfileTab3Content = async function () {
  * @description then stores the listingId in the local storage and redirects to the single-listing page.
  */
 export const initImgsObserver = function () {
-  // console.log('i am woking and connected');
   const observer = new MutationObserver((mutations) => {
-    // console.log('i am a mutation observer');
-    const images = document.querySelectorAll('.listing-image');
-
-    if (!images.length) {
-      // console.log('No images found yet');
+    const container = document.querySelectorAll('[data-listing-link]');
+    if (!container.length) {
       return;
     }
-    if (images.length) {
-      images.forEach((image) => {
-        image.addEventListener('click', (e) => {
+    if (container.length) {
+      container.forEach((container) => {
+        container.addEventListener('click', (e) => {
           e.preventDefault();
           const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
           localStorage.setItem('listingId', listingId);
@@ -455,5 +451,3 @@ export const initImgsObserver = function () {
     subtree: true,
   });
 };
-
-await readListing('bc9a5786-7876-463e-ba5c-b349f2efaeaf');

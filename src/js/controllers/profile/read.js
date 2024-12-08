@@ -32,9 +32,8 @@ export async function renderProfilePage() {
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab1Content);
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab2Content);
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab3Content);
-
     initTabComponent();
-    // initImgsObserver();
+    // initImgsObserver();s
   } catch (error) {
     // console.log(error);
   }
@@ -43,6 +42,7 @@ export async function renderProfilePage() {
 const profilePage = async function () {
   await renderProfilePage();
   await initTabComponent();
+  initImgsObserver();
   // await readProfileBids('kimYong');
   // await readProfileWins('kimYong', 12, 1);
 };
