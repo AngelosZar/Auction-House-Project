@@ -2,10 +2,6 @@ import { readProfileListings } from './read';
 import { formatDateTime } from '../../utilities/formatDateTime';
 import { readProfileBids } from './read';
 import { readListing } from '../../model/listings/readListings';
-// import { readListing } from '../listings/readListings';
-// import { readListing } from '../../model/listings/readListings';
-// import { list } from 'postcss';
-// import { createListingForm } from '../../views/profile/viewProfile';
 
 export const genHtmlProfileHero = async function (currentUser) {
   return `
@@ -214,6 +210,7 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
 };
 
 export const renderProfileTab3Content = async function () {
+  // console.log('something is wrong here');
   const html = `
   <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0 pb-16" id="create-listing">
           <section class="min-h-screen">
@@ -331,6 +328,7 @@ export const renderProfileTab3Content = async function () {
  * @function renderProfileTab1Content
  * @description then stores the listingId in the local storage and redirects to the single-listing page.
  */
+
 export const initImgsObserver = function () {
   const observer = new MutationObserver((mutations) => {
     const container = document.querySelectorAll('[data-listing-link]');

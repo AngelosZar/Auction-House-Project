@@ -1,12 +1,9 @@
 export const initCarousel = async function () {
   const carousel = document.querySelector('#carousel-component');
-  // console.log('carousel:', carousel);
   const slides = document.querySelectorAll('[data-carousel="slide"]');
-  // console.log('slides:', slides.length);
   const previousBtn = document.querySelector('#carousel-btn-previous');
   const nextBtn = document.querySelector('#carousel-btn-next');
   const dotsContainer = document.querySelector('#carousel-dots');
-  // console.log(previousBtn, nextBtn, dotsContainer);
 
   let currentSlide = 0;
   slides.forEach((slide, index) => {
@@ -16,7 +13,7 @@ export const initCarousel = async function () {
 
   slides.forEach((_, index) => {
     const dot = document.createElement('button');
-    // console.log(dot);
+
     dot.classList.add('w-3', 'h-3', 'carousel-dot', 'rounded-full', 'bg-white', 'opacity-50');
     dotsContainer.appendChild(dot);
 

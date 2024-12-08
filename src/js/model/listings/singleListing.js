@@ -1,17 +1,10 @@
-import { list } from 'postcss';
 import { formatDateTime } from '../../utilities/formatDateTime';
 import { readProfile } from '../profile/read';
-import { initCarousel } from '../../model/listings/carousel';
+
 export const createSingleListingCard = async function (listing) {
   const mediaLibrary = listing.media;
   let slidesHtml = '';
-  // mediaLibrary.map(async (listing) => {
-  //   console.log('listingMedia', [listing.url]);
-  //   const slides = await generateSlideForCarousel(listing);
-  //   console.log(slides);
-  //   return slides;
-  // });
-  // const slides = generateSlideForCarousel(listing);
+
   const slides = await Promise.all(
     mediaLibrary.map(async (mediaItem, index) => {
       const slide = await generateSlideForCarousel(mediaItem, index);
@@ -24,7 +17,6 @@ export const createSingleListingCard = async function (listing) {
 <div id="carousel-component" class="relative w-full mx-auto" data-carousel="slider">
  <div class="relative h-56 min-h-[240px] overflow-hidden rounded-lg md:h-96 max-w-xl" id="carousel-component">
    ${slidesHtml}
-
    <button
      id="carousel-btn-previous"
      type="button"
@@ -91,8 +83,6 @@ export const createSingleListingCard = async function (listing) {
   </div>
 </div>
 `;
-  // const parentContainer = document.querySelector('#carousel-component');
-  // parentContainer.insertAdjacentHTML('beforeend', slides);
   return listingHtml;
 };
 
