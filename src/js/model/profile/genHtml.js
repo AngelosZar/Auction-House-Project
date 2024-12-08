@@ -92,6 +92,7 @@ export const renderProfileTabHeader = function () {
 export const renderProfileTab1Content = async function (currentUser, cardNumber, page) {
   try {
     const userData = await readProfileListings(currentUser.name, cardNumber, page);
+    console.log('userdata', userData);
     const cards = userData.data
       .map((listing) => {
         return `
@@ -152,8 +153,8 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
     const listings = await Promise.all(
       data.map(async (bid) => {
         try {
-          const listing = await readListing(bid.listing.id);
-          return listing;
+          const { data: singleListing } = await readListing(bid.listing.id);
+          return singleListing;
         } catch (error) {
           console.error(error);
           return null;

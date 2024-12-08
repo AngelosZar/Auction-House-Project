@@ -5,18 +5,15 @@ import { returnToken } from '../../utilities/returnToken';
 export async function readListings(limit = 12, offset = 1, active = true) {
   const page = Math.floor(offset / limit + 1);
   try {
-    // const response = await fetch(`${API_READ_LISTINGS}?_seller=true&_bids=true`);
     const response = await fetch(
       `${API_READ_LISTINGS}?limit=${limit}&page=${+page}&_seller=true&_bids=true&_active=${active}`
     );
     const results = await response.json();
-    // console.log(results.data);
     if (!response.ok) {
       throw new Error(results.errors?.[0]?.message || 'Failed to fetch listings');
     }
     return results;
   } catch (error) {
-    // console.log(error);
     throw error;
   }
 }
@@ -34,12 +31,9 @@ export async function readListing(id) {
       },
     });
     if (!response.ok) {
-      // throw new Error(singleListing.errors?.[0]?.message || 'Failed to fetch listing');
       throw new Error('Failed to fetch listing');
-      // console.log('Failed to fetch listing');
     }
-    const { data: singleListing } = await response.json();
-    // console.log('singleListing');
+    const singleListing = await response.json();
     return singleListing;
   } catch (error) {
     console.log(error);
