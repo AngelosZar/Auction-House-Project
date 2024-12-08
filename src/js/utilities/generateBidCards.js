@@ -10,7 +10,6 @@ export async function generateBidCards() {
     const parentContainer = document.querySelector('#live-auctions-container');
     generateHtml(listings, parentContainer);
   } catch (error) {
-    console.log(error);
     throw error;
   }
 }
@@ -48,7 +47,6 @@ export const generateHtml = async function (listings, parentContainer) {
       const listingContainer = e.target.closest('[data-listing-id]');
       if (!listingContainer) return;
       const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
-      console.log('listingId:', listingId);
       localStorage.setItem('listingId', listingId);
       window.location.href = '/biddings/single-listing/';
     });
