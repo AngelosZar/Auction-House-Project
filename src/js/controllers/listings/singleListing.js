@@ -64,28 +64,14 @@ async function renderHero() {
   const listingId = localStorage.getItem('listingId');
   const parentContainer = singleListingContainer;
   if (!parentContainer) {
-    // console.error('Container not found');
     return;
   }
   try {
     const response = await readListing(listingId);
-    // console.log('Raw response:', response);
     const listing = response.data;
-    // console.log(listing);
-
     const card = await createSingleListingCard(listing);
     if (!card) return;
     parentContainer.insertAdjacentHTML('afterbegin', card);
-
-    //
-    // const user = JSON.parse(localStorage.getItem('currentUser'));
-    // const currentUser = user.name;
-    // console.log(currentUser);
-    // if (listing.seller.name === 'currentUser') {
-    //   document.querySelector('#bid-for-Listing-btn').remove();
-    //   console.log('');
-    //   console.log(listing.seller.name);
-    // }
 
     document.querySelector('[data-bid-button]').addEventListener('click', async (e) => {
       e.preventDefault();
@@ -103,21 +89,9 @@ async function renderHero() {
         window.location.reload();
       }
     });
-    // should i delete  this or no ?
-    // document.querySelectorAll('img').forEach((img) => {
-    //   img.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     if (!e.target.closest('[data-listing-id]')) return;
-    //     const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
-    //     if (!listingId) return;
-    //     console.log('listingId:', listingId);
-    //     localStorage.setItem('listingId', listingId);
-    //     window.location.href = '/biddings/single-listing/';
-    //   });
-    // });
+
     checkSellerAndHideBtn();
   } catch (error) {
-    // console.log(error);
     throw error;
   }
 }
@@ -126,7 +100,6 @@ async function renderTabs() {
   const listingId = localStorage.getItem('listingId');
   const parentContainer = tabComponentOnSinglePage;
   if (!parentContainer) {
-    // console.error('Container not found');
     return false;
   }
   try {
@@ -142,7 +115,6 @@ async function renderTabs() {
     initTabComponent();
     return true;
   } catch (error) {
-    // console.log(error);
     throw error;
   }
 }
@@ -152,7 +124,6 @@ async function main() {
     await renderTabs();
     await initCarousel();
   } catch (error) {
-    // console.log(error);
     throw error;
   }
 }

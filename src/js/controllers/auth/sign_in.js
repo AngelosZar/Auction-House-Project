@@ -17,7 +17,7 @@ export const signInController = async (event) => {
     alert(error.message);
     throw error;
   } finally {
-    // alert('You have successfully signed in');
-    // window.location.href = '/profile/';
+    alert('You have successfully signed in');
+    window.location.href = '/profile/';
   }
 };

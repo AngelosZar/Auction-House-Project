@@ -1,5 +1,5 @@
 import { signUpApiCall } from '../../model/auth/sign_up';
-import { validatePassword } from '../../utilities/ValidatePassword';
+import { validatePassword } from '../../utilities/validatePassword';
 import { getApiKey } from '../../utilities/apiKey';
 
 export async function onSignUpUser(event) {
