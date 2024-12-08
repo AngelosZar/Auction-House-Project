@@ -76,6 +76,7 @@ async function renderHero() {
     const card = await createSingleListingCard(listing);
     if (!card) return;
     parentContainer.insertAdjacentHTML('afterbegin', card);
+
     //
     // const user = JSON.parse(localStorage.getItem('currentUser'));
     // const currentUser = user.name;

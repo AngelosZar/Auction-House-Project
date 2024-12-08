@@ -1,34 +1,29 @@
 import { list } from 'postcss';
 import { formatDateTime } from '../../utilities/formatDateTime';
 import { readProfile } from '../profile/read';
+import { initCarousel } from '../../model/listings/carousel';
 export const createSingleListingCard = async function (listing) {
+  const mediaLibrary = listing.media;
+  let slidesHtml = '';
+  // mediaLibrary.map(async (listing) => {
+  //   console.log('listingMedia', [listing.url]);
+  //   const slides = await generateSlideForCarousel(listing);
+  //   console.log(slides);
+  //   return slides;
+  // });
+  // const slides = generateSlideForCarousel(listing);
+  const slides = await Promise.all(
+    mediaLibrary.map(async (mediaItem, index) => {
+      const slide = await generateSlideForCarousel(mediaItem, index);
+      return slide;
+    })
+  );
+  console.log(mediaLibrary);
+  slidesHtml = slides.join('');
   const listingHtml = `
-<div id="carousel-component" class="relative w-full" data-carousel="slider">
+<div id="carousel-component" class="relative w-full mx-auto" data-carousel="slider">
  <div class="relative h-56 min-h-[240px] overflow-hidden rounded-lg md:h-96 max-w-xl" id="carousel-component">
-   
-   <div class="duration-700 ease-in-out" data-carousel="slide">
-     <img
-       src="https://images.pexels.com/photos/27798074/pexels-photo-27798074/free-photo-of-faroe-islands-6.jpeg"
-       alt="Faroe Islands"
-       class="absolute block w-full object-cover"
-     />
-   </div>
-
-   <div class="hidden duration-700 ease-in-out" data-carousel="slide">
-     <img
-       src="https://images.pexels.com/photos/17785619/pexels-photo-17785619/free-photo-of-arch-on-a-street-in-pisa.jpeg"
-       alt="Pisa Street Arch" 
-       class="absolute block w-full object-cover"
-     />
-   </div>
-
-   <div class="hidden duration-700 ease-in-out" data-carousel="slide">
-     <img
-       src="https://images.unsplash.com/photo-1719339837808-8f4a7d3b7096"
-       alt="Landscape"
-       class="absolute block w-full object-cover"
-     />
-   </div>
+   ${slidesHtml}
 
    <button
      id="carousel-btn-previous"
@@ -96,6 +91,8 @@ export const createSingleListingCard = async function (listing) {
   </div>
 </div>
 `;
+  // const parentContainer = document.querySelector('#carousel-component');
+  // parentContainer.insertAdjacentHTML('beforeend', slides);
   return listingHtml;
 };
 
@@ -252,35 +249,22 @@ export async function createTabs3Content(listing) {
     throw error;
   }
 }
-
-{
-  /* <div>
-<button
-  id="carousel-btn-previous"
-  type="button "
-  class="absolute top-10 end-10 start-0 z-30 flex-items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-  data-carousel-prev
->
-  <span
-    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-3 dark:bg-blue-dark"
-    >&laquo;
-  </span>
-</button>
-
-<button
-  id="carousel-btn-next"
-  type="button "
-  class="absolute top-10 end-0 start-10 z-30  px-4 cursor-pointer group focus:outline-none"
-  data-carousel-prev
->
-  <span
-    class="inline-flex items-center justify-center w-10 h-10 rounded-full dark:bg-blue-dark"
-    >&raquo;
-  </span>
-</button>
-<div
-  id="carousel-dots"
-  class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10"
-></div>
-</div> */
+export async function generateSlideForCarousel(listing) {
+  //one slide
+  const html = `
+   <div class="absolute duration-500 ease-in-out h-full w-full" data-carousel="slide"
+    data-listing-id="${listing?.id}">
+    <img
+     src="${listing?.url}"
+     alt="${listing?.alt}"
+     class="absolute block w-full h-full object-cover inset-0 "
+     />
+   </div>`;
+  return html;
 }
+
+export async function generateCarousel() {
+  const listingId = localStorage.getItem('listingId');
+  console.log(listingId);
+}
+// generateCarousel();
