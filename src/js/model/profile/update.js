@@ -24,11 +24,9 @@ export const updateProfileApiCall = async (name, userData) => {
       alert(res.errors[0].message);
       throw new Error(res.errors[0].message);
     }
-    // console.log(Promise.resolve(userData));
 
-    // console.log('  Profile updated', res);
     return res;
   } catch (error) {
-    console.error('  Error updating profile', error);
+    throw new Error(error);
   }
 };

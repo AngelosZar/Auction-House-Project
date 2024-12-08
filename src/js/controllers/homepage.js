@@ -1,2 +1,6 @@
 import { generateBidCards } from '../utilities/generateBidCards';
-await generateBidCards();
+
+const initHomepage = async () => {
+  await generateBidCards();
+};
+initHomepage();

@@ -49,4 +49,7 @@ const updateProfile = async function () {
   }
 };
 
-await Promise.all([renderHeroOnProfilePage(), updateProfile()]);
+const init = async () => {
+  await Promise.all([renderHeroOnProfilePage(), updateProfile()]);
+};
+init();
