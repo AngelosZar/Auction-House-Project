@@ -39,11 +39,15 @@ export async function renderProfilePage() {
   }
 }
 
-const profilePage = async function () {
+// const profilePage = async function () {
+//   await renderProfilePage();
+//   await initTabComponent();
+//   initImgsObserver();
+//   // await readProfileBids('kimYong');
+//   // await readProfileWins('kimYong', 12, 1);
+// };
+
+const init = async function () {
   await renderProfilePage();
-  await initTabComponent();
-  initImgsObserver();
-  // await readProfileBids('kimYong');
-  // await readProfileWins('kimYong', 12, 1);
 };
-await profilePage();
+init();
