@@ -164,8 +164,6 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
     const validListings = listings.filter((listing) => listing !== null);
     const cards = validListings
       .map((validListing) => {
-        // console.log('listing', validListing);
-        // console.log(validListing.id);
         return `
        <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md" 
        data-listing-id="${validListing.id}" data-tags="${validListing.tags?.[0]?.substring(0, 2)}" 
@@ -216,7 +214,6 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
 };
 
 export const renderProfileTab3Content = async function () {
-  // console.log('something is wrong here');
   const html = `
   <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0 pb-16" id="create-listing">
           <section class="min-h-screen">
@@ -328,100 +325,6 @@ export const renderProfileTab3Content = async function () {
         </div>`;
   return html;
 };
-
-/* <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0" id="create-listing-form">
-<section class="min-h-screen">
-  <div
-    class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
-  >
-    <h5 class="font-bold mb-4 md:text-5xl md:mb-10 dark:text-white text-center">
-      List a new item
-    </h5>
-
-    <form action="">
-      <div class="mb-2">
-        <label for="title">Title</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          class="input-forms mt-1"
-          required
-          placeholder="Title of the product"
-        />
-      </div>
-      <div>
-        <label for="description">Description</label>
-        <textarea
-          name="description"
-          id="description"
-          cols="10"
-          rows="5"
-          class="input-forms mt-1"
-          maxlength="120"
-          placeholder="Max 120 characters"
-        ></textarea>
-      </div>
-      <div class="mb-2">
-        <label for="category" class="relative">Category</label>
-
-        <select name="category" id="category" class="input-forms mt-1" required>
-          <option value="0">Select Category</option>
-          <option value="1">Electronics</option>
-          <option value="2">Home & Garden</option>
-          <option value="3">Fashion & Accessories</option>
-          <option value="4">Collectibles</option>
-          <option value="5">Art & Antiques</option>
-          <option value="6">Vehicles & Parts5</option>
-          <option value="7">Sports & Outdoors</option>
-          <option value="8">Toys & Hobbies</option>
-          <option value="9">Books, Music & Movies</option>
-          <option value="10">Industrial & Business</option>
-          <option value="11">None of the above</option>
-        </select>
-      </div>
-      <div class="mb-2">
-        <label for="end-auction-date">End auction at</label>
-        <input
-          type="date"
-          name="end-auction-date"
-          id="end-auction-date"
-          class="input-forms mt-1"
-          required
-        />
-      </div>
-
-      <div class="mb-2">
-        <label for="starting-price">Starting price</label>
-        <input
-          type="number"
-          name="starting-price"
-          id="starting-price"
-          class="input-forms mt-1"
-          required
-          min="20"
-          placeholder="Minimum Bid starts at 20NOK"
-        />
-      </div>
-      <div class="mb-2">
-        <label for="image">Image</label>
-        <input
-          type="url"
-          name="image"
-          id="image"
-          class="input-forms mt-1"
-          required
-          placeholder="Only valid url"
-          pattern="https://.*"
-        />
-      </div>
-      <button class="btn btn-primary dark:btn-primary-dark" type="submit">Submit</button>
-    </form>
-  </div>
-</section>
-</div> */
-
-// await readListing('ff98e567-ebe0-41bc-889b-2533a5860014');
 
 /**
  * It sets a mutation observer to listen for click on images on the renderProfileTab1Content html and redirects to the single-listing page

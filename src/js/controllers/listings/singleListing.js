@@ -73,7 +73,7 @@ async function renderHero() {
     const listing = response.data;
     // console.log(listing);
 
-    const card = createSingleListingCard(listing);
+    const card = await createSingleListingCard(listing);
     if (!card) return;
     parentContainer.insertAdjacentHTML('afterbegin', card);
     //

@@ -1,15 +1,70 @@
 import { list } from 'postcss';
 import { formatDateTime } from '../../utilities/formatDateTime';
 import { readProfile } from '../profile/read';
-export const createSingleListingCard = function (listing) {
+export const createSingleListingCard = async function (listing) {
   const listingHtml = `
+<div id="carousel-component" class="relative w-full" data-carousel="slider">
+ <div class="relative h-56 min-h-[240px] overflow-hidden rounded-lg md:h-96 max-w-xl" id="carousel-component">
+   
+   <div class="duration-700 ease-in-out" data-carousel="slide">
+     <img
+       src="https://images.pexels.com/photos/27798074/pexels-photo-27798074/free-photo-of-faroe-islands-6.jpeg"
+       alt="Faroe Islands"
+       class="absolute block w-full object-cover"
+     />
+   </div>
+
+   <div class="hidden duration-700 ease-in-out" data-carousel="slide">
+     <img
+       src="https://images.pexels.com/photos/17785619/pexels-photo-17785619/free-photo-of-arch-on-a-street-in-pisa.jpeg"
+       alt="Pisa Street Arch" 
+       class="absolute block w-full object-cover"
+     />
+   </div>
+
+   <div class="hidden duration-700 ease-in-out" data-carousel="slide">
+     <img
+       src="https://images.unsplash.com/photo-1719339837808-8f4a7d3b7096"
+       alt="Landscape"
+       class="absolute block w-full object-cover"
+     />
+   </div>
+
+   <button
+     id="carousel-btn-previous"
+     type="button"
+     class="absolute top-10 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+     data-carousel-prev
+   >
+     <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-3 dark:bg-blue-dark">
+       &laquo;
+     </span>
+   </button>
+
+   <button
+     id="carousel-btn-next" 
+     type="button"
+     class="absolute top-10 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+     data-carousel-next
+   >
+     <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-3 dark:bg-blue-dark">
+       &raquo;
+     </span>
+   </button>
+
+   <div
+     id="carousel-dots"
+     class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10"
+   ></div>
+
+ </div>
+</div>
 <div
   data-listing-id="${listing?.id}"
   data-highest-bid="${listing?.bids?.length ? Math.max(...listing?.bids?.map((bid) => bid.amount)) : 1}"
   data-seller-name="${listing.seller.name}"
   class="grid grid-cols-1 md:grid-cols-2 md:py-8 gap-8 pt-16 pb-20 px-4"
 >
- 
 
   <div
     class="bg-light-cards dark:bg-purple-dark py-4 px-4 flex flex-col md:flex-row rounded-xl shadow-lg w-full h-auto justify-between"
@@ -41,8 +96,6 @@ export const createSingleListingCard = function (listing) {
   </div>
 </div>
 `;
-
-  // console.log('data-listing-id:', listing.id);
   return listingHtml;
 };
 
@@ -198,4 +251,36 @@ export async function createTabs3Content(listing) {
     // console.log(error);
     throw error;
   }
+}
+
+{
+  /* <div>
+<button
+  id="carousel-btn-previous"
+  type="button "
+  class="absolute top-10 end-10 start-0 z-30 flex-items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+  data-carousel-prev
+>
+  <span
+    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-3 dark:bg-blue-dark"
+    >&laquo;
+  </span>
+</button>
+
+<button
+  id="carousel-btn-next"
+  type="button "
+  class="absolute top-10 end-0 start-10 z-30  px-4 cursor-pointer group focus:outline-none"
+  data-carousel-prev
+>
+  <span
+    class="inline-flex items-center justify-center w-10 h-10 rounded-full dark:bg-blue-dark"
+    >&raquo;
+  </span>
+</button>
+<div
+  id="carousel-dots"
+  class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10"
+></div>
+</div> */
 }
