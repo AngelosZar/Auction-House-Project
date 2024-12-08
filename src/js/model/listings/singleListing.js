@@ -113,11 +113,11 @@ export const tabComponentHeader = `
 export async function createTabs1Content(listing) {
   return `
 <div
-  class="tab-content hidden w-full  mt-8 px-8 justify-center md:justify-start"
+  class="tab-content w-full  mt-8 px-8 justify-start"
   id="singleListingDetails"
 >
   <section
-    class="grid grid-flow-row w-full justify-center md:max-w-2xl "
+    class="grid grid-flow-row w-full justify-start md:max-w-2xl "
   >
     <div
       class="bg-light-cards dark:bg-purple-dark p-6 border-2 border-green-3 rounded-xl dark:border-purple-dark shadow-xl"
