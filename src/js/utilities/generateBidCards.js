@@ -55,7 +55,7 @@ export const generateHtml = async function (listings, parentContainer) {
 
 export const createSingleBidCard = function (listing) {
   const card = `
-  <div class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md" 
+  <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md" 
   data-listing-id="${listing.id}" data-tags="${listing.tags?.[0]?.substring(0, 2)}" 
   data-highest-bid='${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' ">
   <div class="w-full aspect-[4/3] overflow-hidden pb-2">
