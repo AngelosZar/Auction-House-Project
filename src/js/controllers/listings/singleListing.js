@@ -17,7 +17,6 @@ import {
   createSingleListingCard,
 } from '../../model/listings/singleListing';
 import { initCarousel } from '../../model/listings/carousel';
-// import { generateHtml } from '../../utilities/generateBidCards';
 export const checkSellerAndHideBtn = function () {
   const observer = new MutationObserver(() => {
     const bidBtn = document.querySelector('#bid-for-Listing-btn');
@@ -59,7 +58,6 @@ export const checkSellerAndHideBtn = function () {
     subtree: true,
   });
 };
-
 async function renderHero() {
   const listingId = localStorage.getItem('listingId');
   const parentContainer = singleListingContainer;

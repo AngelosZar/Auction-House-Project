@@ -1,4 +1,4 @@
-import { readProfile, readProfileBids, readProfileWins } from '../../model/profile/read';
+import { readProfile } from '../../model/profile/read';
 
 import { initTabComponent } from '../../utilities/initTabComponent';
 import { authGuard } from '../../utilities/authGuard';
@@ -33,19 +33,8 @@ export async function renderProfilePage() {
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab2Content);
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab3Content);
     initTabComponent();
-    // initImgsObserver();s
-  } catch (error) {
-    // console.log(error);
-  }
+  } catch (error) {}
 }
-
-// const profilePage = async function () {
-//   await renderProfilePage();
-//   await initTabComponent();
-//   initImgsObserver();
-//   // await readProfileBids('kimYong');
-//   // await readProfileWins('kimYong', 12, 1);
-// };
 
 const init = async function () {
   await renderProfilePage();

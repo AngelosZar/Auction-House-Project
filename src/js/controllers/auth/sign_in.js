@@ -1,6 +1,6 @@
 import { signInApiCall } from '../../model/auth/sign_in';
 import { getApiKey } from '../../utilities/apiKey';
-import { API_KEY } from '../../utilities/constants';
+// import { API_KEY } from '../../utilities/constants';
 export const signInController = async (event) => {
   event.preventDefault();
   const form = event.target;

@@ -29,7 +29,6 @@ export async function onSignUpUser(event) {
   try {
     const res = await signUpApiCall(userData);
     alert('User created successfully');
-    // getApiKey();
     window.location.href = '/auth/login/';
   } catch (error) {
     throw error;

@@ -17,7 +17,6 @@ export const signUpApiCall = async (data) => {
       alert(errorMessage);
       throw new Error(errorMessage);
     }
-
     return responseData;
   } catch (error) {
     throw error;

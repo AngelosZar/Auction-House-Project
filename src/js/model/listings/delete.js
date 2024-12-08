@@ -17,12 +17,8 @@ export const deleteListing = async function (id) {
       alert(data.errors[0].message);
       throw new Error(data.errors[0].message);
     }
-    console.log(' route :model.listings.delete.js');
-    console.log(data);
-    console.log(response);
     return data;
   } catch (error) {
-    // console.log(error);
     throw error;
   }
 };

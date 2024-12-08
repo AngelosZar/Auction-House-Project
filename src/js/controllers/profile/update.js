@@ -9,13 +9,12 @@ const renderHeroOnProfilePage = async function () {
   authGuard();
   const data = JSON.parse(localStorage.getItem('currentUser'));
   const username = data.name;
-  console.log(username);
 
   try {
     const data = await readProfile(username);
-    console.log(data);
+
     const currentUser = data.data;
-    console.log(currentUser);
+
     updateProfileBannerContainer.classList.add(
       'border-b-2',
       'border-green-2',
@@ -28,7 +27,7 @@ const renderHeroOnProfilePage = async function () {
       await genHtmlProfileHeroOnUpdatePage(currentUser)
     );
   } catch {
-    console.log(error);
+    throw new Error(error);
   }
 };
 
@@ -38,12 +37,9 @@ const updateProfile = async function () {
   try {
     updateProfileForm.addEventListener('submit', async function (e) {
       e.preventDefault();
-      console.log('e.target', e.target);
       const userData = collectProfileChangesData(e);
-      console.log(userData);
       if (userData === false) return;
       const data = await updateProfileApiCall(username, userData);
-      console.log(data);
       updateProfileForm.reset();
       window.scrollTo(0, 0);
       window.location.reload();

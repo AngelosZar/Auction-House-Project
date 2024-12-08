@@ -19,7 +19,6 @@ export async function readListings(limit = 12, offset = 1, active = true) {
 }
 
 export async function readListing(id) {
-  console.log(API_READ_LISTINGS);
   const accessToken = returnToken();
   try {
     const response = await fetch(`${API_READ_LISTINGS}/${id}?_seller=true&_bids=true`, {
@@ -36,7 +35,6 @@ export async function readListing(id) {
     const singleListing = await response.json();
     return singleListing;
   } catch (error) {
-    console.log(error);
     throw new Error('Failed to fetch listing');
   }
 }

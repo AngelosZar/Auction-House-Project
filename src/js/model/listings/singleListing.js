@@ -11,7 +11,6 @@ export const createSingleListingCard = async function (listing) {
       return slide;
     })
   );
-  console.log(mediaLibrary);
   slidesHtml = slides.join('');
   const listingHtml = `
 <div id="carousel-component" class="relative w-full mx-auto" data-carousel="slider">
@@ -194,7 +193,7 @@ export async function createTabs2Content(listing) {
 
   `;
   } catch (error) {
-    // console.log(error);
+    throw error;
   }
 }
 export async function createTabs3Content(listing) {
@@ -235,7 +234,6 @@ export async function createTabs3Content(listing) {
   </div>
 `;
   } catch (error) {
-    // console.log(error);
     throw error;
   }
 }
@@ -252,9 +250,3 @@ export async function generateSlideForCarousel(listing) {
    </div>`;
   return html;
 }
-
-export async function generateCarousel() {
-  const listingId = localStorage.getItem('listingId');
-  console.log(listingId);
-}
-// generateCarousel();
