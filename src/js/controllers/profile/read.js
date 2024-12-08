@@ -10,6 +10,7 @@ import {
   renderProfileTab2Content,
   renderProfileTab3Content,
   initImgsObserver,
+  initAddImgBtnObserver,
 } from '../../model/profile/genHtml';
 
 export async function renderProfilePage() {
@@ -19,7 +20,7 @@ export async function renderProfilePage() {
   try {
     const data = await readProfile(username);
     const currentUser = data.data;
-
+    // console.log(currentUser);
     profileBannerContainer.insertAdjacentHTML('beforeend', await genHtmlProfileHero(currentUser));
     tabComponentOnProfile.insertAdjacentHTML('beforeend', renderProfileTabHeader());
     const [tab1Content, tab2Content, tab3Content] = await Promise.all([
@@ -27,6 +28,7 @@ export async function renderProfilePage() {
       renderProfileTab2Content(currentUser, 6, 1),
       renderProfileTab3Content(),
       initImgsObserver(),
+      initAddImgBtnObserver(),
     ]);
 
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab1Content);

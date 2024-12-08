@@ -210,7 +210,6 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
 };
 
 export const renderProfileTab3Content = async function () {
-  // console.log('something is wrong here');
   const html = `
   <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0 pb-16" id="create-listing">
           <section class="min-h-screen">
@@ -311,9 +310,10 @@ export const renderProfileTab3Content = async function () {
                      required
                      placeholder="Image alt text"
                    />
-                   <a href="#" class="btn btn-secondary dark:btn-secondary-dark mb-4" id="addMoreImgs">add link</a>
                  </div>
+
                </div>
+                                 <a href="#" class="btn btn-secondary dark:btn-secondary-dark mb-4" id="addMoreImgs">Add more images</a>
              </div>
                 <button class="btn btn-primary dark:btn-primary-dark " type="submit" id="btnCreateList" >Submit</button>
               </form>
@@ -348,6 +348,50 @@ export const initImgsObserver = function () {
     }
   });
 
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+};
+
+export const initAddImgBtnObserver = function () {
+  const observer = new MutationObserver((mutations) => {
+    const btn = document.getElementById('addMoreImgs');
+    if (!btn) {
+      return;
+    }
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // const container = document.getElementById('imgs-group-container');
+        const container = document.getElementById('imgs-container');
+        // const newImgGroup = document.createElement('div');
+        const newImgGroup = `
+         <div class="image-input-group mb-4">
+                   <input
+                       type="url"
+                       name="image-url"
+                       id="image"
+                       class="input-forms mt-1"
+                       required
+                       placeholder="Only valid url"
+                       pattern="https://.*"
+                     />
+
+                     <input
+                       type="text"
+                       name="image-alt"
+                       id="image-alt"
+                       class="input-forms mt-1"
+                       required
+                       placeholder="Image alt text"
+                     />
+           </div>`;
+        container.insertAdjacentHTML('beforeend', newImgGroup);
+      });
+    }
+    observer.disconnect();
+  });
   observer.observe(document.body, {
     childList: true,
     subtree: true,
