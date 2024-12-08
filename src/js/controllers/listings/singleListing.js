@@ -125,4 +125,6 @@ async function main() {
     throw error;
   }
 }
-document.addEventListener('DOMContentLoaded', await main());
+document.addEventListener('DOMContentLoaded', () => {
+  main();
+});

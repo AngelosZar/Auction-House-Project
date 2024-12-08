@@ -1,8 +1,6 @@
-import { list } from 'postcss';
 import { searchListings } from '../model/listings/search';
 import { generateHtml } from '../utilities/generateBidCards';
-// import { generateHtml, createSingleBidCard } from '../utilities/generateBidCards';
-//
+
 export const searchOverlay = async function () {
   const parentContainer = document.querySelector('main');
   parentContainer.classList.add('max-w-[1440px]');
@@ -107,30 +105,3 @@ export const searchOverlay = async function () {
   };
   // add pagination
 };
-// Cookie “__Secure-ENID” has been rejected because it is in a cross-site context and its “SameSite” is “Lax” or “Strict”.
-
-//     const searchInput = document.querySelector('#search');
-//     const searchBtn = document.querySelector('#onSearch');
-//     // guard clause for yet another null pointer
-//     if (!searchBtn) return;
-//     searchBtn.addEventListener('click', async (e) => {
-//       e.preventDefault();
-//       const searchValue = searchInput.value;
-//       console.log(searchValue);
-//       try {
-//         const data = await searchListings(searchValue);
-//         const listings = data.data;
-//         console.log('listings:', listings);
-//         const parentContainer = document.querySelector('#searchResultCard');
-//         searchContainerHeader.innerHTML = '';
-//         parentContainer.innerHTML = '';
-//         parentContainer.classList.add('bg-light-cards', 'dark:bg-red-400', 'mb-8', 'h-full');
-//         await generateHtml(listings, parentContainer);
-//         // await generateHtml(listings, parentContainer);
-//         searchInput.value = '';
-//       } catch (error) {
-//         throw new Error(error);
-//       }
-//     });
-//   });
-// };
