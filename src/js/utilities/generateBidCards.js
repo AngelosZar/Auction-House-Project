@@ -5,12 +5,15 @@ import { bidOnListing } from '../model/listings/bid';
 
 export async function generateBidCards() {
   try {
-    const data = await readListings(12, 1);
+    const data = await readListings(12, 3, true);
     console.log(data);
     const listings = data.data;
     const parentContainer = document.querySelector('#live-auctions-container');
-    generateHtml(listings, parentContainer);
-    pagination(data.meta);
+    if (!parentContainer) return;
+    await generateHtml(listings, parentContainer);
+    const btnsContainer = document.querySelector('#pagination-container');
+    if (!btnsContainer) return;
+    await pagination(data.meta, btnsContainer);
   } catch (error) {
     throw error;
   }
@@ -160,18 +163,19 @@ export const validateBid = function (bidAmount, highestBid) {
 // ​​
 // totalCount: 441
 
-// const pagination = function (data, parentContainer) {
-const pagination = function (data) {
+const pagination = async function (data, parentContainer) {
+  // const pagination = function (data) {
   let page = data.currentPage;
   console.log('currentPage', page);
-  const ifFirstPage = data.isFirstPage;
+  const ifFirstPage = data.isFirstPage || null;
   console.log(ifFirstPage);
-  const ifLastPage = data.isLastPage;
+  const ifLastPage = data.isLastPage || null;
   console.log(ifLastPage);
-  const nextPage = data.nextPage;
-  console.log(nextPage);
-  const previousPage = data.previousPage;
-  console.log(previousPage);
+  const nextPage = data.nextPage || null;
+  console.log('nextpage', nextPage);
+  console.log(typeof nextPage);
+  const previousPage = data.previousPage || null;
+
   if (ifFirstPage && ifLastPage) {
     // hide both arrows //
   }
@@ -181,47 +185,8 @@ const pagination = function (data) {
   if (previousPage !== null) {
     // render  previous arrow // show page number
   }
-};
-
-{
-  const previousBtn = `
-  <a href="#" class="flex px-4 py-2 group">
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  fill="none"
-  viewBox="0 0 24 24"
-  stroke-width="1.5"
-  stroke="currentColor"
-  class="w-6 h-6 transition transform group-hover:-translate-x-1"
->
-  <path
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    d="M19.5 12h-15m0 0l6.75-6.75M4.5 12l6.75 6.75"
-  ></path>
-</svg>
-<span class="pl-2 text hover:underline">Page ${previousPage}</span>
-</a> `;
-
-  const NextBtn = `<a href="#" class="flex px-4 py-2 group">
-<span class="pr-2 text hover:underline">Page ${nextPage}</span>
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  fill="none"
-  viewBox="0 0 24 24"
-  stroke-width="2.5"
-  stroke="currentColor"
-  class="w-6 h-6 pt-1 transition transform group-hover:translate-x-1"
->
-  <path
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-  />
-</svg>
-</a>`;
-  const bothBtns = `
-   <div class="flex justify-between px-8 pt-4 pb-8">
+  const paginationBtns = `
+  
           <a href="#" class="flex px-4 py-2 group ${!previousPage ? 'hidden' : ''}">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -242,7 +207,7 @@ const pagination = function (data) {
 
           <div class="flex-1"></div>
 
-          <a href="#" class="flex px-4 py-2 group ${!nextPagePage ? 'hidden' : ''}">
+          <a href="#" class="flex px-4 py-2 group ${!nextPage ? 'hidden' : ''}">
             <span class="pr-2 text hover:underline">Page ${nextPage}</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -259,5 +224,19 @@ const pagination = function (data) {
               />
             </svg>
           </a>
-        </div>`;
-}
+        `;
+
+  parentContainer.insertAdjacentHTML('beforeend', paginationBtns);
+  // parentContainer.innerHTML = paginationBtns;
+};
+
+//  // await pagination(data.meta);
+//   const observer = new MutationObserver(async (mutations) => {
+//     // const parentContainer = document.querySelector('#pagination-container');
+//     const parentContainer = document.querySelector('#pagination-container');
+//     if (parentContainer) {
+//       console.log('halo');
+//       await pagination(data.meta, parentContainer);
+//     }
+//   });
+//   observer.observe(document.body, { childList: true, subtree: true });

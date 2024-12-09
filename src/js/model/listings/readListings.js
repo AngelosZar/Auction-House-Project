@@ -2,8 +2,8 @@ import { API_READ_LISTINGS } from '../../utilities/constants';
 import { API_KEY } from '../../utilities/constants';
 import { returnToken } from '../../utilities/returnToken';
 
-export async function readListings(limit = 12, offset = 1, active = true) {
-  const page = Math.floor(offset / limit + 1);
+export async function readListings(limit = 12, page = 1, active = true) {
+  // const page = Math.floor(offset / limit + 1);
   try {
     const response = await fetch(
       `${API_READ_LISTINGS}?limit=${limit}&page=${+page}&_seller=true&_bids=true&_active=${active}`
