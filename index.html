@@ -123,70 +123,22 @@
       </section>
     </header>
     <main>
-      <!-- <section
-        class="fixed inset-0 z-50 bg-light-component dark:bg-purple-dark overflow-y-auto"
-        id="searchContainer"
-      >
-        <div class="max-w-[1440px] mx-auto">
-          <div class="container mx-auto px-4 py-8" id="searchContainerHeader">
-            <div class="flex flex-col items-center mb-8">
-              <img
-                src="./media/header_logos/grayscale-transparent.png"
-                alt="logo"
-                class="max-w-xs mb-4"
-              />
-              <h1 class="text-4xl font-extrabold text-center mt-4">Search for treasures</h1>
-            </div>
-          </div>
-
-          <div class="mb-2 max-w-2xl mx-auto">
-            <form action="submit" class="flex flex-col gap-4 md:flex-row">
-              <input
-                type="text"
-                name="search"
-                id="search"
-                placeholder="Search for items"
-                class="input-forms"
-              />
-              <button
-                class="btn btn-primary dark:btn-primary-dark mt-4 h-auto md:w-auto w-full"
-                id="onSearch"
-              >
-                Search
-              </button>
-            </form>
-          </div>
-
-          <button
-            class="fixed top-4 right-4 text text-green-3 hover:text-green-1 dark:text-purple-light dark:hover:text-white"
-            id="close-search-container"
-          >
-            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="4"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-          <div
-            id="searchResultCards"
-            class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3 max-w[1440px]"
-          ></div>
-        </div>
-      </section> -->
-
       <section class="flex px-8 pt-16">
         <div class="flex flex-col justify-center mr-4">
           <h4>
             Unlock treasures, one
             <span class="text-green-1 dark:text-purple-light">Auction</span> at a time
           </h4>
-          <p class="mt-4">some marketing thing that i havent thought of yet</p>
+          <blockquote class="mt-4 italic">
+            "Bid Bold, Win Unique - Your Next Treasure Awaits"
+          </blockquote>
           <div class="mt-8">
-            <button class="btn btn-primary dark:btn-primary-dark mr-4 mb-4">Explore now</button>
-            <button class="btn btn-secondary dark:btn-secondary-dark">Start bidding</button>
+            <button class="btn btn-primary dark:btn-primary-dark mr-4 mb-4" id="explore-now-btn">
+              Explore now
+            </button>
+            <button class="btn btn-secondary dark:btn-secondary-dark" id="start-bidding-btn">
+              Start bidding
+            </button>
           </div>
         </div>
         <div class="max-w-[50%] hidden md:block h-auto object-cover">
@@ -204,73 +156,7 @@
         <section
           class="grid col-span-1 gap-6 grid-flow-row w-full justify-center md:justify-start md:grid-cols-2 lg:grid-cols-3"
           id="live-auctions-container"
-        >
-          <!-- md:col-span-3 md:grid-flow-col -->
-          <!-- <div
-            class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"
-          >
-            <div class="w-full aspect-[4/3] overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1732295160378-78fbd97fbf83?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8"
-                alt=""
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <p class="text-sm py-2">title of the product .. might be fucking long</p>
-            <p>seller</p>
-
-            <div class="flex flex-col">
-              <p class="text-xs text-left">Ends in 2 days</p>
-              <p class="text-xs text-left">Highest current bid 100nok</p>
-            </div>
-            <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2"
-              >Bid href</a
-            >
-          </div> -->
-          <!--  -->
-          <!-- <div
-            class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"
-          >
-            <div class="flex max-w-md">
-              <img
-                src="https://images.pexels.com/photos/15282059/pexels-photo-15282059/free-photo-of-a-view-of-the-ocean-from-a-ferry.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt=""
-              />
-            </div>
-            <p class="text-sm py-2">title of the product .. might be fucking long</p>
-            <p>seller</p>
-
-            <div class="flex flex-col">
-              <p class="text-xs text-left">Ends in 2 days</p>
-              <p class="text-xs text-left">Highest current bid 100nok</p>
-            </div>
-            <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2"
-              >Bid href</a
-            >
-          </div> -->
-          <!--  -->
-          <!-- <div
-            class="p-6 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"
-          >
-            <div class="flex max-w-md">
-              <img
-                src="https://images.pexels.com/photos/15282059/pexels-photo-15282059/free-photo-of-a-view-of-the-ocean-from-a-ferry.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt=""
-              />
-            </div>
-            <p class="text-sm py-2">title of the product .. might be fucking long</p>
-            <p>seller</p>
-
-            <div class="flex flex-col">
-              <p class="text-xs text-left">Ends in 2 days</p>
-              <p class="text-xs text-left">Highest current bid 100nok</p>
-            </div>
-            <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2"
-              >Bid href</a
-            >
-          </div> -->
-        </section>
-        <!-- Maybe a different kind of btn -->
+        ></section>
         <button class="btn btn-primary dark:btn-primary-dark self-end mt-4">View more</button>
       </section>
       <!-- banner  -->
@@ -283,7 +169,10 @@
         />
         <div class="flex flex-col items-start absolute top-10 left-20">
           <h6 class="text-white">Create a new add</h6>
-          <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs mt-2"
+          <a
+            href="#"
+            class="btn btn-secondary dark:btn-secondary-dark text-xs mt-2"
+            id="create-an-add-btn"
             >Create an Add</a
           >
         </div>

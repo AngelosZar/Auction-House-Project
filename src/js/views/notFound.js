@@ -1,1 +1,1 @@
-console.log('sign up view');
+// add custon 404 page

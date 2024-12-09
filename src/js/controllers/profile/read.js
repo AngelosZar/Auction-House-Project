@@ -40,5 +40,9 @@ export async function renderProfilePage() {
 
 const init = async function () {
   await renderProfilePage();
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('action') === 'create') {
+    document.querySelector('#tab-create-listing').click();
+  }
 };
 init();
