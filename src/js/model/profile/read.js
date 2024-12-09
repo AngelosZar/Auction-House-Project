@@ -43,24 +43,21 @@ export async function readProfiles(limit = 12, page = 1, query = '_wins') {
 }
 
 export async function readProfile(username, query = '') {
-  const userToken = JSON.parse(localStorage.getItem('currentUser'));
-
-  const headers = {
-    'Content-Type': 'application/json',
-    'X-Noroff-API-Key': API_KEY,
-  };
-
-  if (userToken?.accessToken) {
-    headers.Authorization = `Bearer ${userToken.accessToken}`;
-  }
-
+  const { accessToken } = JSON.parse(localStorage.getItem('currentUser'));
+  // if (!accessToken) return;
   try {
     const response = await fetch(`${API_READ_PROFILES}/${username}${query}`, {
       method: 'GET',
-      headers,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+        'X-Noroff-API-Key': API_KEY,
+      },
     });
+    // const userData = await response.json();
+    let name, email, credits, listings, wins, avatarUrl, avatarAlt, bannerUrl, bannerAlt, bio;
 
-    let {
+    ({
       data: {
         name,
         email,
@@ -70,7 +67,7 @@ export async function readProfile(username, query = '') {
         banner: { url: bannerUrl, alt: bannerAlt },
         bio,
       },
-    } = await response.json();
+    } = await response.json());
 
     const userData = {
       data: {
@@ -83,11 +80,11 @@ export async function readProfile(username, query = '') {
         bio,
       },
     };
-
     if (!response.ok) {
       throw new Error(userData.errors?.[0]?.message || 'Failed to fetch profile');
     }
-
+    // console.log(userData);
+    // console.log(Promise.resolve(userData));
     return userData;
   } catch (error) {
     throw new Error(error);
