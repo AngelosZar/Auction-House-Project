@@ -25,31 +25,35 @@ export const checkSellerAndHideBtn = function () {
     if (bidBtn) {
       const seller = document.querySelector('[data-seller-name]')?.dataset.sellerName;
       const user = JSON.parse(localStorage.getItem('currentUser'));
+      if (!user) return;
       const currentUser = user.name;
+      if (!currentUser) return;
+
       const btnContainer = document.querySelector('#switchToCurrentUserEditBtn');
 
       if (currentUser === seller) {
         // bidBtn.style.display = 'none';
         bidBtn.remove();
         const html = `
-          <a
-          href="#"
-          id="bid-for-Listing-btn"
-          class="btn btn-secondary dark:btn-secondary-dark self-end"
-          data-bid-button
-        >
-          Edit Listing
-        </a>
-        
-           <a
-          href="#"
-          class="font-medium text-red-500 hover:underline self-end pl-4 delete-listing-btn"
-          data-bid-button
-        >
-          Delete Listing
-        </a>`;
+            <a
+            href="#"
+            id="bid-for-Listing-btn"
+            class="btn btn-secondary dark:btn-secondary-dark self-end"
+            data-bid-button
+          >
+            Edit Listing
+          </a>
+          
+             <a
+            href="#"
+            class="font-medium text-red-500 hover:underline self-end pl-4 delete-listing-btn"
+            data-bid-button
+          >
+            Delete Listing
+          </a>`;
         btnContainer.insertAdjacentHTML('beforeend', html);
       }
+
       observer.disconnect();
     }
   });
