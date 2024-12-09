@@ -5,6 +5,11 @@ import autoprefixer from 'autoprefixer';
 
 export default defineConfig({
   base: '.app/',
+  server: {
+    historyApiFallback: {
+      rewrites: [{ from: /^\/.*/, to: '/index.html' }],
+    },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
