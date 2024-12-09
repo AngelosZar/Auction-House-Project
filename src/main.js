@@ -17,3 +17,11 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('logOutBtn')?.addEventListener('click', logOut);
   searchOverlay();
 });
+// document.querySelectorAll('a').forEach((link) => {
+//   link.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     const path = e.currentTarget.getAttribute('href');
+//     window.history.pushState({}, '', path);
+//     router(path);
+//   });
+// });

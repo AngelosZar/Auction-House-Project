@@ -1,30 +1,25 @@
 import { defineConfig } from 'vite';
-import path from 'path';
+// import path from 'path';
+import { resolve } from 'path';
 import tailwind from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
 export default defineConfig({
-  base: '.app/',
-  server: {
-    historyApiFallback: {
-      rewrites: [{ from: /^\/.*/, to: '/index.html' }],
-    },
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
+  appType: 'mpa',
+  base: '/',
   css: {
     postcss: {
       plugins: [tailwind(), autoprefixer()],
     },
   },
   build: {
-    outDir: 'dist',
     rollupOptions: {
       input: {
-        main: path.resolve(__dirname, 'index.html'),
+        main: resolve(__dirname, 'index.html'),
+        signIn: resolve(__dirname, 'auth/sign_in/index.html'),
+        signUp: resolve(__dirname, 'auth/sign_up/index.html'),
+        profile: resolve(__dirname, 'profile/index.html'),
+        singleListing: resolve(__dirname, 'biddings/single-listing/index.html'),
       },
     },
   },
