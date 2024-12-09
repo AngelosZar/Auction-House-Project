@@ -18,21 +18,8 @@ const handleStartBiddingBtn = (e) => {
 //
 const handleCreateAnAddBtn = (e) => {
   e.preventDefault();
-  console.log(e.target);
   authGuard();
-  window.location.href = '/profile/?action=create';
-  // window.location.href = '/profile/';
-  // window.addEventListener('load', () => {
-  //   console.log('Profile page loaded');
-  //   // setInterval(() => {
-  //   //   document.querySelector('#tab-create-listing').click();
-  //   // }, 2000);
-  //   // setInterval(() => {
-  //   //   document.querySelector('#user-listings').classList.add('hidden');
-  //   //   document.querySelector('#create-listing').classList.add('block');
-  //   // }, 1000);
-  //   // document.querySelector('tab-create-listing').click();
-  // });
+  window.location.href = '/profile/?action=create/';
 };
 const initHomepage = async () => {
   await generateBidCards();
