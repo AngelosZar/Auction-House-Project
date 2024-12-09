@@ -5,10 +5,12 @@ import { bidOnListing } from '../model/listings/bid';
 
 export async function generateBidCards() {
   try {
-    const data = await readListings();
+    const data = await readListings(12, 1);
+    console.log(data);
     const listings = data.data;
     const parentContainer = document.querySelector('#live-auctions-container');
     generateHtml(listings, parentContainer);
+    pagination(data.meta);
   } catch (error) {
     throw error;
   }
@@ -104,3 +106,158 @@ export const validateBid = function (bidAmount, highestBid) {
   // if single bid page just refresh the page
   return true;
 };
+
+{
+  /* <a href="#" class="flex px-4 py-2 group">
+<span class="pr-2 text hover:underline">Next page</span>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke-width="2.5"
+  stroke="currentColor"
+  class="w-6 h-6 pt-1 transition transform group-hover:translate-x-1"
+>
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+  />
+</svg>
+</a>
+<a href="#" class="flex px-4 py-2 group">
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke-width="1.5"
+  stroke="currentColor"
+  class="w-6 h-6 transition transform group-hover:-translate-x-1"
+>
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    d="M19.5 12h-15m0 0l6.75-6.75M4.5 12l6.75 6.75"
+  ></path>
+</svg>
+<span class="pl-2 text hover:underline">Previous page or number?</span>
+</a> */
+}
+
+// Object { isFirstPage: true, isLastPage: false, currentPage: 1, … }
+// ​​
+// currentPage: 1
+// ​​
+// isFirstPage: true
+// ​​
+// isLastPage: false
+// ​​
+// nextPage: 2
+// ​​
+// pageCount: 74
+// ​​
+// previousPage: null
+// ​​
+// totalCount: 441
+
+// const pagination = function (data, parentContainer) {
+const pagination = function (data) {
+  let page = data.currentPage;
+  console.log('currentPage', page);
+  const ifFirstPage = data.isFirstPage;
+  console.log(ifFirstPage);
+  const ifLastPage = data.isLastPage;
+  console.log(ifLastPage);
+  const nextPage = data.nextPage;
+  console.log(nextPage);
+  const previousPage = data.previousPage;
+  console.log(previousPage);
+  if (ifFirstPage && ifLastPage) {
+    // hide both arrows //
+  }
+  if (nextPage !== null) {
+    // render  next arrow // show page number
+  }
+  if (previousPage !== null) {
+    // render  previous arrow // show page number
+  }
+};
+
+{
+  const previousBtn = `
+  <a href="#" class="flex px-4 py-2 group">
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke-width="1.5"
+  stroke="currentColor"
+  class="w-6 h-6 transition transform group-hover:-translate-x-1"
+>
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    d="M19.5 12h-15m0 0l6.75-6.75M4.5 12l6.75 6.75"
+  ></path>
+</svg>
+<span class="pl-2 text hover:underline">Page ${previousPage}</span>
+</a> `;
+
+  const NextBtn = `<a href="#" class="flex px-4 py-2 group">
+<span class="pr-2 text hover:underline">Page ${nextPage}</span>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke-width="2.5"
+  stroke="currentColor"
+  class="w-6 h-6 pt-1 transition transform group-hover:translate-x-1"
+>
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+  />
+</svg>
+</a>`;
+  const bothBtns = `
+   <div class="flex justify-between px-8 pt-4 pb-8">
+          <a href="#" class="flex px-4 py-2 group ${!previousPage ? 'hidden' : ''}">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6 transition transform group-hover:-translate-x-1"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 12h-15m0 0l6.75-6.75M4.5 12l6.75 6.75"
+              ></path>
+            </svg>
+            <span class="pl-2 text hover:underline">Page ${previousPage}</span>
+          </a>
+
+          <div class="flex-1"></div>
+
+          <a href="#" class="flex px-4 py-2 group ${!nextPagePage ? 'hidden' : ''}">
+            <span class="pr-2 text hover:underline">Page ${nextPage}</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+              stroke="currentColor"
+              class="w-6 h-6 pt-1 transition transform group-hover:translate-x-1"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </a>
+        </div>`;
+}
