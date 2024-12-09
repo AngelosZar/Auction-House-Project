@@ -4,7 +4,7 @@ import tailwind from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
 export default defineConfig({
-  base: '/',
+  base: '.app/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
