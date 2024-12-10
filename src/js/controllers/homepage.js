@@ -1,13 +1,18 @@
-import { generateBidCards, initPaginationObserver } from '../utilities/generateBidCards';
+import { generateBidCards } from '../utilities/generateBidCards';
 import { exploreNowBtn, startBiddingBtn, createAnAddBtn } from '../views/home';
 import { authGuard } from '../utilities/authGuard';
+import { initPaginationObserver } from '../utilities/pagination';
 //
 //
 //
 const handleExploreNowBtn = (e) => {
   e.preventDefault();
-  console.log(e.target);
   // authGuard();
+  const targetContainer = document.querySelector('#section-2');
+  window.scrollTo({
+    behavior: 'smooth',
+    top: targetContainer.offsetTop,
+  });
 };
 //
 const handleStartBiddingBtn = (e) => {
@@ -42,9 +47,5 @@ const initHomepage = async () => {
   } catch (error) {
     console.log(error);
   }
-
-  //
-  const paginationContainer = document.querySelector('#pagination-container');
-  if (paginationContainer) initPaginationObserver();
 };
 initHomepage();
