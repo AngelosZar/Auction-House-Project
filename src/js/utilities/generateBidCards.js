@@ -209,17 +209,19 @@ const initPaginationObserver = () => {
       console.log(nextBtn);
     }
 
-    const handleNextPage = (e) => {
+    const handleNextPage = async (e) => {
       e.preventDefault();
       alert('next page');
       currentPage += 1;
       console.log('next page', currentPage);
+      await handlePageUpdate(currentPage);
     };
 
-    const handlePreviousPage = (e) => {
+    const handlePreviousPage = async (e) => {
       e.preventDefault();
       currentPage -= 1;
       console.log('previous page', currentPage);
+      await handlePageUpdate(currentPage);
     };
 
     nextBtn.removeEventListener('click', handleNextPage);
@@ -236,8 +238,30 @@ const initPaginationObserver = () => {
     paginationObserver.disconnect();
   };
 };
-// cannot have it on function as pagination why ?\
+// cannot have it on function as pagination why ?\ move to the controller
 const paginationContainer = document.querySelector('#pagination-container');
 if (paginationContainer) {
   initPaginationObserver();
 }
+// function to handle the upadate of the pagination page number and render the content
+//
+const handlePageUpdate = async (pageNumber) => {
+  try {
+    const auctionsContainer = document.querySelector('#live-auctions-container');
+    const paginationContainer = document.querySelector('#pagination-container');
+    if (!auctionsContainer || !paginationContainer) {
+      console.log('containers niet');
+      return;
+    }
+    //
+    auctionsContainer.innerHTML = '';
+    paginationContainer.innerHTML = '';
+    const data = await readListings(12, pageNumber, true);
+    const listings = data.data;
+    await generateHtml(listings, auctionsContainer);
+    await pagination(data.meta, paginationContainer);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
