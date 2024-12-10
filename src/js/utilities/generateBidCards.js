@@ -260,6 +260,12 @@ const handlePageUpdate = async (pageNumber) => {
     const listings = data.data;
     await generateHtml(listings, auctionsContainer);
     await pagination(data.meta, paginationContainer);
+    //
+    const scrollToConatiner = document.querySelector('#section-2');
+    scrollToConatiner.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   } catch (error) {
     console.error(error);
     throw error;
