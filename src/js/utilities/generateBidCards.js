@@ -182,7 +182,7 @@ const pagination = async function (data, parentContainer) {
   parentContainer.insertAdjacentHTML('beforeend', paginationBtns);
 };
 
-const initPaginationObserver = () => {
+export const initPaginationObserver = () => {
   const config = {
     attributes: true,
     childList: true,
@@ -191,15 +191,24 @@ const initPaginationObserver = () => {
 
   let currentPage = 1;
   const paginationContainer = document.querySelector('#pagination-container');
-  if (!paginationContainer) {
-    console.warn('Pagination container not found');
-    return;
-  }
   if (!paginationContainer) console.log('hallo');
-  // if (!paginationContainer) return;
+  if (!paginationContainer) return;
 
-  const paginationObserver = new MutationObserver((mutations) => {
-    console.log('mutation ', mutations);
+  const handleNextPage = async (e) => {
+    e.preventDefault();
+    alert('next page');
+    currentPage += 1;
+    console.log('next page', currentPage);
+    await handlePageUpdate(currentPage);
+  };
+
+  const handlePreviousPage = async (e) => {
+    e.preventDefault();
+    currentPage -= 1;
+    console.log('previous page', currentPage);
+    await handlePageUpdate(currentPage);
+  };
+  const addEventListeners = () => {
     const nextBtn = document.querySelector('#nextBtn');
     if (!nextBtn) return;
     console.log(nextBtn);
@@ -209,60 +218,65 @@ const initPaginationObserver = () => {
       console.log(nextBtn);
     }
 
-    const handleNextPage = async (e) => {
-      e.preventDefault();
-      alert('next page');
-      currentPage += 1;
-      console.log('next page', currentPage);
-      await handlePageUpdate(currentPage);
-    };
-
-    const handlePreviousPage = async (e) => {
-      e.preventDefault();
-      currentPage -= 1;
-      console.log('previous page', currentPage);
-      await handlePageUpdate(currentPage);
-    };
-
+    // event listeners are not removed and added again
+    //
     nextBtn.removeEventListener('click', handleNextPage);
     previousBtn.removeEventListener('click', handlePreviousPage);
     //
     nextBtn.addEventListener('click', handleNextPage);
     previousBtn.addEventListener('click', handlePreviousPage);
+    //
+  };
+  const paginationObserver = new MutationObserver((mutations) => {
+    console.log('mutation ', mutations);
+    addEventListeners();
   });
 
   paginationObserver.observe(paginationContainer, config);
-  console.log('Pagination observer started successfully');
+  addEventListeners();
+  console.log('i see changes in the pagination container');
 
   return () => {
     paginationObserver.disconnect();
+    const nextBtn = document.querySelector('#nextBtn');
+    const previousBtn = document.querySelector('#previousBtn');
+    //
+    nextBtn.removeEventListener('click', handleNextPage);
+    previousBtn.removeEventListener('click', handlePreviousPage);
+    console.log('closed listeners');
   };
 };
 // cannot have it on function as pagination why ?\ move to the controller
-const paginationContainer = document.querySelector('#pagination-container');
-if (paginationContainer) {
-  initPaginationObserver();
-}
-// function to handle the upadate of the pagination page number and render the content
-//
-const handlePageUpdate = async (pageNumber) => {
+// const paginationContainer = document.querySelector('#pagination-container');
+// if (paginationContainer) {
+//   initPaginationObserver();
+// }
+
+/** Pagination to change to next or previous page depending on user input Previous or Next button.
+ * Clears existing listings and pagination buttons and fetches and renders new listings and pagination buttons.
+ * Smooth scrolls to the top of its section
+ * async function to handle page update on click event of changing page
+ * @param {*} pageNumber page number to be updated / fetched and rendered
+ * @returns {Promise<void>}
+ */
+export const handlePageUpdate = async (pageNumber) => {
   try {
     const auctionsContainer = document.querySelector('#live-auctions-container');
     const paginationContainer = document.querySelector('#pagination-container');
-    if (!auctionsContainer || !paginationContainer) {
-      console.log('containers niet');
-      return;
-    }
-    //
+
+    if (!auctionsContainer || !paginationContainer) return;
+
     auctionsContainer.innerHTML = '';
     paginationContainer.innerHTML = '';
+
     const data = await readListings(12, pageNumber, true);
     const listings = data.data;
+
     await generateHtml(listings, auctionsContainer);
     await pagination(data.meta, paginationContainer);
-    //
-    const scrollToConatiner = document.querySelector('#section-2');
-    scrollToConatiner.scrollIntoView({
+
+    const scrollToContainer = document.querySelector('#section-2');
+    scrollToContainer.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
     });
