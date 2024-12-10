@@ -6,17 +6,17 @@ import { bidOnListing } from '../model/listings/bid';
 export async function generateBidCards() {
   try {
     const data = await readListings(12, 1, true);
-    console.log(data);
     const listings = data.data;
     const parentContainer = document.querySelector('#live-auctions-container');
+
     if (!parentContainer) return;
+
     await generateHtml(listings, parentContainer);
+
     const btnsContainer = document.querySelector('#pagination-container');
     if (!btnsContainer) return;
+
     await pagination(data.meta, btnsContainer);
-    // setInterval(() => {
-    //   initPaginationObserver();
-    // }, 1000);
   } catch (error) {
     throw error;
   }
@@ -64,7 +64,7 @@ export const generateHtml = async function (listings, parentContainer) {
 
 export const createSingleBidCard = function (listing) {
   const card = `
-  <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md" 
+  <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md overflow-clip" 
   data-listing-id="${listing.id}" data-tags="${listing.tags?.[0]?.substring(0, 2)}" 
   data-highest-bid='${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' ">
   <div class="w-full aspect-[4/3] overflow-hidden pb-2">
@@ -84,7 +84,6 @@ export const createSingleBidCard = function (listing) {
   data-bid-button>
     Bid
   </a>`;
-
   return card;
 };
 
@@ -108,34 +107,19 @@ export const validateBid = function (bidAmount, highestBid) {
   }
 
   if (bidAmount + 1 > highestBid) alert('Thanks for your bid');
-  // redirect to the bid page?
-  // if single bid page just refresh the page
   return true;
 };
-
+/**
+ *
+ * @param {*} data meta data passed from readListings /
+ * @param {*} parentContainer / parent container to render cards and append pagination buttons
+ */
 const pagination = async function (data, parentContainer) {
-  // const pagination = function (data) {
   let page = data.currentPage;
-  console.log('currentPage', page);
   const ifFirstPage = data.isFirstPage || null;
-  console.log(ifFirstPage);
   const ifLastPage = data.isLastPage || null;
-  console.log(ifLastPage);
   const nextPage = data.nextPage || null;
-  console.log('nextpage', nextPage);
-  console.log(typeof nextPage);
   const previousPage = data.previousPage || null;
-
-  if (ifFirstPage && ifLastPage) {
-    // hide both arrows //
-  }
-  if (nextPage !== null) {
-    // render  next arrow // show page number
-  }
-  if (previousPage !== null) {
-    // render  previous arrow // show page number
-  }
-
   //
   parentContainer.innerHTML = '';
   //
@@ -182,6 +166,10 @@ const pagination = async function (data, parentContainer) {
   parentContainer.insertAdjacentHTML('beforeend', paginationBtns);
 };
 
+/**Pagination observer to observe for clicks on pagination buttons and set again the event listeners as the conatent and container and buttons have been rerendered /
+ *
+ * @returns {function} event listeners for next and previous buttons
+ */
 export const initPaginationObserver = () => {
   const config = {
     attributes: true,
@@ -191,41 +179,31 @@ export const initPaginationObserver = () => {
 
   let currentPage = 1;
   const paginationContainer = document.querySelector('#pagination-container');
-  if (!paginationContainer) console.log('hallo');
   if (!paginationContainer) return;
 
   const handleNextPage = async (e) => {
     e.preventDefault();
-    alert('next page');
     currentPage += 1;
-    console.log('next page', currentPage);
     await handlePageUpdate(currentPage);
   };
 
   const handlePreviousPage = async (e) => {
     e.preventDefault();
     currentPage -= 1;
-    console.log('previous page', currentPage);
     await handlePageUpdate(currentPage);
   };
   const addEventListeners = () => {
     const nextBtn = document.querySelector('#nextBtn');
     if (!nextBtn) return;
-    console.log(nextBtn);
+
     const previousBtn = document.querySelector('#previousBtn');
     if (!previousBtn) return;
-    if (nextBtn) {
-      console.log(nextBtn);
-    }
 
-    // event listeners are not removed and added again
-    //
     nextBtn.removeEventListener('click', handleNextPage);
     previousBtn.removeEventListener('click', handlePreviousPage);
-    //
+
     nextBtn.addEventListener('click', handleNextPage);
     previousBtn.addEventListener('click', handlePreviousPage);
-    //
   };
   const paginationObserver = new MutationObserver((mutations) => {
     console.log('mutation ', mutations);
@@ -234,23 +212,16 @@ export const initPaginationObserver = () => {
 
   paginationObserver.observe(paginationContainer, config);
   addEventListeners();
-  console.log('i see changes in the pagination container');
 
   return () => {
     paginationObserver.disconnect();
     const nextBtn = document.querySelector('#nextBtn');
     const previousBtn = document.querySelector('#previousBtn');
-    //
+
     nextBtn.removeEventListener('click', handleNextPage);
     previousBtn.removeEventListener('click', handlePreviousPage);
-    console.log('closed listeners');
   };
 };
-// cannot have it on function as pagination why ?\ move to the controller
-// const paginationContainer = document.querySelector('#pagination-container');
-// if (paginationContainer) {
-//   initPaginationObserver();
-// }
 
 /** Pagination to change to next or previous page depending on user input Previous or Next button.
  * Clears existing listings and pagination buttons and fetches and renders new listings and pagination buttons.
