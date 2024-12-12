@@ -3,16 +3,15 @@ import { readProfile } from '../../model/profile/read';
 import { initTabComponent } from '../../utilities/initTabComponent';
 import { authGuard } from '../../utilities/authGuard';
 import { profileBannerContainer, tabComponentOnProfile } from '../../views/profile/viewProfile';
+import { initImgsObserver, initAddImgBtnObserver } from '../profile/observers';
+import { genHtmlProfileHero } from '../../views/profile/viewProfile';
 import {
-  genHtmlProfileHero,
   renderProfileTabHeader,
   renderProfileTab1Content,
   renderProfileTab2Content,
   renderProfileTab3Content,
-  initImgsObserver,
-  initAddImgBtnObserver,
-} from '../../model/profile/genHtml';
-import { pagination, initPaginationObserver } from '../../utilities/pagination';
+} from '../../views/profile/tabComponent';
+// import { pagination, initPaginationObserver } from '../../utilities/pagination';
 
 export async function renderProfilePage() {
   authGuard();
@@ -40,15 +39,7 @@ export async function renderProfilePage() {
   } catch (error) {}
 }
 
-const init = async function () {
-  await renderProfilePage();
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('action') === 'create/') {
-    document.querySelector('#tab-create-listing').click();
-  }
-};
-init();
-
+//
 const initObservers = async function () {
   try {
     initImgsObserver();
@@ -58,3 +49,12 @@ const initObservers = async function () {
     throw new error(error);
   }
 };
+//
+const init = async function () {
+  await renderProfilePage();
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('action') === 'create/') {
+    document.querySelector('#tab-create-listing').click();
+  }
+};
+init();
