@@ -12,6 +12,7 @@ export const pagination = async function (data, parentContainer) {
   const nextPage = data.nextPage || null;
   const previousPage = data.previousPage || null;
   //
+  console.log('pagination data', data);
   parentContainer.innerHTML = '';
   //
   const paginationBtns = `
@@ -55,6 +56,9 @@ export const pagination = async function (data, parentContainer) {
             </a>
           `;
   parentContainer.insertAdjacentHTML('beforeend', paginationBtns);
+  //
+  console.log('next button :', document.querySelector('#nextBtn'));
+  console.log('next button :', document.querySelector('#previousBtn'));
 };
 
 /**Pagination observer to observe for clicks on pagination buttons and set again the event listeners as the conatent and container and buttons have been rerendered /
@@ -69,7 +73,9 @@ export const initPaginationObserver = () => {
   };
 
   let currentPage = 1;
-  const paginationContainer = document.querySelector('#pagination-container');
+  const paginationContainer =
+    document.querySelector('#pagination-container') ||
+    document.querySelector('#pagination-on-my-listings');
   if (!paginationContainer) return;
 
   const handleNextPage = async (e) => {

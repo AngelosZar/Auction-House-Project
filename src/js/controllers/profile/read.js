@@ -12,6 +12,7 @@ import {
   initImgsObserver,
   initAddImgBtnObserver,
 } from '../../model/profile/genHtml';
+import { pagination, initPaginationObserver } from '../../utilities/pagination';
 
 export async function renderProfilePage() {
   authGuard();
@@ -29,6 +30,8 @@ export async function renderProfilePage() {
       renderProfileTab3Content(),
       initImgsObserver(),
       initAddImgBtnObserver(),
+      // await pagination(),
+      // initPaginationObserver(),
     ]);
 
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab1Content);

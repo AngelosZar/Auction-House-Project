@@ -89,6 +89,8 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
   try {
     const userData = await readProfileListings(currentUser.name, cardNumber, page);
     console.log('userdata', userData);
+    const paginationData = userData.meta;
+    // console.log(paginationData);
     const cards = userData.data
       .map((listing) => {
         return `
@@ -120,7 +122,7 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
       `;
       })
       .join('');
-    return `
+    const content = `
     <div
       class="tab-content block w-full mt-8 px-8 justify-center md:justify-start pb-48"
       id="user-listings"
@@ -130,26 +132,25 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
       >
         ${cards}
       </section>
-       <div class="flex justify-between px-8 pt-4">
-            <span class="">
-              <p class="text-left" data-page"previous">Previous page</p>
-            </span>
-            <span class="">
-              <p class="text-right" data-page"next">Next page</p>
-            </span>
-        </div>
+       <div class="flex justify-between px-8 pt-4" id="pagination-on-my-listings"></div>
     </div>
   `;
+    return paginationData, userData, content;
   } catch (error) {}
 };
 
 export const renderProfileTab2Content = async function (currentUser, cardNumber, page) {
   try {
-    const { data } = await readProfileBids(currentUser.name, cardNumber, page);
+    const response = await readProfileBids(currentUser.name, cardNumber, page);
+    const data = response.data;
+
+    const paginationData = response.meta;
+    console.log('pagination data', paginationData);
     const listings = await Promise.all(
       data.map(async (bid) => {
         try {
           const { data: singleListing } = await readListing(bid.listing.id);
+
           return singleListing;
         } catch (error) {
           console.error(error);
@@ -183,7 +184,7 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
       `;
       })
       .join('');
-    return `
+    const content = `
     <div
       class="tab-content w-full hidden mt-8 px-8 justify-center md:justify-start pb-48"
       id="users-bids"
@@ -193,16 +194,10 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
       >
         ${cards}
       </section>
-       <div class="flex justify-between px-8 pt-4">
-            <span class="">
-              <p class="text-left" data-page"previous">Previous page</p>
-            </span>
-            <span class="">
-              <p class="text-right" data-page"next">Next page</p>
-            </span>
-        </div>
+           <div class="flex justify-between px-8 pt-4" id="pagination-on-my-bids"></div>
     </div>
   `;
+    return data, paginationData, content;
   } catch (error) {
     console.error(error);
     throw error;
