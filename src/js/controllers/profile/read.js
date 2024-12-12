@@ -28,10 +28,9 @@ export async function renderProfilePage() {
       renderProfileTab1Content(currentUser, 6, 1),
       renderProfileTab2Content(currentUser, 6, 1),
       renderProfileTab3Content(),
-      initImgsObserver(),
-      initAddImgBtnObserver(),
-      // await pagination(),
-      // initPaginationObserver(),
+      // initImgsObserver(),
+      // initAddImgBtnObserver(),
+      await initObservers(),
     ]);
 
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab1Content);
@@ -49,3 +48,13 @@ const init = async function () {
   }
 };
 init();
+
+const initObservers = async function () {
+  try {
+    initImgsObserver();
+    initAddImgBtnObserver();
+    // pagination observer to observe for clicks on pagination buttons and set again the event listeners as the conatent and container and buttons have been rerendered
+  } catch (error) {
+    throw new error(error);
+  }
+};
