@@ -2,6 +2,7 @@ import { generateBidCards } from '../utilities/generateBidCards';
 import { exploreNowBtn, startBiddingBtn, createAnAddBtn } from '../views/home';
 import { authGuard } from '../utilities/authGuard';
 import { initPaginationObserver } from '../utilities/pagination';
+import { addMultipleEvents } from '../utilities/addMultipleEvents';
 //
 //
 //
@@ -9,6 +10,7 @@ const handleExploreNowBtn = (e) => {
   e.preventDefault();
   // authGuard();
   const targetContainer = document.querySelector('#section-2');
+  console.log('Event type:', e.type);
   window.scrollTo({
     behavior: 'smooth',
     top: targetContainer.offsetTop,
@@ -30,7 +32,8 @@ const initHomepage = async () => {
   try {
     await generateBidCards();
 
-    exploreNowBtn.addEventListener('click', handleExploreNowBtn);
+    // exploreNowBtn.addEventListener('click', handleExploreNowBtn);
+    let exploreNow = addMultipleEvents(exploreNowBtn, ['click', 'touchstart'], handleExploreNowBtn);
     startBiddingBtn.addEventListener('click', handleStartBiddingBtn);
     createAnAddBtn.addEventListener('click', handleCreateAnAddBtn);
     //
