@@ -24,8 +24,8 @@ export async function renderProfilePage() {
     profileBannerContainer.insertAdjacentHTML('beforeend', await genHtmlProfileHero(currentUser));
     tabComponentOnProfile.insertAdjacentHTML('beforeend', renderProfileTabHeader());
     const [tab1Content, tab2Content, tab3Content] = await Promise.all([
-      renderProfileTab1Content(currentUser, 6, 1),
-      renderProfileTab2Content(currentUser, 6, 1),
+      renderProfileTab1Content(currentUser, 12, 1),
+      renderProfileTab2Content(currentUser, 12, 1),
       renderProfileTab3Content(),
       // initImgsObserver(),
       // initAddImgBtnObserver(),

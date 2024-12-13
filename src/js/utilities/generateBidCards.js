@@ -65,14 +65,14 @@ export const generateHtml = async function (listings, parentContainer) {
 
 export const createSingleBidCard = function (listing) {
   const card = `
- <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md overflow-hidden"
-    data-listing-id="${listing.id}" 
+<div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md overflow-hidden"
+    data-listing-id="${listing.id}"
     data-tags="${listing.tags?.[0]?.substring(0, 2)}"
     data-highest-bid='${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}'>
  
  <div class="w-full aspect-[4/3] overflow-hidden pb-2">
-   <img src="${listing?.media[0]?.url}"
-        alt="${listing?.media[0]?.alt}"
+   <img src="${listing?.media[0]?.url || 'Image not found'}"
+        alt="${listing?.media[0]?.alt || 'Alternative Text not found'}"
         class="w-full h-full object-cover" />
  </div>
 
@@ -81,25 +81,26 @@ export const createSingleBidCard = function (listing) {
  </p>
 
  <p class="break-words whitespace-normal line-clamp-2">
-   ${listing?.seller?.name}
+   ${listing?.seller?.name || 'Unknown'}
  </p>
 
  <div class="flex flex-col">
    <p class="text-xs text-left break-words whitespace-normal line-clamp-2">
-     Ends at ${formatDateTime(listing?.endsAt)}
+     Ends at ${formatDateTime(listing?.endsAt || new Date())}
    </p>
    <p class="text-xs text-left break-words whitespace-normal line-clamp-2">
-     Highest current bid : ${listing?.bids?.length > 0 ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}
+     Highest current bid : ${listing?.bids?.length > 0 ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1) || 1}
    </p>
  </div>
 
- <a href="#" 
+ <a href="#"
     class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2"
     id="bid-for-Listing"
     data-bid-button>
    Bid
  </a>
-</div>`;
+</div>
+  `;
   return card;
 };
 

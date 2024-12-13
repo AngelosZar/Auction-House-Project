@@ -43,17 +43,17 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
          data-highest-bid='${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' ">
              <div class="w-full aspect-[4/3] overflow-hidden pb-2" data-listing-link>
                  <img
-                   src="${listing?.media[0]?.url}"
-                  alt="${listing?.media[0]?.alt}"
+                   src="${listing?.media[0]?.url || 'Image not found'}"
+                  alt="${listing?.media[0]?.alt || 'Alternative Text not found'}"
                   class="w-full h-full object-cover"
                   />
               </div>
-            <p class="text-lg font-semibold py-2">${listing.title}</p>
-            <p class="text-sm pb-2" >${listing.description}</p>
-            <div class="flex flex-col">
-              <p class="text-xs text-left">Created ${formatDateTime(listing.created)}</p>
-              <p class="text-xs text-left">Ends in: ${formatDateTime(listing.endsAt)}</p>
-              <p class="text-xs text-left">Highest current bid ${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' nok</p>
+            <p class="text-lg font-semibold py-2 break-words whitespace-normal line-clamp-2">${listing.title}</p>
+            <p class="text-sm pb-2" break-words whitespace-normal line-clamp-2>${listing.description || 'Description not found'}</p>
+            <div class="flex flex-col mb-2">
+              <p class="text-xs text-left mb-1">Created ${formatDateTime(listing.created || new Date())}</p>
+              <p class="text-xs text-left mb-1">Ends in: ${formatDateTime(listing.endsAt || new Date())}</p>
+              <p class="text-xs text-left mb-1">Highest current bid ${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' nok</p>
             </div>
             <div>
               <span
@@ -87,7 +87,7 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
   try {
     const response = await readProfileBids(currentUser.name, cardNumber, page);
     const data = response.data;
-
+    // console.log('data', data);
     const paginationData = response.meta;
     console.log('pagination data', paginationData);
     const listings = await Promise.all(
@@ -111,19 +111,24 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
          data-highest-bid='${validListing?.bids?.length ? Math.max(...validListing.bids.map((bid) => bid.amount)) : Number(1)}' ">
              <div class="w-full aspect-[4/3] overflow-hidden pb-2"  data-listing-link >
                  <img
-                   src="${validListing?.media[0]?.url}"
-                  alt="${validListing?.media[0]?.alt}"
+                   src="${validListing?.media[0]?.url || 'Image not found'}"
+                  alt="${validListing?.media[0]?.alt || 'Alternative Text not found'}"
                   class="w-full h-full object-cover "
                   />
               </div>
-            <p class="text-lg font-semibold py-2">${validListing.title}</p>
-            <p class="text-sm pb-2" >${validListing.description}</p>
+            <p class="text-lg font-semibold py-2 break-words whitespace-normal line-clamp-2">${validListing.title}</p>
+            <p class="text-sm pb-2 break-words whitespace-normal line-clamp-2">${validListing.description || 'Description not Found'}</p>
             <div class="flex flex-col">
-              <p class="text-xs text-left">Created ${formatDateTime(validListing.created)}</p>
-              <p class="text-xs text-left">Ends in: ${formatDateTime(validListing.endsAt)}</p>
+              <p class="text-xs text-left">Created ${formatDateTime(validListing.created || new Date())}</p>
+              <p class="text-xs text-left">Ends in: ${formatDateTime(validListing.endsAt || new Date())}</p>
               <p class="text-xs text-left">Highest current bid ${validListing?.bids?.length ? Math.max(...validListing.bids.map((bid) => bid.amount)) : Number(1)}' nok</p>
             </div>
-  
+                 <a href="#"
+                  class=" hover:underline  hover:text-green-2 hover:dark:text-blue-400 text-md self-end mt-2"
+                  id="bid-for-Listing-on-tab"
+                  data-bid-button>
+                 Bid again
+               </a>
           </div>
         `;
       })
