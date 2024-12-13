@@ -125,24 +125,24 @@ export const tabComponentHeader = `
 export async function createTabs1Content(listing) {
   return `
 <div
-  class="tab-content w-full  mt-8 px-8 justify-start"
+  class="tab-content w-full mt-8 px-8 justify-start"
   id="singleListingDetails"
 >
   <section
     class="grid grid-flow-row w-full justify-start md:max-w-2xl "
   >
     <div
-      class="bg-light-cards dark:bg-purple-dark p-6 border-2 border-green-3 rounded-xl dark:border-purple-dark shadow-xl"
+      class="bg-light-cards dark:bg-purple-dark p-6 border-2 border-green-3 rounded-xl dark:border-purple-dark shadow-xl space-y-2 flex flex-col overflow-hidden"
     >
-      <h5 class="mb-4 semi-bold text-green-2 dark:text-blue-400">
+      <h5 class="mb-4 semi-bold text-green-2 dark:text-blue-400 break-words whitespace-normal line-clamp-2">
         ${listing?.title || 'Untitled Listing'}
       </h5>
       <p class="mb-2">
         <span class="font-semibold text-lg text-green-2 dark:text-blue-400">Seller:</span>
         ${listing?.seller?.name || 'Unknown'}
       </p>
-      <p class="mb-2">
-        <span class="font-semibold text-lg text-green-2 dark:text-blue-400">Description:</span>
+      <p class="mb-2 break-words whitespace-normal line-clamp-3">
+        <span class=" font-semibold text-lg text-green-2 dark:text-blue-400">Description:</span>
         ${listing?.description || 'No description provided.'}
       </p>
       <p class="mb-2">
