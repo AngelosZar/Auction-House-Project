@@ -65,7 +65,7 @@ export const generateHtml = async function (listings, parentContainer) {
 
 export const createSingleBidCard = function (listing) {
   const card = `
-  <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md overflow-clip" 
+  <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md overflow-hidden " 
   data-listing-id="${listing.id}" data-tags="${listing.tags?.[0]?.substring(0, 2)}" 
   data-highest-bid='${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' ">
   <div class="w-full aspect-[4/3] overflow-hidden pb-2">
@@ -75,11 +75,11 @@ export const createSingleBidCard = function (listing) {
       class="w-full h-full object-cover"
     />
   </div>
-  <p class="text-md font-semibold py-2">${listing?.title}</p>
-  <p>${listing?.seller?.name}</p>
+  <p class="text-md font-semibold py-2 break-words whitespace-normal line-clamp-2">${listing?.title}</p>
+  <p class="break-words whitespace-normal line-clamp-2">${listing?.seller?.name}</p>
   <div class="flex flex-col">
-    <p class="text-xs text-left">Ends at ${formatDateTime(listing?.endsAt)}</p>
-    <p class="text-xs text-left">Highest current bid : ${listing?.bids?.length > 0 ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}</p>
+    <p class="text-xs text-left class="break-words whitespace-normal line-clamp-2"">Ends at ${formatDateTime(listing?.endsAt)}</p>
+    <p class="text-xs text-left class="break-words whitespace-normal line-clamp-2"">Highest current bid : ${listing?.bids?.length > 0 ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}</p>
   </div>
   <a href="#" class="btn btn-secondary dark:btn-secondary-dark text-xs self-end mt-2"   id="bid-for-Listing" 
   data-bid-button>

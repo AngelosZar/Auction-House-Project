@@ -13,74 +13,86 @@ export const createSingleListingCard = async function (listing) {
   );
   slidesHtml = slides.join('');
   const listingHtml = `
-<div id="carousel-component" class="relative w-full mx-auto" data-carousel="slider">
- <div class="relative h-56 min-h-[240px] overflow-hidden rounded-lg md:h-96 max-w-xl" id="carousel-component">
-   ${slidesHtml}
-   <button
-     id="carousel-btn-previous"
-     type="button"
-     class="absolute top-10 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-     data-carousel-prev
-   >
-     <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-3 dark:bg-blue-dark">
-       &laquo;
-     </span>
-   </button>
-
-   <button
-     id="carousel-btn-next" 
-     type="button"
-     class="absolute top-10 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-     data-carousel-next
-   >
-     <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-3 dark:bg-blue-dark">
-       &raquo;
-     </span>
-   </button>
-
-   <div
-     id="carousel-dots"
-     class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10"
-   ></div>
-
- </div>
-</div>
-<div
-  data-listing-id="${listing?.id}"
-  data-highest-bid="${listing?.bids?.length ? Math.max(...listing?.bids?.map((bid) => bid.amount)) : 1}"
-  data-seller-name="${listing.seller.name}"
-  class="grid grid-cols-1 md:grid-cols-2 md:py-8 gap-8 pt-16 pb-20 px-4"
->
-
-  <div
-    class="bg-light-cards dark:bg-purple-dark py-4 px-4 flex flex-col md:flex-row rounded-xl shadow-lg w-full h-auto justify-between"
-  >
-    <div class="space-y-2  flex flex-col">
-      <div class="mb-2">
-        <h5 class="mb-4 semi-bold">${listing?.title || 'Untitled Listing'}</h5>
-        <p class="mb-2" >Seller: ${listing?.seller?.name || 'Unknown'}</p>
-        <p class="mb-2" >Description: ${listing?.description || 'No description provided.'}</p>
-        <p class="mb-2" >
-          Current Price: ${
-            listing?.bids?.length > 0 ? Math.max(...listing?.bids?.map((bid) => bid.amount)) : 1
-          }
-        </p>
-        <p class="mb-2" >Ends at: ${formatDateTime(listing?.endsAt || new Date())}</p>
-      </div>
-
-      <span class="mt-4 justify-end align-bottom" id="switchToCurrentUserEditBtn" data-listing-buttons>
-        <a
-          href="#"
-          id="bid-for-Listing-btn"
-          class="btn btn-secondary dark:btn-secondary-dark self-end"
-          data-bid-button
+        <div
+        data-listing-id="${listing?.id}"
+        data-highest-bid="${listing?.bids?.length ? Math.max(...listing?.bids?.map((bid) => bid.amount)) : 1}"
+        data-seller-name="${listing.seller.name}"
+        class="grid grid-cols-1 md:grid-cols-2 gap-8 p-4"
+      >
+        <div class="w-full">
+          <div id="carousel-component" class="relative w-full mx-auto" data-carousel="slider">
+            <div class="relative h-56 min-h-[240px] overflow-hidden rounded-lg md:h-96 max-w-xl">
+              ${slidesHtml}
+              <button
+                id="carousel-btn-previous"
+                type="button"
+                class="absolute top-10 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                data-carousel-prev
+              >
+                <span
+                  class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-3 dark:bg-blue-dark"
+                  >&laquo;</span
+                >
+              </button>
+              <button
+                id="carousel-btn-next"
+                type="button"
+                class="absolute top-10 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                data-carousel-next
+              >
+                <span
+                  class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-3 dark:bg-blue-dark"
+                  >&raquo;</span
+                >
+              </button>
+              <div
+                id="carousel-dots"
+                class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-light-cards dark:bg-purple-dark py-4 px-4 flex flex-col rounded-xl shadow-lg w-full"
         >
-          Place bid
-        </a>
-      </span>
-    </div>
-  </div>
-</div>
+          <div class="space-y-2 flex flex-col overflow-hidden">
+            <div class="mb-2">
+              <h5 class="mb-4 semi-bold break-words whitespace-normal line-clamp-2">
+                ${listing?.title || 'Untitled Listing'}
+              </h5>
+              <p class="mb-2 break-words whitespace-normal line-clamp-2">
+                Seller: ${listing?.seller?.name || 'Unknown'}
+              </p>
+              <p class="mb-2 break-words whitespace-normal line-clamp-3">
+                Description: ${listing?.description || 'No description provided.'}
+              </p>
+              <p class="mb-2">
+                Current Price: ${
+                  listing?.bids?.length > 0
+                    ? Math.max(...listing?.bids?.map((bid) => bid.amount))
+                    : 1
+                }
+              </p>
+              <p class="mb-2">Ends at: ${formatDateTime(listing?.endsAt || new Date())}</p>
+            </div>
+
+            <span
+              class="mt-4 justify-end align-bottom"
+              id="switchToCurrentUserEditBtn"
+              data-listing-buttons
+            >
+              <a
+                href="#"
+                id="bid-for-Listing-btn"
+                class="btn btn-secondary dark:btn-secondary-dark self-end"
+                data-bid-button
+              >
+                Place bid
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
 `;
   return listingHtml;
 };
