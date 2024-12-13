@@ -1,7 +1,7 @@
 import { authGuard } from '../../utilities/authGuard';
 import { updateProfileBannerContainer } from '../../views/profile/viewProfile';
 import { readProfile } from '../../model/profile/read';
-import { genHtmlProfileHeroOnUpdatePage } from '../../model/profile/genHtml';
+import { genHtmlProfileHeroOnUpdatePage } from '../../views/profile/updateProfile';
 import { updateProfileForm, collectProfileChangesData } from '../../views/profile/updateProfile';
 import { updateProfileApiCall } from '../../model/profile/update';
 

@@ -28,10 +28,12 @@ export async function onSignUpUser(event) {
 
   try {
     const res = await signUpApiCall(userData);
-    alert('User created successfully');
-    window.location.href = '/auth/login/';
+    if (res.ok) {
+      alert('User created successfully');
+      window.location.href = '/auth/sign_in/';
+    }
   } catch (error) {
-    throw error;
+    alert('Ops, Something went wrong please\nPlease try again');
   } finally {
     form.reset();
   }
