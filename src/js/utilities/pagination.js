@@ -7,17 +7,16 @@ import { generateHtml } from './generateBidCards.js';
  */
 export const pagination = async function (data, parentContainer) {
   let page = data.currentPage;
+
   const ifFirstPage = data.isFirstPage || null;
   const ifLastPage = data.isLastPage || null;
+
   const nextPage = data.nextPage || null;
   const previousPage = data.previousPage || null;
-  //
-  console.log('pagination data', data);
+
   parentContainer.innerHTML = '';
-  //
-  const paginationBtns = `
-    
-            <a href="#" class="flex px-4 py-2 group ${!previousPage ? 'hidden' : ''}" id="previousBtn">
+  const paginationBtns = `    
+           <a href="#" class="flex px-4 py-2 group ${!previousPage ? 'hidden' : ''}" id="previousBtn">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -56,9 +55,6 @@ export const pagination = async function (data, parentContainer) {
             </a>
           `;
   parentContainer.insertAdjacentHTML('beforeend', paginationBtns);
-  //
-  console.log('next button :', document.querySelector('#nextBtn'));
-  console.log('next button :', document.querySelector('#previousBtn'));
 };
 
 /**Pagination observer to observe for clicks on pagination buttons and set again the event listeners as the conatent and container and buttons have been rerendered /
@@ -139,9 +135,12 @@ export const handlePageUpdate = async (pageNumber) => {
 
     const data = await readListings(12, pageNumber, true);
     const listings = data.data;
-
-    await generateHtml(listings, auctionsContainer);
-    await pagination(data.meta, paginationContainer);
+    await promise.All([
+      generateHtml(listings, auctionsContainer),
+      pagination(data.meta, paginationContainer),
+    ]);
+    // await generateHtml(listings, auctionsContainer);
+    // await pagination(data.meta, paginationContainer);
 
     const scrollToContainer = document.querySelector('#section-2');
     scrollToContainer.scrollIntoView({
@@ -149,7 +148,6 @@ export const handlePageUpdate = async (pageNumber) => {
       block: 'start',
     });
   } catch (error) {
-    console.error(error);
     throw error;
   }
 };

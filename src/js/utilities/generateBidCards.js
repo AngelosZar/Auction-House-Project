@@ -3,7 +3,7 @@ import { formatDateTime } from '../utilities/formatDateTime';
 import { authGuard } from './authGuard';
 import { bidOnListing } from '../model/listings/bid';
 import { pagination } from '../utilities/pagination';
-
+import { initLazyLoading } from './initLazyLoading';
 export async function generateBidCards() {
   try {
     const data = await readListings(12, 1, true);
@@ -11,13 +11,23 @@ export async function generateBidCards() {
     const parentContainer = document.querySelector('#live-auctions-container');
 
     if (!parentContainer) return;
+    await Promise.all([
+      generateHtml(listings, parentContainer).then(() => {
+        initLazyLoading();
+        const btnsContainer = document.querySelector('#pagination-container');
+        if (!btnsContainer) return;
 
-    await generateHtml(listings, parentContainer);
+        pagination(data.meta, btnsContainer);
+      }),
+    ]);
+    // await generateHtml(listings, parentContainer).then(() => {
+    //   initLazyLoading();
+    // });
 
-    const btnsContainer = document.querySelector('#pagination-container');
-    if (!btnsContainer) return;
+    // const btnsContainer = document.querySelector('#pagination-container');
+    // if (!btnsContainer) return;
 
-    await pagination(data.meta, btnsContainer);
+    // await pagination(data.meta, btnsContainer);
   } catch (error) {
     throw error;
   }
@@ -65,16 +75,17 @@ export const generateHtml = async function (listings, parentContainer) {
 
 export const createSingleBidCard = function (listing) {
   const card = `
-<div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md overflow-hidden"
+  <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md overflow-hidden"
     data-listing-id="${listing.id}"
     data-tags="${listing.tags?.[0]?.substring(0, 2)}"
     data-highest-bid='${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}'>
  
- <div class="w-full aspect-[4/3] overflow-hidden pb-2">
-   <img src="${listing?.media[0]?.url || 'Image not found'}"
+   <div class="w-full aspect-[4/3] overflow-hidden pb-2">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+        data-src="${listing?.media[0]?.url || 'Image not found'}"
         alt="${listing?.media[0]?.alt || 'Alternative Text not found'}"
-        class="w-full h-full object-cover" />
- </div>
+        class="w-full h-full object-cover lazy-image" />
+    </div>
 
  <p class="text-md font-semibold py-2 break-words whitespace-normal line-clamp-2">
    ${listing?.title}

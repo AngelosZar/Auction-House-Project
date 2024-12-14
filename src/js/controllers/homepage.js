@@ -3,12 +3,8 @@ import { exploreNowBtn, startBiddingBtn, createAnAddBtn } from '../views/home';
 import { authGuard } from '../utilities/authGuard';
 import { initPaginationObserver } from '../utilities/pagination';
 import { addMultipleEvents } from '../utilities/addMultipleEvents';
-import { readProfiles } from '../model/profile/read';
-import { createSingleCardOfUser } from '../views/home';
-import { generateProfileCardsHtml, renderProfileCards } from '../controllers/profileCards';
-//
-//
-//
+import { renderProfileCards } from '../controllers/profileCards';
+
 const handleExploreNowBtn = (e) => {
   e.preventDefault();
   const targetContainer = document.querySelector('#section-2');
@@ -18,13 +14,13 @@ const handleExploreNowBtn = (e) => {
     top: targetContainer.offsetTop,
   });
 };
-//
+
 const handleStartBiddingBtn = (e) => {
   e.preventDefault();
   if (!authGuard()) return;
   window.location.href = '/profile/?action=biddings/';
 };
-//
+
 const handleCreateAnAddBtn = (e) => {
   e.preventDefault();
   if (!authGuard()) return;
