@@ -6,20 +6,24 @@ export const sellerSection = document.querySelector('#top-sellers-container');
 //
 export const createSingleCardOfUser = function (user) {
   const html = `
-  <div class="flex border-2 rounded-xl border-green-2 dark:border-purple-dark px-2 py-4 justify-center max-w-[500px] h-auto bg-light-cards dark:bg-blue-dark shadow-lg">
-  <div>
+  <div class="flex border-2 rounded-xl border-grey-400 dark:border-purple-dark px-2 py-8 justify-space-around w-full h-full bg-light-cards dark:bg-blue-dark shadow-lg max-w-md">
+  <div class="flex items-center ">
     <img
-      src="${user.avatar.url}"
-      alt="${user.avatar.alt}"
-      class="w-20 h-20 rounded-full mr-4"
+      src="${user?.avatar?.url || 'Avatar not found'}"
+      alt="${user?.avatar?.alt || 'Alternative text not found'}"
+      class="w-24 h-24 rounded-full mr-4 flex-shrink-1"
     />
   </div>
-  <div class="flex flex-col justify-center">
-    <p class="mb-2 text-xl font-semibold">${user.name}</p>
-    <p>Credit Points: ${user.credits}</p>
-    <p>User listed: ${user._count.listings}</p>
-    <p>User wins: ${user._count.wins}</p>
-   
+  <div class="w-2/3 flex flex-col justify-center pl-4 align self-end">
+    <p class="mb-2 text-xl font-semibold">${
+      (user?.name || 'username not found').length > 12
+        ? (user?.name || 'username not found').slice(0, 12) + '...'
+        : user?.name || 'username not found'
+    }
+    </p>
+    <p><span class="font-semibold text-md text-green-2 dark:text-blue-400">Credit Points:</span> ${user?.credits || ''}</p>
+    <p><span class="font-semibold text-md text-green-2 dark:text-blue-400">User listed:</span> ${user?._count.listings || 0}</p>
+     <p><span class="font-semibold text-md text-green-2 dark:text-blue-400">User wins:</span> ${user?._count.wins || 0}</p>  
   </div>
 </div>
 `;
