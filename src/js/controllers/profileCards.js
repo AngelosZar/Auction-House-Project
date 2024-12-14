@@ -1,13 +1,19 @@
 import { createSingleCardOfUser } from '../views/home';
 import { readProfiles } from '../model/profile/read';
 import { sellerSection } from '../views/home';
+import { returnToken } from '../utilities/returnToken';
+
 export async function renderProfileCards() {
   try {
+    if (!returnToken()) {
+      const heading = document.querySelector('#top-sellers-heading');
+      heading.classList.add('hidden');
+      return;
+    }
     const data = await readProfiles(12, 1, true);
-    console.log(data);
     const users = data;
-    console.log(users);
     const parentContainer = sellerSection;
+
     if (!parentContainer) return;
 
     await generateProfileCardsHtml(users, parentContainer);
