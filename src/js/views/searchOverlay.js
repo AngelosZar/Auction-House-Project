@@ -1,6 +1,6 @@
 import { searchListings } from '../model/listings/search';
 import { generateHtml } from '../utilities/generateBidCards';
-
+import { initLazyLoading } from '../utilities/initLazyLoading';
 export const searchOverlay = async function () {
   const parentContainer = document.querySelector('main');
   parentContainer.classList.add('max-w-[1440px]');
@@ -98,6 +98,7 @@ export const searchOverlay = async function () {
       headerContainer.innerHTML = `<h1 class="text-4xl font-extrabold text-center mt-4">Search results for "${searchValue}"</h1>`;
       parentContainer.innerHTML = '';
       await generateHtml(listings, parentContainer);
+      initLazyLoading();
       searchInput.value = '';
     } catch (error) {
       throw new Error(error);

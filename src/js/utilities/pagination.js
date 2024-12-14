@@ -139,8 +139,6 @@ export const handlePageUpdate = async (pageNumber) => {
       generateHtml(listings, auctionsContainer),
       pagination(data.meta, paginationContainer),
     ]);
-    // await generateHtml(listings, auctionsContainer);
-    // await pagination(data.meta, paginationContainer);
 
     const scrollToContainer = document.querySelector('#section-2');
     scrollToContainer.scrollIntoView({

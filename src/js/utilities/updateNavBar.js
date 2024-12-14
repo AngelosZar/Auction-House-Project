@@ -24,3 +24,22 @@ export const updateNavBar = function () {
     if (createListingView) createListingView.classList.add('hidden');
   }
 };
+
+export const initNavBarListeners = function () {
+  const viewListingsView = document.querySelector('#view-listings-link');
+  let createListingView = document.querySelector('#create-listings-link');
+
+  if (!createListingView) return;
+  createListingView.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log('Create listing link clicked');
+    window.location.href = '/profile/?action=create/';
+  });
+
+  if (!viewListingsView) return;
+  viewListingsView.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log('View listings link clicked');
+    window.location.href = '/profile/?action=biddings/';
+  });
+};
