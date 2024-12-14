@@ -41,7 +41,7 @@ export const signInApiCall = async (data) => {
 
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
     const apiKey = await getApiKey();
-    return result;
+    return apiKey, result;
   } catch (error) {
     return error;
   }

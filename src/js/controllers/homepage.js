@@ -11,7 +11,6 @@ import { generateProfileCardsHtml, renderProfileCards } from '../controllers/pro
 //
 const handleExploreNowBtn = (e) => {
   e.preventDefault();
-  // authGuard();
   const targetContainer = document.querySelector('#section-2');
   console.log('Event type:', e.type);
   window.scrollTo({
@@ -22,14 +21,13 @@ const handleExploreNowBtn = (e) => {
 //
 const handleStartBiddingBtn = (e) => {
   e.preventDefault();
-  console.log(e.target);
-  authGuard();
+  if (!authGuard()) return;
   window.location.href = '/profile/?action=biddings/';
 };
 //
 const handleCreateAnAddBtn = (e) => {
   e.preventDefault();
-  authGuard();
+  if (!authGuard()) return;
   window.location.href = '/profile/?action=create/';
 };
 const initHomepage = async () => {
