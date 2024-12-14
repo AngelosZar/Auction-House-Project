@@ -11,23 +11,13 @@ export async function generateBidCards() {
     const parentContainer = document.querySelector('#live-auctions-container');
 
     if (!parentContainer) return;
-    await Promise.all([
-      generateHtml(listings, parentContainer).then(() => {
-        initLazyLoading();
-        const btnsContainer = document.querySelector('#pagination-container');
-        if (!btnsContainer) return;
 
-        pagination(data.meta, btnsContainer);
-      }),
-    ]);
-    // await generateHtml(listings, parentContainer).then(() => {
-    //   initLazyLoading();
-    // });
+    await generateHtml(listings, parentContainer);
+    initLazyLoading();
+    const btnsContainer = document.querySelector('#pagination-container');
+    if (!btnsContainer) return;
 
-    // const btnsContainer = document.querySelector('#pagination-container');
-    // if (!btnsContainer) return;
-
-    // await pagination(data.meta, btnsContainer);
+    await pagination(data.meta, btnsContainer);
   } catch (error) {
     throw error;
   }

@@ -2,6 +2,7 @@ import { createSingleCardOfUser } from '../views/home';
 import { readProfiles } from '../model/profile/read';
 import { sellerSection } from '../views/home';
 import { returnToken } from '../utilities/returnToken';
+import { initLazyLoading } from '../utilities/initLazyLoading';
 
 export async function renderProfileCards() {
   try {
@@ -17,6 +18,7 @@ export async function renderProfileCards() {
     if (!parentContainer) return;
 
     await generateProfileCardsHtml(users, parentContainer);
+    initLazyLoading();
   } catch (error) {
     throw error;
   }

@@ -8,10 +8,10 @@ export const createSingleCardOfUser = function (user) {
   const html = `
   <div class="flex border-2 rounded-xl border-grey-400 dark:border-purple-dark px-2 py-8 justify-space-around w-full h-full bg-light-cards dark:bg-blue-dark shadow-lg max-w-md">
   <div class="flex items-center ">
-    <img
-      src="${user?.avatar?.url || 'Avatar not found'}"
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+      data-src="${user?.avatar?.url || 'Avatar not found'}"
       alt="${user?.avatar?.alt || 'Alternative text not found'}"
-      class="w-24 h-24 rounded-full mr-4 flex-shrink-1"
+      class="w-24 h-24 rounded-full mr-4 object-cover lazy-image"
     />
   </div>
   <div class="w-2/3 flex flex-col justify-center pl-4 align self-end">
