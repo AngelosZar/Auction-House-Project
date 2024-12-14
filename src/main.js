@@ -1,6 +1,7 @@
 import './style.css';
 import router from './js/router';
 import { logOut } from './js/utilities/logout';
+import { updateNavBar } from './js/utilities/updateNavBar';
 // import { updateNavBar } from './js/utilities/updateNavBar';
 // //
 // import { createListing } from './js/model/listings/create';
@@ -16,6 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
   router(window.location.pathname);
   document.getElementById('logOutBtn')?.addEventListener('click', logOut);
   searchOverlay();
+  updateNavBar();
 });
 // document.querySelectorAll('a').forEach((link) => {
 //   link.addEventListener('click', (e) => {
