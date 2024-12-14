@@ -4,5 +4,5 @@ export const returnToken = () => {
     return false;
   }
   const { accessToken } = JSON.parse(currentUser);
-  return accessToken;
+  return accessToken || false;
 };

@@ -4,10 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction House</title>
+    <meta
+      name="description"
+      content="Auction House - Your online marketplace for buying and selling items"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png" />
+    <link rel="manifest" href="../../site.webmanifest" />
     <script type="module" src="../../src/main.js"></script>
   </head>
   <body>
-    <header class="w-full bg-light-cards dark:bg-black-bright border-y-2 dark:border-none">
+    <header class="w-full bg-light-components dark:bg-black-bright border-y-2 dark:border-none">
       <section class="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3">
         <div>
           <a href="/"
@@ -20,9 +28,7 @@
         </div>
         <div class="mr-4 items-center gap-4">
           <nav class="flex gap-4">
-            <!-- serch btn and dropdown -->
             <div class="group relative">
-              <!-- rethink about the style on hover -->
               <button
                 class="rounded-full p-2 transition-all duration-300 hover:bg-green-3 hover:dark:bg-purple-dark"
                 id="searchBtn"
@@ -42,8 +48,6 @@
                   />
                 </svg>
               </button>
-
-              <!-- add dropdown set with js later-->
               <div id="search-dropdown"></div>
             </div>
             <div class="group relative">
@@ -65,55 +69,64 @@
                   />
                 </svg>
               </button>
-              <!-- add dropdown -->
+
               <div
                 class="invisible absolute right-0 mt-2 w-48 rounded-lg bg-white opacity-0 shadow-lg transition-all duration-300 group-hover:visible group-hover:opacity-100 dark:bg-bright-black dark:bg-purple-dark z-10"
               >
                 <ul class="py-2 font-bold">
-                  <!-- [&>li]:hover:bg-dark-purple -->
-                  <!-- add on focus later  -->
                   <li id="sign-up-link">
                     <a
                       href="/auth/sign_up/"
-                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
-                      >Register</a
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark sign-up-link"
                     >
+                      Register
+                    </a>
                   </li>
+
                   <li id="sign-in-link">
                     <a
                       href="/auth/sign_in/"
                       class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
-                      >Log in</a
                     >
+                      Log in
+                    </a>
                   </li>
+
                   <li id="profile-link">
                     <a
                       href="/profile/"
                       class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
-                      >Profile</a
                     >
+                      Profile
+                    </a>
                   </li>
+
                   <li id="view-listings-link">
                     <a
                       href="/listing/view/"
                       class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
-                      >Your items</a
                     >
+                      Your items
+                    </a>
                   </li>
-                  <li>
+
+                  <li id="create-listings-link">
                     <a
                       href="/listing/create/"
                       class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
-                      >List an item</a
                     >
+                      List an item
+                    </a>
                   </li>
+
                   <li id="log-out-link">
                     <a
                       href="#"
                       class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
                       id="logOutBtn"
-                      >Log out</a
                     >
+                      Log out
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -175,7 +188,6 @@
               <small>Alternative text</small>
               <input type="text" name="banner-alt" id="banner-alt" class="input-forms" />
             </div>
-            <!-- <div class="mb-4"></div> -->
 
             <button class="btn btn-primary dark:btn-primary-dark" type="submit">Update</button>
             <p class="invisible">1</p>
@@ -206,7 +218,7 @@
             <li>Epost: post@auctionhouse.no</li>
           </ul>
         </div>
-        <!-- info -->
+
         <div>
           <h3 class="mb-4 text-lg font-extrabold">Info</h3>
           <ul>
@@ -217,7 +229,7 @@
             <li>Terms and conditions</li>
           </ul>
         </div>
-        <!-- explore  -->
+
         <div>
           <h3 class="mb-4 text-lg font-extrabold">Explore</h3>
           <ul>
@@ -226,7 +238,7 @@
             <li>By category</li>
           </ul>
         </div>
-        <!-- explore  -->
+
         <div>
           <div>
             <h3 class="mb-4 text-lg font-extrabold">About us</h3>
