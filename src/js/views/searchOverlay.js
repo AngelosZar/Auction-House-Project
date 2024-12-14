@@ -1,6 +1,7 @@
 import { searchListings } from '../model/listings/search';
 import { generateHtml } from '../utilities/generateBidCards';
 import { initLazyLoading } from '../utilities/initLazyLoading';
+import { initSpinner, terminateSpinner } from '../utilities/spinner';
 export const searchOverlay = async function () {
   const parentContainer = document.querySelector('main');
   parentContainer.classList.add('max-w-[1440px]');
@@ -61,7 +62,6 @@ export const searchOverlay = async function () {
   `;
   searchBtn.addEventListener('click', async (e) => {
     e.preventDefault();
-
     if (!isOverlayOpen) {
       parentContainer.insertAdjacentHTML('afterbegin', searchOverlayContent);
       document.querySelector('#onSearch')?.addEventListener('click', searchHandler);
@@ -82,13 +82,14 @@ export const searchOverlay = async function () {
     const searchValue = search.value;
     console.log(searchValue);
     //
+    const parentContainer = document.querySelector('#searchResultCards');
+    const headerContainer = document.querySelector('#searchContainerHeader');
+    initSpinner(parentContainer);
     try {
       const data = await searchListings(searchValue);
       const listings = data.data;
-      console.log('listings:', listings);
       //
-      const parentContainer = document.querySelector('#searchResultCards');
-      const headerContainer = document.querySelector('#searchContainerHeader');
+
       //
       if (listings.length === 0) {
         headerContainer.innerHTML = `<h1 class="text-4xl font-extrabold text-center mt-4">There are no results for "${searchValue}"</h1>`;

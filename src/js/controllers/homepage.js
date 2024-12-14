@@ -4,11 +4,10 @@ import { authGuard } from '../utilities/authGuard';
 import { initPaginationObserver } from '../utilities/pagination';
 import { addMultipleEvents } from '../utilities/addMultipleEvents';
 import { renderProfileCards } from '../controllers/profileCards';
-
+import { initSpinner, terminateSpinner } from '../utilities/spinner';
 const handleExploreNowBtn = (e) => {
   e.preventDefault();
   const targetContainer = document.querySelector('#section-2');
-  console.log('Event type:', e.type);
   window.scrollTo({
     behavior: 'smooth',
     top: targetContainer.offsetTop,

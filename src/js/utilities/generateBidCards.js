@@ -4,11 +4,15 @@ import { authGuard } from './authGuard';
 import { bidOnListing } from '../model/listings/bid';
 import { pagination } from '../utilities/pagination';
 import { initLazyLoading } from './initLazyLoading';
+import { initSpinner, terminateSpinner } from '../utilities/spinner';
 export async function generateBidCards() {
+  const mainParentContainer1 = document.querySelector('#section-2');
+  const parentContainer = document.querySelector('#live-auctions-container');
+  if (mainParentContainer1) initSpinner(mainParentContainer1);
+
   try {
     const data = await readListings(12, 1, true);
     const listings = data.data;
-    const parentContainer = document.querySelector('#live-auctions-container');
 
     if (!parentContainer) return;
 
@@ -20,6 +24,8 @@ export async function generateBidCards() {
     await pagination(data.meta, btnsContainer);
   } catch (error) {
     throw error;
+  } finally {
+    if (mainParentContainer1) terminateSpinner(mainParentContainer1);
   }
 }
 
