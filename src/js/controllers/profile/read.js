@@ -56,5 +56,8 @@ const init = async function () {
   if (params.get('action') === 'create/') {
     document.querySelector('#tab-create-listing').click();
   }
+  if (params.get('action') === 'biddings/') {
+    document.querySelector('#tab-users-bids').click();
+  }
 };
 init();

@@ -24,6 +24,7 @@ const handleStartBiddingBtn = (e) => {
   e.preventDefault();
   console.log(e.target);
   authGuard();
+  window.location.href = '/profile/?action=biddings/';
 };
 //
 const handleCreateAnAddBtn = (e) => {
@@ -35,8 +36,6 @@ const initHomepage = async () => {
   try {
     await generateBidCards();
     await renderProfileCards();
-
-    // exploreNowBtn.addEventListener('click', handleExploreNowBtn);
     let exploreNow = addMultipleEvents(exploreNowBtn, ['click', 'touchstart'], handleExploreNowBtn);
     startBiddingBtn.addEventListener('click', handleStartBiddingBtn);
     createAnAddBtn.addEventListener('click', handleCreateAnAddBtn);
