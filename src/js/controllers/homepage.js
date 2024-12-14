@@ -3,6 +3,9 @@ import { exploreNowBtn, startBiddingBtn, createAnAddBtn } from '../views/home';
 import { authGuard } from '../utilities/authGuard';
 import { initPaginationObserver } from '../utilities/pagination';
 import { addMultipleEvents } from '../utilities/addMultipleEvents';
+import { readProfiles } from '../model/profile/read';
+import { createSingleCardOfUser } from '../views/home';
+import { generateProfileCardsHtml, renderProfileCards } from '../controllers/profileCards';
 //
 //
 //
@@ -31,6 +34,7 @@ const handleCreateAnAddBtn = (e) => {
 const initHomepage = async () => {
   try {
     await generateBidCards();
+    await renderProfileCards();
 
     // exploreNowBtn.addEventListener('click', handleExploreNowBtn);
     let exploreNow = addMultipleEvents(exploreNowBtn, ['click', 'touchstart'], handleExploreNowBtn);
