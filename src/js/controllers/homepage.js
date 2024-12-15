@@ -26,6 +26,8 @@ const handleCreateAnAddBtn = (e) => {
   window.location.href = '/profile/?action=create/';
 };
 const initHomepage = async () => {
+  const spinner = document.querySelector('.spinnerContainer');
+  initSpinner(spinner);
   try {
     await generateBidCards();
     await renderProfileCards();
@@ -45,6 +47,8 @@ const initHomepage = async () => {
     initPagination();
   } catch (error) {
     console.log(error);
+  } finally {
+    terminateSpinner(spinner);
   }
 };
 initHomepage();

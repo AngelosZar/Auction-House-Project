@@ -17,6 +17,8 @@ import {
   createSingleListingCard,
 } from '../../model/listings/singleListing';
 import { initCarousel } from '../../model/listings/carousel';
+import { initSpinner, terminateSpinner } from '../../utilities/spinner';
+
 export const checkSellerAndHideBtn = function () {
   const observer = new MutationObserver(() => {
     const bidBtn = document.querySelector('#bid-for-Listing-btn');
@@ -32,7 +34,6 @@ export const checkSellerAndHideBtn = function () {
       const btnContainer = document.querySelector('#switchToCurrentUserEditBtn');
 
       if (currentUser === seller) {
-        // bidBtn.style.display = 'none';
         bidBtn.remove();
         const html = `
             <a
@@ -107,8 +108,6 @@ async function renderTabs() {
   try {
     const response = await readListing(listingId);
     const listing = response.data;
-
-    // console.log('listing:', listing.title);
     parentContainer.insertAdjacentHTML('beforeend', tabComponentHeader);
     parentContainer.insertAdjacentHTML('beforeend', await createTabs1Content(listing));
     parentContainer.insertAdjacentHTML('beforeend', await createTabs2Content(listing));
@@ -121,12 +120,16 @@ async function renderTabs() {
   }
 }
 async function main() {
+  const spinnerContainer = document.querySelector('.spinnerContainer');
+  initSpinner(spinnerContainer);
   try {
     await renderHero();
     await renderTabs();
     await initCarousel();
   } catch (error) {
     throw error;
+  } finally {
+    terminateSpinner(spinnerContainer);
   }
 }
 // document.addEventListener('DOMContentLoaded', async () => {

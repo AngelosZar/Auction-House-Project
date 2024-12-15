@@ -11,14 +11,17 @@ import {
   renderProfileTab2Content,
   renderProfileTab3Content,
 } from '../../views/profile/tabComponent';
-
+import { initSpinner, terminateSpinner } from '../../utilities/spinner';
 export async function renderProfilePage() {
+  initSpinner(profileBannerContainer);
+  initSpinner(tabComponentOnProfile);
   authGuard();
   const data = JSON.parse(localStorage.getItem('currentUser'));
   const username = data.name;
   try {
     const data = await readProfile(username);
     const currentUser = data.data;
+    terminateSpinner(profileBannerContainer), terminateSpinner(tabComponentOnProfile);
     profileBannerContainer.insertAdjacentHTML('beforeend', await genHtmlProfileHero(currentUser));
     tabComponentOnProfile.insertAdjacentHTML('beforeend', renderProfileTabHeader());
     const [tab1Content, tab2Content, tab3Content] = await Promise.all([

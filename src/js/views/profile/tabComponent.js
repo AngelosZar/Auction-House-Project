@@ -32,9 +32,7 @@ export const renderProfileTabHeader = function () {
 export const renderProfileTab1Content = async function (currentUser, cardNumber, page) {
   try {
     const userData = await readProfileListings(currentUser.name, cardNumber, page);
-    console.log('userdata', userData);
     const paginationData = userData.meta;
-    // console.log(paginationData);
     const cards = userData.data
       .map((listing) => {
         return `
@@ -87,9 +85,7 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
   try {
     const response = await readProfileBids(currentUser.name, cardNumber, page);
     const data = response.data;
-    // console.log('data', data);
     const paginationData = response.meta;
-    // console.log('pagination data', paginationData);
     const listings = await Promise.all(
       data.map(async (bid) => {
         try {

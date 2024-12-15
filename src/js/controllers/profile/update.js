@@ -4,17 +4,16 @@ import { readProfile } from '../../model/profile/read';
 import { genHtmlProfileHeroOnUpdatePage } from '../../views/profile/updateProfile';
 import { updateProfileForm, collectProfileChangesData } from '../../views/profile/updateProfile';
 import { updateProfileApiCall } from '../../model/profile/update';
-
+import { initSpinner, terminateSpinner } from '../../utilities/spinner';
 const renderHeroOnProfilePage = async function () {
+  const spinnerContainer = document.querySelector('.spinner-container');
+  initSpinner(spinnerContainer);
   authGuard();
   const data = JSON.parse(localStorage.getItem('currentUser'));
   const username = data.name;
-
   try {
     const data = await readProfile(username);
-
     const currentUser = data.data;
-
     updateProfileBannerContainer.classList.add(
       'border-b-2',
       'border-green-2',
@@ -26,6 +25,7 @@ const renderHeroOnProfilePage = async function () {
       'beforeend',
       await genHtmlProfileHeroOnUpdatePage(currentUser)
     );
+    terminateSpinner(spinnerContainer);
   } catch {
     throw new Error(error);
   }

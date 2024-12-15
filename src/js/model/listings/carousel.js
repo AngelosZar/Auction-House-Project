@@ -5,11 +5,9 @@ export const initCarousel = async function () {
   const nextBtn = document.querySelector('#carousel-btn-next');
   const dotsContainer = document.querySelector('#carousel-dots');
 
-  if (slides.length <= 1) {
-    previousBtn?.classList.add('hidden');
-    nextBtn?.classList.add('hidden');
-    dotsContainer?.classList.add('hidden');
-  }
+  if (!carousel) return;
+  if (!previousBtn || nextBtn) return;
+
   let currentSlide = 0;
   slides.forEach((slide, index) => {
     slide.style.transform = `translateX(${100 * index}%)`;

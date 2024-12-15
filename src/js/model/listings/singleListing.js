@@ -6,7 +6,7 @@ export const createSingleListingCard = async function (listing) {
   let carouselButtons = '';
   let slidesHtml = '';
 
-  if (mediaLibrary.length >= 0) {
+  if (mediaLibrary.length > 1) {
     carouselButtons = `             
   <button
      id="carousel-btn-previous"
