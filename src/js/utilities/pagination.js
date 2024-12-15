@@ -1,5 +1,6 @@
 import { readListings } from '../model/listings/readListings';
 import { generateHtml } from './generateBidCards.js';
+import { initLazyLoading } from './initLazyLoading.js';
 /**
  *
  * @param {*} data meta data passed from readListings /
@@ -69,9 +70,8 @@ export const initPaginationObserver = () => {
   };
 
   let currentPage = 1;
-  const paginationContainer =
-    document.querySelector('#pagination-container') ||
-    document.querySelector('#pagination-on-my-listings');
+  const paginationContainer = document.querySelector('#pagination-container');
+  // document.querySelector('#pagination-on-my-listings');
   if (!paginationContainer) return;
 
   const handleNextPage = async (e) => {
@@ -99,7 +99,6 @@ export const initPaginationObserver = () => {
     previousBtn.addEventListener('click', handlePreviousPage);
   };
   const paginationObserver = new MutationObserver((mutations) => {
-    console.log('mutation ', mutations);
     addEventListeners();
   });
 
@@ -135,11 +134,12 @@ export const handlePageUpdate = async (pageNumber) => {
 
     const data = await readListings(12, pageNumber, true);
     const listings = data.data;
+
     await Promise.all([
       generateHtml(listings, auctionsContainer),
       pagination(data.meta, paginationContainer),
     ]);
-
+    initLazyLoading();
     const scrollToContainer = document.querySelector('#section-2');
     scrollToContainer.scrollIntoView({
       behavior: 'smooth',
