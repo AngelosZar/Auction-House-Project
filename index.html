@@ -36,7 +36,7 @@
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-10 w-10 hover:h-11 hover:w-11"
+                  class="h-10 w-10"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -52,7 +52,89 @@
 
               <div id="search-dropdown"></div>
             </div>
-            <div class="group relative">
+            <div id="sidebar-container">
+              <button
+                class="menu-btn rounded-full p-2 transition-all duration-300 hover:bg-green-2 hover:dark:bg-purple-dark"
+                aria-label="sidebar navigation menu"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-10 w-10"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+              <div
+                class="sidebar fixed left-0 top-0 h-full w-64 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-lg bg-light-component dark:bg-purple-dark"
+                id=""
+              >
+                <ul class="py-2 font-bold">
+                  <li id="sign-up-link">
+                    <a
+                      href="/auth/sign_up/"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark sign-up-link"
+                    >
+                      Register
+                    </a>
+                  </li>
+
+                  <li id="sign-in-link">
+                    <a
+                      href="/auth/sign_in/"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                    >
+                      Log in
+                    </a>
+                  </li>
+
+                  <li id="profile-link">
+                    <a
+                      href="/profile/"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                    >
+                      Profile
+                    </a>
+                  </li>
+
+                  <li id="view-listings-link">
+                    <a
+                      href="/listing/view/"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                    >
+                      Your bids
+                    </a>
+                  </li>
+
+                  <li id="create-listings-link">
+                    <a
+                      href="/listing/create/"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                    >
+                      List an item
+                    </a>
+                  </li>
+
+                  <li id="log-out-link">
+                    <a
+                      href="#"
+                      class="block px-4 py-4 hover:bg-green-2 dark:hover:bg-blue-dark"
+                      id="logOutBtn"
+                    >
+                      Log out
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- <div class="group relative">
               <button
                 class="rounded-full p-2 transition-all duration-300 hover:bg-green-2 hover:dark:bg-purple-dark"
                 aria-label="Dropdown menu on header"
@@ -133,7 +215,7 @@
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> -->
           </nav>
         </div>
       </section>
