@@ -1,10 +1,36 @@
 import { formatDateTime } from '../../utilities/formatDateTime';
 import { readProfile } from '../profile/read';
-
+import { initSpinner, terminateSpinner } from '../../utilities/spinner';
 export const createSingleListingCard = async function (listing) {
   const mediaLibrary = listing.media;
+  let carouselButtons = '';
   let slidesHtml = '';
 
+  if (mediaLibrary.length >= 0) {
+    carouselButtons = `             
+  <button
+     id="carousel-btn-previous"
+     type="button"
+     class="absolute top-10 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+     data-carousel-prev
+   >
+     <span
+       class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-3 dark:bg-blue-dark"
+       >&laquo;</span
+     >
+   </button>
+   <button
+     id="carousel-btn-next"
+     type="button"
+     class="absolute top-10 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+     data-carousel-next
+   >
+     <span
+       class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-3 dark:bg-blue-dark"
+       >&raquo;</span
+     >
+   </button>`;
+  }
   const slides = await Promise.all(
     mediaLibrary.map(async (mediaItem, index) => {
       const slide = await generateSlideForCarousel(mediaItem, index);
@@ -12,8 +38,9 @@ export const createSingleListingCard = async function (listing) {
     })
   );
   slidesHtml = slides.join('');
+
   const listingHtml = `
-        <div
+    <div
         data-listing-id="${listing?.id}"
         data-highest-bid="${listing?.bids?.length ? Math.max(...listing?.bids?.map((bid) => bid.amount)) : 1}"
         data-seller-name="${listing.seller.name}"
@@ -23,31 +50,10 @@ export const createSingleListingCard = async function (listing) {
           <div id="carousel-component" class="relative w-full mx-auto" data-carousel="slider">
             <div class="relative h-56 min-h-[240px] overflow-hidden rounded-lg md:h-96 max-w-xl">
               ${slidesHtml}
-              <button
-                id="carousel-btn-previous"
-                type="button"
-                class="absolute top-10 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                data-carousel-prev
-              >
-                <span
-                  class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-3 dark:bg-blue-dark"
-                  >&laquo;</span
-                >
-              </button>
-              <button
-                id="carousel-btn-next"
-                type="button"
-                class="absolute top-10 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                data-carousel-next
-              >
-                <span
-                  class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-3 dark:bg-blue-dark"
-                  >&raquo;</span
-                >
-              </button>
+              ${carouselButtons || ''}
               <div
                 id="carousel-dots"
-                class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10"
+                class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10 ${mediaLibrary.length <= 1 ? 'hidden' : ''}"
               ></div>
             </div>
           </div>
