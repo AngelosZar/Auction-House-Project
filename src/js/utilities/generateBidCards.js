@@ -59,7 +59,7 @@ export const generateHtml = async function (listings, parentContainer) {
   document.querySelectorAll('img').forEach((img) => {
     img.addEventListener('click', (e) => {
       e.preventDefault();
-      if (!authGuard()) return;
+      // if (!authGuard()) return;
       const listingContainer = e.target.closest('[data-listing-id]');
       if (!listingContainer) return;
       const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
