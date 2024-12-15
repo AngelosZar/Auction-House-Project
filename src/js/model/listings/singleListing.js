@@ -147,9 +147,7 @@ export async function createTabs1Content(listing) {
       </p>
       <p class="mb-2">
         <span class="font-semibold text-lg text-green-2 dark:text-blue-400">Current Price:</span
-        >Current Price: ${
-          listing?.bids?.length > 0 ? Math.max(...listing?.bids?.map((bid) => bid.amount)) : 1
-        }
+        > ${listing?.bids?.length > 0 ? Math.max(...listing?.bids?.map((bid) => bid.amount)) : 1}
       </p>
       <p class="mb-2">
         <span class="font-semibold text-lg text-green-2 dark:text-blue-400">Ends at:</span>

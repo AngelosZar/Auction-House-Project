@@ -32,6 +32,7 @@
               <button
                 class="rounded-full p-2 transition-all duration-300 hover:bg-green-3 hover:dark:bg-purple-dark"
                 id="searchBtn"
+                aria-label="search button"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +55,7 @@
             <div class="group relative">
               <button
                 class="rounded-full p-2 transition-all duration-300 hover:bg-green-2 hover:dark:bg-purple-dark"
+                aria-label="Dropdown menu on header"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +139,7 @@
       </section>
     </header>
     <main>
-      <section class="flex px-8 pt-16">
+      <section class="grid grid-cols-1 md:grid-cols-2 px-8 pt-16">
         <div class="flex flex-col justify-center mr-4">
           <h4>
             Unlock treasures, one
@@ -155,12 +157,11 @@
             </button>
           </div>
         </div>
-        <div class="max-w-[50%] hidden md:block h-auto object-cover">
+        <div class="object-contain">
           <img
-            src="https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
-            srcset=""
-            class="w-full h-full"
+            src="./media/homepage/hero_pexels-photo-5668473.webp"
+            alt="gavel"
+            class="w-full h-full max-h-500px object-cover rounded-lg"
           />
         </div>
       </section>
@@ -176,9 +177,8 @@
       <!-- banner  -->
       <section class="w-full flex overflow-hidden relative shadow-lg mt-24">
         <img
-          src="https://images.pexels.com/photos/11505601/pexels-photo-11505601.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt=""
-          srcset=""
+          src="/media/homepage/create_add_pexels-photo-11505601.webp"
+          alt="gavel"
           class="w-full h-[200px] object-cover mx-8 rounded-lg"
         />
         <div class="flex flex-col items-start absolute top-10 left-20">
@@ -207,13 +207,14 @@
           <h6 class="mb-4 text-center lg-text-center lg:mb-0 lg:mr-4">
             Subscribe to our newsletter
           </h6>
-          <form action="" class="flex flex-col md:flex-row items-center md:md:justify-center">
+          <form class="flex flex-col md:flex-row items-center md:md:justify-center">
             <input
               type="email"
               name="email"
               id="email"
               placeholder="Enter your email"
               class="input-forms md:mb-0 mr-8"
+              autocomplete="email"
             />
             <a href="#" class="btn btn-primary dark:btn-primary-dark mt-4 md:mt-0">Subscribe</a>
           </form>

@@ -18,6 +18,9 @@ export const createListing = async function (testData) {
     if (!response.ok) {
       alert(data.errors[0].message);
       throw new Error(data.errors[0].message);
+    } else {
+      alert('Listing created');
+      window.location.href = '/profile/';
     }
     return data;
   } catch (error) {

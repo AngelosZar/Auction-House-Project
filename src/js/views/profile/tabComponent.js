@@ -89,15 +89,13 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
     const data = response.data;
     // console.log('data', data);
     const paginationData = response.meta;
-    console.log('pagination data', paginationData);
+    // console.log('pagination data', paginationData);
     const listings = await Promise.all(
       data.map(async (bid) => {
         try {
           const { data: singleListing } = await readListing(bid.listing.id);
-
           return singleListing;
         } catch (error) {
-          console.error(error);
           return null;
         }
       })
