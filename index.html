@@ -26,8 +26,18 @@
               class="sm:max-w-[220px] max-w-[180px]"
           /></a>
         </div>
+
         <div class="mr-4 items-center gap-4">
           <nav class="flex gap-4">
+            <!-- <span>
+              <button
+                id="theme-toggle"
+                class="block w-full px-4 py-4 text-right hover:bg-green-2 dark:hover:bg-blue-dark"
+              >
+                <span class="dark:hidden"> 🌙</span>
+                <span class="hidden dark:block"> ☀️</span>
+              </button>
+            </span> -->
             <div class="group relative">
               <button
                 class="rounded-full p-2 transition-all duration-300 hover:bg-green-3 hover:dark:bg-purple-dark"
@@ -49,12 +59,11 @@
                   />
                 </svg>
               </button>
-
-              <div id="search-dropdown"></div>
             </div>
+
             <div id="sidebar-container">
               <button
-                class="menu-btn rounded-full p-2 transition-all duration-300 hover:bg-green-2 hover:dark:bg-purple-dark"
+                class="menu-btn rounded-full p-2 transition-all duration-300 hover:bg-green-2 hover:dark:bg-purple-dark z-51"
                 aria-label="sidebar navigation menu"
               >
                 <svg
@@ -72,6 +81,7 @@
                   />
                 </svg>
               </button>
+
               <div
                 class="sidebar fixed left-0 top-0 h-full w-64 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-lg bg-light-component dark:bg-purple-dark"
                 id=""
@@ -174,7 +184,7 @@
           />
         </div>
       </section>
-      <!-- Live auctions section -->
+
       <section class="pt-16 px-8 flex flex-col" id="section-2">
         <h5 class="font-extrabold justify-center mb-8">Live auctions</h5>
         <section
@@ -200,7 +210,7 @@
           >
         </div>
       </section>
-      <!-- section users  top sellers .. top buyers..-->
+
       <section class="pt-16 px-8" id="section-about-sellers">
         <h6 class="mb-4" id="top-sellers-heading">Top sellers</h6>
         <div

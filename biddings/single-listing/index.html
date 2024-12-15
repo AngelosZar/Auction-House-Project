@@ -15,7 +15,7 @@
     <script type="module" src="../../src/main.js"></script>
   </head>
   <body>
-    <header class="w-full bg-light-cards dark:bg-black-bright border-y-2 dark:border-none">
+    <header class="w-full bg-light-component dark:bg-black-bright border-y-2 dark:border-none">
       <section class="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3">
         <div>
           <a href="/"
@@ -23,9 +23,10 @@
               src="../../media/header_logos/grayscale-transparent.png"
               alt="auction house logo"
               id="header-logo"
-              class="max-w-[220px]"
+              class="sm:max-w-[220px] max-w-[180px]"
           /></a>
         </div>
+
         <div class="mr-4 items-center gap-4">
           <nav class="flex gap-4">
             <div class="group relative">
@@ -36,7 +37,7 @@
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-10 w-10 hover:h-11 hover:w-11"
+                  class="h-10 w-10"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -49,17 +50,16 @@
                   />
                 </svg>
               </button>
-
-              <div id="search-dropdown"></div>
             </div>
-            <div class="group relative">
+
+            <div id="sidebar-container">
               <button
-                class="rounded-full p-2 transition-all duration-300 hover:bg-green-2 hover:dark:bg-purple-dark"
-                aria-label="Dropdown menu on header"
+                class="menu-btn rounded-full p-2 transition-all duration-300 hover:bg-green-2 hover:dark:bg-purple-dark z-51"
+                aria-label="sidebar navigation menu"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-10 w-10 hover:h-11 hover:w-11"
+                  class="h-10 w-10"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -68,14 +68,24 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    d="M4 6h16M4 12h16M4 18h16"
                   />
                 </svg>
               </button>
 
               <div
-                class="invisible absolute right-0 mt-2 w-48 rounded-lg bg-white opacity-0 shadow-lg transition-all duration-300 group-hover:visible group-hover:opacity-100 dark:bg-bright-black dark:bg-purple-dark"
+                class="sidebar fixed left-0 top-0 h-full w-64 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-lg bg-light-component dark:bg-purple-dark z-50"
+                id=""
               >
+                <div>
+                  <a href="/"
+                    ><img
+                      src="/media/header_logos/grayscale-transparent.png"
+                      alt="auction house logo"
+                      id="header-logo"
+                      class="max-w-[180px] py-8 mx-auto"
+                  /></a>
+                </div>
                 <ul class="py-2 font-bold">
                   <li id="sign-up-link">
                     <a
