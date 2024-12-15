@@ -2,6 +2,7 @@ import { searchListings } from '../model/listings/search';
 import { generateHtml } from '../utilities/generateBidCards';
 import { initLazyLoading } from '../utilities/initLazyLoading';
 import { initSpinner, terminateSpinner } from '../utilities/spinner';
+import logo from '@media/header_logos/grayscale-transparent.png';
 export const searchOverlay = async function () {
   const parentContainer = document.querySelector('main');
   parentContainer.classList.add('max-w-[1440px]');
@@ -17,7 +18,7 @@ export const searchOverlay = async function () {
         <div class="container mx-auto px-4 pt-20 pb-8" id="searchContainerHeader">
           <div class="flex flex-col items-center mb-8">
             <img
-              src="./media/header_logos/grayscale-transparent.png"
+              src="${logo}"
               alt="logo"
               class="max-w-xs mb-4"
             />
@@ -80,7 +81,6 @@ export const searchOverlay = async function () {
     e.preventDefault();
     const searchInput = document.querySelector('#search');
     const searchValue = search.value;
-    console.log(searchValue);
     //
     const parentContainer = document.querySelector('#searchResultCards');
     const headerContainer = document.querySelector('#searchContainerHeader');

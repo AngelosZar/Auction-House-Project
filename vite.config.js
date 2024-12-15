@@ -7,6 +7,11 @@ import autoprefixer from 'autoprefixer';
 export default defineConfig({
   appType: 'mpa',
   base: '/',
+  resolve: {
+    alias: {
+      '@media': resolve(__dirname, './media'),
+    },
+  },
   css: {
     postcss: {
       plugins: [tailwind(), autoprefixer()],
