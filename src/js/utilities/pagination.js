@@ -135,7 +135,7 @@ export const handlePageUpdate = async (pageNumber) => {
 
     const data = await readListings(12, pageNumber, true);
     const listings = data.data;
-    await promise.All([
+    await Promise.all([
       generateHtml(listings, auctionsContainer),
       pagination(data.meta, paginationContainer),
     ]);

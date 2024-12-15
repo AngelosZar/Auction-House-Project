@@ -33,9 +33,22 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
   try {
     const userData = await readProfileListings(currentUser.name, cardNumber, page);
     const paginationData = userData.meta;
-    const cards = userData.data
-      .map((listing) => {
-        return `
+    console.log(userData.data.length);
+    let content = '';
+
+    if (userData.data.length === 0) {
+      content = `
+        <div class="tab-content w-full block mt-8 px-8 justify-center md:justify-start pb-48" id="user-listings">
+          <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md">
+            <h6 class="m-6 md:m-8">No listings were found for this profile</h6>
+          </div>
+          <div class="flex justify-between px-8 pt-4" id="pagination-on-my-bids"></div>
+        </div>
+      `;
+    } else {
+      const cards = userData.data
+        .map((listing) => {
+          return `
          <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md " 
          data-listing-id="${listing.id}" data-tags="${listing.tags?.[0]?.substring(0, 2)}" 
          data-highest-bid='${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' ">
@@ -62,9 +75,9 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
   
           </div>
         `;
-      })
-      .join('');
-    const content = `
+        })
+        .join('');
+      content = `
       <div
         class="tab-content block w-full mt-8 px-8 justify-center md:justify-start pb-48"
         id="user-listings"
@@ -77,14 +90,19 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
          <div class="flex justify-between px-8 pt-4" id="pagination-on-my-listings"></div>
       </div>
     `;
+    }
+
     return paginationData, userData, content;
-  } catch (error) {}
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const renderProfileTab2Content = async function (currentUser, cardNumber, page) {
   try {
     const response = await readProfileBids(currentUser.name, cardNumber, page);
     const data = response.data;
+    console.log(response.data.length);
     const paginationData = response.meta;
     const listings = await Promise.all(
       data.map(async (bid) => {
@@ -127,7 +145,7 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
         `;
       })
       .join('');
-    const content = `
+    let content = `
       <div
         class="tab-content w-full hidden mt-8 px-8 justify-center md:justify-start pb-48"
         id="users-bids"
@@ -140,6 +158,21 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
              <div class="flex justify-between px-8 pt-4" id="pagination-on-my-bids"></div>
       </div>
     `;
+    if (data.length === 0) {
+      content = `
+         <div
+        class="tab-content w-full hidden mt-8 px-8 justify-center md:justify-start pb-48"
+        id="users-bids"
+      >
+
+         <div class="p-4 border bg-light-cards rounded-lg border-gray-400 dark:border-purple-dark dark:bg-blue-dark max-w-md h-full flex flex-col justify-between shadow-md"> 
+         <h6 class="m-6 md:m-8">No listings were found for this profile</h6>
+         </div>
+
+             <div class="flex justify-between px-8 pt-4" id="pagination-on-my-bids"></div>
+      </div>
+     `;
+    }
     return data, paginationData, content;
   } catch (error) {
     console.error(error);
