@@ -29,7 +29,7 @@ export const collectProfileChangesData = (e) => {
 };
 
 /**
- * Generate html for profile hero on update page // diference is the edit profile button
+ * Generate html for profile hero on update page // deference is the edit profile button
  * @param {*} currentUser
  * @param {*} object . data from the current user / avatar / banner, username, credits
  * @returns html
@@ -42,9 +42,9 @@ export const genHtmlProfileHeroOnUpdatePage = async function (currentUser) {
             class="h-[15vh] w-full object-cover md:h-[20vh] lg:h-[30vh]"
             src="${currentUser.banner?.url}"
           />
-          <img
+       <img
             alt="User Avatar"
-            class="avatar-img top xs:left-6md:-bottom-14 absolute -bottom-5 left-4 h-20 w-20 rounded-full xs:-bottom-12 xs:h-28 xs:w-28 md:left-8 md:h-36 md:w-36 lg:-bottom-16 lg:left-10 lg:h-44 lg:w-44 xl:-bottom-20 xl:h-52 xl:w-52"
+            class="avatar-img top xs:left-6md:-bottom-14 absolute -bottom-5 left-4 h-28 w-28 rounded-full xs:-bottom-12 md:left-8 md:h-36 md:w-36 lg:-bottom-16 lg:left-10 lg:h-44 lg:w-44 xl:-bottom-20 xl:h-52 xl:w-52"
             src="${currentUser.avatar?.url}"
           />
         </div>
@@ -52,6 +52,5 @@ export const genHtmlProfileHeroOnUpdatePage = async function (currentUser) {
           <h5 class="font-semibold text-green-2 dark:text-purple-light pb-2" >${currentUser.name}</h5>
           <p class="pb-1" >Verified user ✌️</p>
           <p class="pb-1" >Credit Points: ${currentUser.credits}</p>
-        
         </div>`;
 };

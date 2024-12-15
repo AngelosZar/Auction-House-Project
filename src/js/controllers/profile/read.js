@@ -19,7 +19,6 @@ export async function renderProfilePage() {
   try {
     const data = await readProfile(username);
     const currentUser = data.data;
-    // console.log(currentUser);
     profileBannerContainer.insertAdjacentHTML('beforeend', await genHtmlProfileHero(currentUser));
     tabComponentOnProfile.insertAdjacentHTML('beforeend', renderProfileTabHeader());
     const [tab1Content, tab2Content, tab3Content] = await Promise.all([
@@ -36,7 +35,6 @@ export async function renderProfilePage() {
   } catch (error) {}
 }
 
-//
 const initObservers = async function () {
   try {
     initImgsObserver();
@@ -45,7 +43,7 @@ const initObservers = async function () {
     throw new error(error);
   }
 };
-//
+
 const init = async function () {
   await renderProfilePage();
   const params = new URLSearchParams(window.location.search);
