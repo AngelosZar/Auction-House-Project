@@ -63,8 +63,6 @@ export const initTabComponent = async function () {
       listingData._amount = Number(formData.get('starting-price') || +1);
     }
 
-    console.log('formData to send to API:', listingData);
-
     try {
       await createListing(listingData);
       form.reset();

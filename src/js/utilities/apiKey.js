@@ -22,7 +22,6 @@ export async function getApiKey(userCredentials) {
       return apiKey;
     }
   } catch (error) {
-    console.error('Error fetching API key:', error);
     return null;
   }
 }

@@ -13,13 +13,5 @@ export const initThemeToggle = () => {
     console.log(e.target);
     let theme = document.documentElement.getAttribute('data-theme');
     console.log();
-    // if (prefersDark) {
-    //   document.documentElement.classList.toggle('dark');
-    //   if (document.documentElement.classList.contains('dark')) {
-    //     localStorage.setItem('theme', 'dark');
-    //   } else {
-    //     localStorage.setItem('theme', 'light');
-    //   }
-    // }
   });
 };
