@@ -6,7 +6,6 @@ export const initCarousel = async function () {
   const dotsContainer = document.querySelector('#carousel-dots');
 
   if (!carousel) return;
-  if (!previousBtn || nextBtn) return;
 
   let currentSlide = 0;
   slides.forEach((slide, index) => {
@@ -41,6 +40,7 @@ export const initCarousel = async function () {
       }
     });
   };
+  if (!nextBtn || !previousBtn) return;
   nextBtn.addEventListener('click', function () {
     currentSlide = (currentSlide + 1) % slides.length;
     slides.forEach((slide, index) => {
