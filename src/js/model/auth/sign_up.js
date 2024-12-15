@@ -11,8 +11,6 @@ export const signUpApiCall = async (data) => {
     });
 
     const responseData = await response.json();
-    console.log(response);
-    console.log(responseData);
     if (!response.ok || response.status === 400) {
       const errorMessage = responseData.errors[0].message;
       alert(errorMessage);

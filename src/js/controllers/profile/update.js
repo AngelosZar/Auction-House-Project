@@ -5,8 +5,9 @@ import { genHtmlProfileHeroOnUpdatePage } from '../../views/profile/updateProfil
 import { updateProfileForm, collectProfileChangesData } from '../../views/profile/updateProfile';
 import { updateProfileApiCall } from '../../model/profile/update';
 import { initSpinner, terminateSpinner } from '../../utilities/spinner';
+
 const renderHeroOnProfilePage = async function () {
-  const spinnerContainer = document.querySelector('.spinner-container');
+  const spinnerContainer = document.querySelector('.spinnerContainer');
   initSpinner(spinnerContainer);
   authGuard();
   const data = JSON.parse(localStorage.getItem('currentUser'));

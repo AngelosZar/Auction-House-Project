@@ -1,13 +1,13 @@
 export function validatePassword(password, confirmPassword) {
-  if (!password === confirmPassword) {
-    alert('Passwords do not match \n Please insert the same password in both fields');
+  if (password !== confirmPassword) {
+    alert('Passwords do not match \nPlease insert the same password in both fields');
     return false;
   }
   const minLength = 8;
   const hasUpperCase = /[A-Z]/.test(password);
   const hasLowerCase = /[a-z]/.test(password);
   const hasNumbers = /[0-9]/.test(password);
-  const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};:,.<>?]/.test(password);
+  const hasSpecialChar = /[!@#$%^&*()_+\-=[\]{}|;:'",.<>?/\\]/.test(password);
 
   if (password.length < minLength) {
     alert('Password must be at least 8 characters long');
