@@ -31,6 +31,7 @@ export async function onSignUpUser(event) {
     if (!res) {
       throw new Error('No response from server');
     }
+    // getApiKey({ email: userData.email, password: userData.password });
     alert('User created successfully');
     form.reset();
     window.location.href = '/auth/sign_in/';

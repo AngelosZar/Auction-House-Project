@@ -51,4 +51,4 @@ const initHomepage = async () => {
     terminateSpinner(spinner);
   }
 };
-initHomepage();
+document.addEventListener('DOMContentLoaded', initHomepage());

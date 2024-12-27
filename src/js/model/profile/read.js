@@ -14,29 +14,33 @@ export async function readProfiles(limit = 12, page = 1, query = '_wins') {
         'X-Noroff-API-Key': API_KEY,
       },
     });
-    const { data } = await response.json();
-    data.forEach((user) => {
-      let name, email, credits, listings, wins, avatarUrl, avatarAlt, bannerUrl, bannerAlt, bio;
-      // console.log(user);
-      const userData = {
-        data: {
-          name,
-          email,
-          credits,
-          _count: { listings, wins },
-          avatar: { url: avatarUrl, alt: avatarAlt },
-          banner: { url: bannerUrl, alt: bannerAlt },
-          bio,
-        },
-      };
-    });
+    const result = await response.json();
+
     if (!response.ok) {
-      throw new Error(userData.errors?.[0]?.message || 'Failed to fetch profiles');
+      throw new Error(result.errors?.[0]?.message || 'Failed to fetch profiles');
     }
-    // console.log('userdata', userData);
-    // console.log(Promise.resolve(userData));
-    // console.log('data', data);
-    return data;
+    const { data } = result;
+    console.log('Raw API data:', data);
+    const userData = data.map((user) => ({
+      name: user.name || '',
+      email: user.email || '',
+      credits: user.credits || 0,
+      _count: {
+        listings: user._count?.listings || 0,
+        wins: user._count?.wins || 0,
+      },
+      avatar: {
+        url: user.avatar?.url || '',
+        alt: user.avatar?.alt || '',
+      },
+      banner: {
+        url: user.banner?.url || '',
+        alt: user.banner?.alt || '',
+      },
+      bio: user.bio || '',
+    }));
+    console.log(userData);
+    return userData;
   } catch (error) {
     throw new Error(error);
   }
@@ -44,7 +48,8 @@ export async function readProfiles(limit = 12, page = 1, query = '_wins') {
 
 export async function readProfile(username, query = '') {
   const { accessToken } = JSON.parse(localStorage.getItem('currentUser'));
-  // if (!accessToken) return;
+  if (!accessToken) return;
+
   try {
     const response = await fetch(`${API_READ_PROFILES}/${username}${query}`, {
       method: 'GET',
@@ -54,10 +59,10 @@ export async function readProfile(username, query = '') {
         'X-Noroff-API-Key': API_KEY,
       },
     });
-    // const userData = await response.json();
-    let name, email, credits, listings, wins, avatarUrl, avatarAlt, bannerUrl, bannerAlt, bio;
+    const userData = await response.json();
+    // let name, email, credits, listings, wins, avatarUrl, avatarAlt, bannerUrl, bannerAlt, bio;
 
-    ({
+    const {
       data: {
         name,
         email,
@@ -67,9 +72,14 @@ export async function readProfile(username, query = '') {
         banner: { url: bannerUrl, alt: bannerAlt },
         bio,
       },
-    } = await response.json());
+    } = userData;
 
-    const userData = {
+    if (!response.ok) {
+      throw new Error(userData.errors?.[0]?.message || 'Failed to fetch profile');
+    }
+    console.log(userData);
+    // console.log(Promise.resolve(userData));
+    return {
       data: {
         name,
         email,
@@ -80,12 +90,6 @@ export async function readProfile(username, query = '') {
         bio,
       },
     };
-    if (!response.ok) {
-      throw new Error(userData.errors?.[0]?.message || 'Failed to fetch profile');
-    }
-    // console.log(userData);
-    // console.log(Promise.resolve(userData));
-    return userData;
   } catch (error) {
     throw new Error(error);
   }

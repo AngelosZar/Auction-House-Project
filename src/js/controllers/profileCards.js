@@ -13,7 +13,9 @@ export async function renderProfileCards() {
   initSpinner(sellerSection);
   try {
     const data = await readProfiles(12, 1, true);
+    console.log(data);
     const users = data;
+
     const parentContainer = sellerSection;
 
     if (!parentContainer) return;
@@ -27,6 +29,7 @@ export async function renderProfileCards() {
 }
 
 export const generateProfileCardsHtml = async function (users, parentContainer) {
+  // console.log(users);
   users.forEach((user) => {
     const cards = createSingleCardOfUser(user);
     parentContainer.insertAdjacentHTML('beforeend', cards);

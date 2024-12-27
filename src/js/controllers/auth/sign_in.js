@@ -12,7 +12,7 @@ export const signInController = async (event) => {
   try {
     const result = await signInApiCall(data);
     if (!result.ok) return;
-    const apiKey = await getApiKey();
+    const apiKey = await getApiKey(data);
   } catch (error) {
     alert(error.message);
     throw error;
