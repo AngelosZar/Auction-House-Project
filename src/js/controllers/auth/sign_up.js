@@ -1,6 +1,5 @@
 import { signUpApiCall } from '../../model/auth/sign_up';
 import { validatePassword } from '../../utilities/validatePassword';
-import { getApiKey } from '../../utilities/apiKey';
 
 export async function onSignUpUser(event) {
   event.preventDefault();
@@ -31,7 +30,6 @@ export async function onSignUpUser(event) {
     if (!res) {
       throw new Error('No response from server');
     }
-    // getApiKey({ email: userData.email, password: userData.password });
     alert('User created successfully');
     form.reset();
     window.location.href = '/auth/sign_in/';

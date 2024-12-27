@@ -20,7 +20,6 @@ export async function readProfiles(limit = 12, page = 1, query = '_wins') {
       throw new Error(result.errors?.[0]?.message || 'Failed to fetch profiles');
     }
     const { data } = result;
-    console.log('Raw API data:', data);
     const userData = data.map((user) => ({
       name: user.name || '',
       email: user.email || '',
@@ -39,7 +38,6 @@ export async function readProfiles(limit = 12, page = 1, query = '_wins') {
       },
       bio: user.bio || '',
     }));
-    console.log(userData);
     return userData;
   } catch (error) {
     throw new Error(error);
@@ -77,8 +75,7 @@ export async function readProfile(username, query = '') {
     if (!response.ok) {
       throw new Error(userData.errors?.[0]?.message || 'Failed to fetch profile');
     }
-    console.log(userData);
-    // console.log(Promise.resolve(userData));
+
     return {
       data: {
         name,
@@ -126,15 +123,10 @@ export async function readProfileListings(
     if (!response.ok) {
       throw new Error(data.errors?.[0]?.message || 'Failed to fetch profile listings');
     }
-
-    // console.log(data);
-    // console.log(response);
-    // console.log(Promise.resolve(data));
     return data;
   } catch (error) {
     throw new Error(error);
   }
-  // status  200 but no listings found.
 }
 
 //

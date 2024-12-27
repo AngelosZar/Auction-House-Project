@@ -11,7 +11,6 @@ export async function getApiKey(userCredentials) {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ userCredentials }),
-      //
     });
 
     if (response.ok) {
