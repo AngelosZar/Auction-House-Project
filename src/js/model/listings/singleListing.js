@@ -240,9 +240,9 @@ export async function createTabs3Content(listing) {
           </div>
           <div class="flex flex-col justify-center">
             <p class="mb-2 text-xl font-semibold">${profile.name}</p>
-            <p>Credits :${profile.credits} </p>
-             <p>Listed items:${profile._count?.listings} </p>
-             <p>Wins :${profile._count.wins} </p>
+            <p>Credits : ${profile.credits} </p>
+             <p>Listed items: ${profile._count?.listings} </p>
+             <p>Wins : ${profile._count.wins} </p>
           </div>
         </div>
       </div>
