@@ -7,6 +7,7 @@ import {
   initImgsObserver,
   initAddImgBtnObserver,
   initDeleteBtnObserver,
+  initEditBtnObserver,
 } from '../profile/observers';
 import { genHtmlProfileHero } from '../../views/profile/viewProfile';
 import {
@@ -48,7 +49,8 @@ const initObservers = async function () {
   try {
     initImgsObserver();
     initAddImgBtnObserver();
-    initDeleteBtnObserver();
+    await initDeleteBtnObserver();
+    await initEditBtnObserver();
   } catch (error) {
     throw new error(error);
   }

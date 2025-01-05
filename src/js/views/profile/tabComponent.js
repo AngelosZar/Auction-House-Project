@@ -63,7 +63,7 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
             <div class="flex flex-col mb-2">
               <p class="text-xs text-left mb-1">Created ${formatDateTime(listing.created || new Date())}</p>
               <p class="text-xs text-left mb-1">Ends in: ${formatDateTime(listing.endsAt || new Date())}</p>
-              <p class="text-xs text-left mb-1">Highest current bid ${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)}' nok</p>
+              <p class="text-xs text-left mb-1">Highest current bid ${listing?.bids?.length ? Math.max(...listing.bids.map((bid) => bid.amount)) : Number(1)} nok</p>
             </div>
             <div>
               <span
@@ -107,7 +107,7 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
         try {
           const { data: singleListing } = await readListing(bid.listing.id);
           return singleListing;
-        } catch (error) {
+        } catch {
           return null;
         }
       })
