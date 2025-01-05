@@ -17,6 +17,7 @@ import {
   renderProfileTab3Content,
 } from '../../views/profile/tabComponent';
 import { initSpinner, terminateSpinner } from '../../utilities/spinner';
+
 export async function renderProfilePage() {
   initSpinner(profileBannerContainer);
   initSpinner(tabComponentOnProfile);

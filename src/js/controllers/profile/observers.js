@@ -1,5 +1,5 @@
 import { deleteListing } from '../../model/listings/delete';
-
+import { renderEditListingForm } from '../../views/listings/edit_listing';
 /**
  * It sets a mutation observer to listen for click on images on the renderProfileTab1Content html and redirects to the single-listing page
  * @function renderProfileTab1Content
@@ -118,14 +118,15 @@ export const initDeleteBtnObserver = async function () {
 
 export const initEditBtnObserver = async function () {
   const observer = new MutationObserver((mutations) => {
-    const containers = document.querySelectorAll('[data-edit-btn]');
-    if (!containers.length) return;
-    containers.forEach((container) => {
+    const btn = document.querySelectorAll('[data-edit-btn]');
+    if (!btn.length) return;
+    btn.forEach((container) => {
       container.addEventListener('click', async (e) => {
         e.preventDefault();
         const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
         localStorage.setItem('listingId', listingId);
         alert('Edit feature is not yet implemented');
+        renderEditListingForm(document.getElementById('editPost-on-profile'));
         // window.location.href = '/profile/?action=create/';
       });
     });

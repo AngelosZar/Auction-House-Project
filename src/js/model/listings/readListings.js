@@ -12,6 +12,7 @@ export async function readListings(limit = 12, page = 1, active = true) {
     if (!response.ok) {
       throw new Error(results.errors?.[0]?.message || 'Failed to fetch listings');
     }
+    console.log(results);
     return results;
   } catch (error) {
     throw error;
@@ -34,7 +35,7 @@ export async function readListing(id) {
     }
     const singleListing = await response.json();
     return singleListing;
-  } catch (error) {
+  } catch {
     throw new Error('Failed to fetch listing');
   }
 }
