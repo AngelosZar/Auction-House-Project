@@ -46,7 +46,6 @@ const initHomepage = async () => {
     };
     initPagination();
   } catch (error) {
-    console.log(error);
   } finally {
     terminateSpinner(spinner);
   }

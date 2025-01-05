@@ -33,7 +33,6 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
   try {
     const userData = await readProfileListings(currentUser.name, cardNumber, page);
     const paginationData = userData.meta;
-    console.log(userData.data.length);
     let content = '';
 
     if (userData.data.length === 0) {
@@ -68,9 +67,9 @@ export const renderProfileTab1Content = async function (currentUser, cardNumber,
             </div>
             <div>
               <span
-                ><a href="#" class="font-medium text-green-2 dark:text-blue-400 hover:underline pr-2">Edit</a></span
+                ><a href="#" class="font-medium text-green-2 dark:text-blue-400 hover:underline pr-2" data-edit-btn>Edit</a></span
               >
-              <span> <a href="#" class="font-medium text-red-600 hover:underline">Delete</a></span>
+              <span> <a href="#" class="font-medium text-red-600 hover:underline" data-delete-btn>Delete</a></span>
             </div>
   
           </div>
@@ -102,7 +101,6 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
   try {
     const response = await readProfileBids(currentUser.name, cardNumber, page);
     const data = response.data;
-    console.log(response.data.length);
     const paginationData = response.meta;
     const listings = await Promise.all(
       data.map(async (bid) => {

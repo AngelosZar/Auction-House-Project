@@ -18,6 +18,7 @@ import {
 } from '../../model/listings/singleListing';
 import { initCarousel } from '../../model/listings/carousel';
 import { initSpinner, terminateSpinner } from '../../utilities/spinner';
+import { initDeleteBtnObserver } from '../profile/observers';
 
 export const checkSellerAndHideBtn = function () {
   const observer = new MutationObserver(() => {
@@ -47,8 +48,7 @@ export const checkSellerAndHideBtn = function () {
           
              <a
             href="#"
-            class="font-medium text-red-500 hover:underline self-end pl-4 delete-listing-btn"
-            data-bid-button
+            class="font-medium text-red-500 hover:underline self-end pl-4" data-delete-btn
           >
             Delete Listing
           </a>`;
@@ -94,6 +94,7 @@ async function renderHero() {
     });
 
     checkSellerAndHideBtn();
+    initDeleteBtnObserver();
   } catch (error) {
     throw error;
   }

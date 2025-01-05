@@ -12,12 +12,11 @@ export const deleteListing = async function (id) {
         'X-Noroff-API-Key': `${API_KEY}`,
       },
     });
-    const data = await response.json();
+    // const data = await response.json();
     if (!response.ok) {
       alert(data.errors[0].message);
       throw new Error(data.errors[0].message);
     }
-    return data;
   } catch (error) {
     throw error;
   }

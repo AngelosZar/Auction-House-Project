@@ -1,3 +1,4 @@
+import { deleteListing } from '../../model/listings/delete';
 /**
  * It sets a mutation observer to listen for click on images on the renderProfileTab1Content html and redirects to the single-listing page
  * @function renderProfileTab1Content
@@ -78,4 +79,38 @@ export const initAddImgBtnObserver = function () {
     childList: true,
     subtree: true,
   });
+};
+
+// data-edit-btn
+// data-delete-btn
+export const initDeleteBtnObserver = async function () {
+  const observer = new MutationObserver((mutations) => {
+    const containers = document.querySelectorAll('[data-delete-btn]');
+
+    if (!containers.length) return;
+
+    containers.forEach((container) => {
+      container.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
+
+        if (confirm('Are you sure you want to delete this listing?')) {
+          try {
+            await deleteListing(listingId);
+            if (window.location.pathname.includes('/profile')) {
+              window.location.reload();
+            } else if (window.location.pathname === '/biddings/single-listing/') {
+              window.location.replace('/profile/?action=listings/');
+            }
+          } catch (error) {
+            throw new Error(error);
+          }
+        }
+      });
+    });
+
+    observer.disconnect();
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
 };

@@ -3,7 +3,11 @@ import { readProfile } from '../../model/profile/read';
 import { initTabComponent } from '../../utilities/initTabComponent';
 import { authGuard } from '../../utilities/authGuard';
 import { profileBannerContainer, tabComponentOnProfile } from '../../views/profile/viewProfile';
-import { initImgsObserver, initAddImgBtnObserver } from '../profile/observers';
+import {
+  initImgsObserver,
+  initAddImgBtnObserver,
+  initDeleteBtnObserver,
+} from '../profile/observers';
 import { genHtmlProfileHero } from '../../views/profile/viewProfile';
 import {
   renderProfileTabHeader,
@@ -35,13 +39,16 @@ export async function renderProfilePage() {
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab2Content);
     tabComponentOnProfile.insertAdjacentHTML('beforeend', tab3Content);
     initTabComponent();
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 const initObservers = async function () {
   try {
     initImgsObserver();
     initAddImgBtnObserver();
+    initDeleteBtnObserver();
   } catch (error) {
     throw new error(error);
   }
@@ -55,6 +62,9 @@ const init = async function () {
   }
   if (params.get('action') === 'biddings/') {
     document.querySelector('#tab-users-bids').click();
+  }
+  if (params.get('action') === 'listings/') {
+    document.querySelector('#tab-user-listings').click();
   }
 };
 init();
