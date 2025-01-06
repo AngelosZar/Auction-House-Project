@@ -1,3 +1,4 @@
+import { list } from 'postcss';
 import { deleteListing } from '../../model/listings/delete';
 import { renderEditListingForm } from '../../views/listings/edit_listing';
 /**
@@ -124,10 +125,16 @@ export const initEditBtnObserver = async function () {
       container.addEventListener('click', async (e) => {
         e.preventDefault();
         const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
+        // const listingData = await readListing(listingId);
+        // console.log(listingData);
         localStorage.setItem('listingId', listingId);
-        alert('Edit feature is not yet implemented');
-        renderEditListingForm(document.getElementById('editPost-on-profile'));
-        // window.location.href = '/profile/?action=create/';
+
+        const editPostContainer = document.getElementById('editPost-on-profile');
+        renderEditListingForm(editPostContainer, listingId);
+
+        editPostContainer.classList.add('pt-24', 'lg:justify-center');
+        const tabComponent = document.getElementById('tab-component-on-profile');
+        tabComponent.classList.add('hidden');
       });
     });
 
