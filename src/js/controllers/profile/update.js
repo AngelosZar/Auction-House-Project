@@ -1,5 +1,5 @@
 import { authGuard } from '../../utilities/authGuard';
-import { updateProfileBannerContainer } from '../../views/profile/viewProfile';
+import { updateProfileBannerContainer, avatarImgEvent } from '../../views/profile/viewProfile';
 import { readProfile } from '../../model/profile/read';
 import { genHtmlProfileHeroOnUpdatePage } from '../../views/profile/updateProfile';
 import { updateProfileForm, collectProfileChangesData } from '../../views/profile/updateProfile';
@@ -27,6 +27,7 @@ const renderHeroOnProfilePage = async function () {
       await genHtmlProfileHeroOnUpdatePage(currentUser)
     );
     terminateSpinner(spinnerContainer);
+    avatarImgEvent();
   } catch {
     throw new Error(error);
   }

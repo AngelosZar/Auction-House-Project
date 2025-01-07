@@ -9,7 +9,7 @@ import {
   initDeleteBtnObserver,
   initEditBtnObserver,
 } from '../profile/observers';
-import { genHtmlProfileHero } from '../../views/profile/viewProfile';
+import { genHtmlProfileHero, avatarImgEvent } from '../../views/profile/viewProfile';
 import {
   renderProfileTabHeader,
   renderProfileTab1Content,
@@ -29,6 +29,7 @@ export async function renderProfilePage() {
     const currentUser = data.data;
     terminateSpinner(profileBannerContainer), terminateSpinner(tabComponentOnProfile);
     profileBannerContainer.insertAdjacentHTML('beforeend', await genHtmlProfileHero(currentUser));
+    avatarImgEvent();
     tabComponentOnProfile.insertAdjacentHTML('beforeend', renderProfileTabHeader());
     const [tab1Content, tab2Content, tab3Content] = await Promise.all([
       renderProfileTab1Content(currentUser, 12, 1),

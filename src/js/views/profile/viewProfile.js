@@ -7,7 +7,7 @@ export const createListingForm = document.querySelector('#create-listing-form');
 export const onCreateList = document.querySelector('#onCreateList');
 
 export const genHtmlProfileHero = async function (currentUser) {
-  return `
+  const html = `
         <div class="lg:mb-18 relative mb-8 max-w-screen-2xl xs:mb-12 md:mb-14 lg:mb-20 z-0">
           <img
             alt="Profile Banner"
@@ -31,4 +31,13 @@ export const genHtmlProfileHero = async function (currentUser) {
             >Edit profile</a
           >
         </div>`;
+
+  return html;
+};
+
+export const avatarImgEvent = function () {
+  const avatarImg = document.querySelector('.avatar-img');
+  avatarImg.addEventListener('click', () => {
+    window.location.href = '/profile/';
+  });
 };
