@@ -1,5 +1,5 @@
 import { readListing } from '../../model/listings/readListings';
-import { initAddImgBtnObserver } from '../../controllers/profile/observers';
+import { updateListing } from '../../model/listings/update';
 export const renderEditListingForm = async function (parentContainer, listingId) {
   if (!parentContainer) return;
 
@@ -7,9 +7,6 @@ export const renderEditListingForm = async function (parentContainer, listingId)
     const {
       data: { title, description, endsAt, media, tags },
     } = await readListing(listingId);
-    //
-    console.log(title, description, endsAt, media, tags);
-    //
     const html = `
   <div class=" max-w-3xl mt-8 px-8 md:px-0 pb-16" id="" data-listing-link >
     <section class="min-h-screen">
@@ -137,34 +134,43 @@ export const renderEditListingForm = async function (parentContainer, listingId)
   </div>
 `;
     parentContainer.insertAdjacentHTML('afterbegin', html);
-    // parentContainer.innerHTML = html;
+
     const submitBtn = document.getElementById('submitEditListing');
     submitBtn.addEventListener('click', async (e) => {
       e.preventDefault();
-      const formData = getFormData();
-      console.log(formData);
+      try {
+        const formData = getFormData();
+        await updateListing(formData, listingId);
+        window.location.reload();
+      } catch (error) {
+        throw error;
+      }
     });
   } catch (error) {
     throw error;
   }
 };
-const getFormData = () => {
-  const formData = {
-    title: document.getElementById('title').value,
-    description: document.getElementById('description').value,
-    tags: [document.getElementById('category').value],
-    media: Array.from(document.querySelectorAll('.imgs-group-container'))
-      .map((group) => ({
-        url: group.querySelector('[name="image-url"]').value,
-        alt: group.querySelector('[name="image-alt"]').value,
-      }))
-      .filter((img) => img.url && img.alt),
-  };
 
-  return Object.fromEntries(
-    Object.entries(formData).filter(([_, value]) => {
-      if (Array.isArray(value)) return value.length > 0;
-      return value !== '' && value != null;
-    })
-  );
+const getFormData = () => {
+  const formData = {};
+
+  const title = document.getElementById('title').value;
+  if (title) formData.title = title;
+
+  const description = document.getElementById('description').value;
+  if (description) formData.description = description;
+
+  const category = document.getElementById('category').value;
+  if (category) formData.tags = [category];
+
+  const images = Array.from(document.querySelectorAll('.imgs-group-container'))
+    .map((group) => ({
+      url: group.querySelector('[name="image-url"]').value,
+      alt: group.querySelector('[name="image-alt"]').value,
+    }))
+    .filter((img) => img.url && img.alt);
+
+  if (images.length) formData.media = images;
+
+  return formData;
 };
