@@ -131,14 +131,40 @@ export const renderEditListingForm = async function (parentContainer, listingId)
           </div>
           <a href="#" class="addMoreImgs btn btn-secondary dark:btn-secondary-dark mb-4">Add more images</a>
         </div>
-        <button class="btn btn-primary dark:btn-primary-dark" type="submit" id="">Submit</button>
+        <button class="btn btn-primary dark:btn-primary-dark" type="submit" id="submitEditListing">Submit</button>
       </div>
     </section>
   </div>
 `;
     parentContainer.insertAdjacentHTML('afterbegin', html);
     // parentContainer.innerHTML = html;
+    const submitBtn = document.getElementById('submitEditListing');
+    submitBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const formData = getFormData();
+      console.log(formData);
+    });
   } catch (error) {
     throw error;
   }
+};
+const getFormData = () => {
+  const formData = {
+    title: document.getElementById('title').value,
+    description: document.getElementById('description').value,
+    tags: [document.getElementById('category').value],
+    media: Array.from(document.querySelectorAll('.imgs-group-container'))
+      .map((group) => ({
+        url: group.querySelector('[name="image-url"]').value,
+        alt: group.querySelector('[name="image-alt"]').value,
+      }))
+      .filter((img) => img.url && img.alt),
+  };
+
+  return Object.fromEntries(
+    Object.entries(formData).filter(([_, value]) => {
+      if (Array.isArray(value)) return value.length > 0;
+      return value !== '' && value != null;
+    })
+  );
 };

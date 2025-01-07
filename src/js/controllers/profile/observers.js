@@ -118,6 +118,7 @@ export const initEditBtnObserver = async function () {
         renderEditListingForm(editPostContainer, listingId);
 
         editPostContainer.classList.add('pt-24', 'lg:justify-center');
+        editPostContainer.scrollIntoView({ behavior: 'smooth' });
         const tabComponent = document.getElementById('tab-component-on-profile');
         tabComponent.classList.add('hidden');
         initAddImgBtnObserver();
