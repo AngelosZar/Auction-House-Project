@@ -28,10 +28,10 @@ An online auction platform built with modern web technologies.
 ## Getting Started
 
 
-# Install dependencies
+## Install dependencies
 npm install
 
-# Development server
+## Development server
 npm run dev
 
 # Production build
