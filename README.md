@@ -1,43 +1,46 @@
-# Auction-House-Project
 
-Project set up
+# Auction House
 
-## Prerequisites
+An online auction platform built with modern web technologies.
 
-- Node.js and npm installed
+## Features
 
-## Installation Steps
+**User Authentication & Credits**
+- Start with 1000 credits
+- Secure login/registration
+ 
+**Auction Management**
+- Create & manage listings
+- Place & track bids
+- Profile dashboard for listings/bids
+- Edit profile settings
 
-1. Clone repository
-2. Install dependencies:
+**Browse & Search**
+- View active auctions
+- Filter by categories
+- Guest browsing available
 
-```bash
-# npm install
+## Tech Stack
+- Vanilla JavaScript
+- SCSS/Tailwind CSS 
+- Cypress for testing
 
-## Development
-# Run on local server
+## Getting Started
+
+
+# Install dependencies
+npm install
+
+# Development server
 npm run dev
 
-## Building
-# Build for production:
+# Production build
 npm run build
 
-## Testing
-# Run Cypress tests:
-# npm run cypress
+Development Tools
+bashCopy# Linting
+npm run lint
+npm run lint:fix
 
-# Tools
-Lint: npm run lint
-Fix linting: npm run lint:fix
-Format code(prettier): npm run format
-
-```
- 
-## User Registration and Credits:
-## New users are provided with 1000 credits to start bidding and selling.
-##Auction Listings:
-## Users can list items for auction and bid on other users listings.
-## Guest Access:
-On profile page the user is able to see listings creted by him , bid he made , create a new list as welll as edit his profile.
-## Non-registered users can browse auction listings but cannot place bids.
-## Enviroment example is provided token and api key are provided by successfully log in .
+# Code formatting
+npm run format
