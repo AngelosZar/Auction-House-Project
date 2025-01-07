@@ -127,6 +127,7 @@ export const initEditBtnObserver = async function () {
           document.getElementById('tab-component-on-singlePage');
         tabComponent.classList.add('hidden');
         initAddImgBtnObserver();
+        //
       });
     });
 

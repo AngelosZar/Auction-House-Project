@@ -10,7 +10,10 @@ export const renderEditListingForm = async function (parentContainer, listingId)
     const html = `
   <div class=" max-w-3xl mt-8 px-8 md:px-0 pb-16" id="" data-listing-link >
     <section class="min-h-screen">
-      <div class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl">
+
+      <div class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 
+      bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl relative">
+         <span data-close-edit-btn class="cursor-pointer px-2 font-extrabold absolute top-2 right-2 text-3xl text-green-3 hover:text-green-1 dark:text-purple-light dark:hover:text-white">&times;</span>
         <h5 class="font-bold mb-4 md:text-5xl md:mb-10 dark:text-white text-center">
           Edit your listing
         </h5>
@@ -134,7 +137,18 @@ export const renderEditListingForm = async function (parentContainer, listingId)
   </div>
 `;
     parentContainer.insertAdjacentHTML('afterbegin', html);
-
+    if (parentContainer) {
+      const closeEditBtn = document.querySelector('[data-close-edit-btn]');
+      closeEditBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        parentContainer.innerHTML = '';
+        parentContainer.classList.remove('pt-24', 'lg:justify-center');
+        const tabComponent =
+          document.querySelector('#tab-component-on-singlePage') ||
+          document.querySelector('#tab-component-on-profile');
+        tabComponent?.classList.remove('hidden');
+      });
+    }
     const submitBtn = document.getElementById('submitEditListing');
     submitBtn.addEventListener('click', async (e) => {
       e.preventDefault();
