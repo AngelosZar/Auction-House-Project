@@ -2,7 +2,7 @@
 # Auction House
 
 A vanilla JavaScript auction platform built as a semester project at Noroff School of Technology. Project requirements specified using only vanilla JavaScript - no frameworks like React.js or other libraries were permitted.
-Due to API limitations, some features require user authentication to access full functionality.
+## Due to API limitations, some features require user authentication to access full functionality.
 
 
 ## Features
