@@ -34,13 +34,28 @@ npm install
 ## Development server
 npm run dev
 
-# Production build
+## Production build
 npm run build
 
 Development Tools
-bashCopy# Linting
+Linting
 npm run lint
 npm run lint:fix
 
-# Code formatting
+## Code formatting
 npm run format
+
+Testing
+npm run cypress
+
+API Access
+Authentication tokens and API keys are provided upon successful login.
+Environment Setup.
+
+
+Copy .env.example to .env
+Add required API credentials
+
+License
+MIT License
+
