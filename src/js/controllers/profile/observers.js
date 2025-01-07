@@ -1,4 +1,3 @@
-import { list } from 'postcss';
 import { deleteListing } from '../../model/listings/delete';
 import { renderEditListingForm } from '../../views/listings/edit_listing';
 /**
@@ -41,46 +40,33 @@ export const initImgsObserver = function () {
  */
 export const initAddImgBtnObserver = function () {
   const observer = new MutationObserver((mutations) => {
-    const btn = document.getElementById('addMoreImgs');
-    if (!btn) {
-      return;
-    }
-    if (btn) {
+    const btns = document.querySelectorAll('.addMoreImgs');
+
+    if (!btns.length) return;
+
+    btns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        // const container = document.getElementById('imgs-group-container');
-        const container = document.getElementById('imgs-container');
-        // const newImgGroup = document.createElement('div');
-        const newImgGroup = `
-         <div class="image-input-group mb-4">
-                   <input
-                       type="url"
-                       name="image-url"
-                       id="image"
-                       class="input-forms mt-1"
-                       required
-                       placeholder="Only valid url"
-                       pattern="https://.*"
-                     />
 
-                     <input
-                       type="text"
-                       name="image-alt"
-                       id="image-alt"
-                       class="input-forms mt-1"
-                       required
-                       placeholder="Image alt text"
-                     />
-           </div>`;
-        container.insertAdjacentHTML('beforeend', newImgGroup);
+        const containers = document.querySelectorAll('[data-imgs-container]');
+        if (!containers.length) return;
+
+        const newImgGroup = `
+          <div class="image-input-group mb-4">
+            <input type="url" name="image-url" class="input-forms mt-1" required placeholder="Only valid url" pattern="https://.*" />
+            <input type="text" name="image-alt" class="input-forms mt-1" required placeholder="Image alt text" />
+          </div>`;
+
+        containers.forEach((container) => {
+          container.insertAdjacentHTML('beforeend', newImgGroup);
+        });
       });
-    }
+    });
+
     observer.disconnect();
   });
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
 };
 
 // data-edit-btn
@@ -125,8 +111,7 @@ export const initEditBtnObserver = async function () {
       container.addEventListener('click', async (e) => {
         e.preventDefault();
         const listingId = e.target.closest('[data-listing-id]').dataset.listingId;
-        // const listingData = await readListing(listingId);
-        // console.log(listingData);
+
         localStorage.setItem('listingId', listingId);
 
         const editPostContainer = document.getElementById('editPost-on-profile');
@@ -135,6 +120,7 @@ export const initEditBtnObserver = async function () {
         editPostContainer.classList.add('pt-24', 'lg:justify-center');
         const tabComponent = document.getElementById('tab-component-on-profile');
         tabComponent.classList.add('hidden');
+        initAddImgBtnObserver();
       });
     });
 

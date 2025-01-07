@@ -1,8 +1,8 @@
 import { readListing } from '../../model/listings/readListings';
+import { initAddImgBtnObserver } from '../../controllers/profile/observers';
 export const renderEditListingForm = async function (parentContainer, listingId) {
-  if (!parentContainer) {
-    return;
-  }
+  if (!parentContainer) return;
+
   try {
     const {
       data: { title, description, endsAt, media, tags },
@@ -11,8 +11,8 @@ export const renderEditListingForm = async function (parentContainer, listingId)
     console.log(title, description, endsAt, media, tags);
     //
     const html = `
-  <div class=" max-w-3xl mt-8 px-8 md:px-0 pb-16" id="">
-    <section class="min-h-screen ">
+  <div class=" max-w-3xl mt-8 px-8 md:px-0 pb-16" id="" data-listing-link >
+    <section class="min-h-screen">
       <div class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl">
         <h5 class="font-bold mb-4 md:text-5xl md:mb-10 dark:text-white text-center">
           Edit your listing
@@ -38,7 +38,7 @@ export const renderEditListingForm = async function (parentContainer, listingId)
           class="input-forms mt-1"
           maxlength="120"
           placeholder="${description}"
-></textarea>
+        ></textarea>
 
 
         </div>
@@ -109,7 +109,7 @@ export const renderEditListingForm = async function (parentContainer, listingId)
 </div>
      </div>
           <label for="images">Add more Images</label>
-          <div id="imgs-container">
+          <div  data-imgs-container>
             <div class="imgs-group-container">
               <input
                 type="url"
@@ -129,17 +129,16 @@ export const renderEditListingForm = async function (parentContainer, listingId)
               />
             </div>
           </div>
-          <a href="#" class="btn btn-secondary dark:btn-secondary-dark mb-4" id="addMoreImgs">Add more images</a>
+          <a href="#" class="addMoreImgs btn btn-secondary dark:btn-secondary-dark mb-4">Add more images</a>
         </div>
         <button class="btn btn-primary dark:btn-primary-dark" type="submit" id="">Submit</button>
       </div>
     </section>
   </div>
 `;
-    parentContainer.innerHTML = html;
+    parentContainer.insertAdjacentHTML('afterbegin', html);
+    // parentContainer.innerHTML = html;
   } catch (error) {
     throw error;
   }
-
-  //   parentContainer.insertAdjacentHTML('afterbegin', html);
 };

@@ -180,114 +180,110 @@ export const renderProfileTab2Content = async function (currentUser, cardNumber,
 
 export const renderProfileTab3Content = async function () {
   const html = `
-    <div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0 pb-16" id="create-listing">
-            <section class="min-h-screen">
-              <div
-                class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl"
-              >
-                <h5 class="font-bold mb-4 md:text-5xl md:mb-10 dark:text-white text-center">
-                  List a new item
-                </h5>
-  
-                <form action="submit" id="create-listing-form">
-                  <div class="mb-2">
-                    <label for="title">Title</label>
-                    <input
-                      type="text"
-                      id="title"
-                      name="title"
-                      class="input-forms mt-1"
-                      required
-                      placeholder="Title of the product"
-                    />
-                  </div>
-                  <div>
-                    <label for="description">Description</label>
-                    <textarea
-                      name="description"
-                      id="description"
-                      cols="10"
-                      rows="5"
-                      class="input-forms mt-1"
-                      maxlength="120"
-                      placeholder="Max 120 characters"
-                    ></textarea>
-                  </div>
-                  <div class="mb-2">
-                    <label for="category" class="relative">Category</label>
-  
-                    <select name="category" id="category" class="input-forms mt-1" required>
-                      <option value="">Select Category</option>
-                      <option value="Electronics">Electronics</option>
-                      <option value="Home & Garden">Home & Garden</option>
-                      <option value="Fashion & Accessories">Fashion & Accessories</option>
-                      <option value="Collectibles">Collectibles</option>
-                      <option value="Art & Antiques">Art & Antiques</option>
-                      <option value="Vehicles & Parts">Vehicles & Parts</option>
-                      <option value="Sports & Outdoors">Sports & Outdoors</option>
-                      <option value="Toys & Hobbies">Toys & Hobbies</option>
-                      <option value="Books, Music & Movies">Books, Music & Movies</option>
-                      <option value="Industrial & Business">Industrial & Business</option>
-                      <option value="">None of the above</option>
-                    </select>
-                  </div>
-                  <div class="mb-2">
-                    <label for="end-auction-date">End auction at  /</label>
-                      <span class="">Format: YYYY-MM-DD 24:00></span>
-                    <input
-                      type="datetime-local"
-                      name="end-auction-date"
-                      id="end-auction-date"
-                      class="input-forms mt-1"
-                      placeholder="YYYY-MM-DD 24:00"
-                      required
-                    />
-                   
-                  </div>
-  
-                  <div class="mb-2">
-                    <label for="starting-price">Starting price</label>
-                    <input
-                      type="number"
-                      name="starting-price"
-                      id="starting-price"
-                      class="input-forms mt-1"
-                      required
-                      min="1"
-                      placeholder="Minimum Bid starts at 1 NOK"
-                    />
-                  </div>
-               <div class="mb-2">
-                 <label for="images">Images</label>
-                 <div id="imgs-container">
-                   <div class="imgs-group-container">
-                     <input
-                       type="url"
-                       name="image-url"
-                       id="image"
-                       class="input-forms mt-1"
-                       required
-                       placeholder="Only valid url"
-                       pattern="https://.*"
-                     />
-  
-                     <input
-                       type="text"
-                       name="image-alt"
-                       id="image-alt"
-                       class="input-forms mt-1"
-                       required
-                       placeholder="Image alt text"
-                     />
-                   </div>
-  
-                 </div>
-                                   <a href="#" class="btn btn-secondary dark:btn-secondary-dark mb-4" id="addMoreImgs">Add more images</a>
-               </div>
-                  <button class="btn btn-primary dark:btn-primary-dark " type="submit" id="btnCreateList" >Submit</button>
-                </form>
-              </div>
-            </section>
-          </div>`;
+<div class="tab-content max-w-3xl hidden mt-8 px-8 md:px-0 pb-16" id="create-listing">
+ <section class="min-h-screen">
+   <div class="max-w-xl mx-auto m-5 px-5 py-10 sm:m-10 sm:p-10 md:px-20 md:py-10 bg-light-cards dark:bg-purple-dark rounded-lg shadow-xl">
+     <h5 class="font-bold mb-4 md:text-5xl md:mb-10 dark:text-white text-center">List a new item</h5>
+     <form action="submit" id="create-listing-form">
+       <div class="mb-2">
+         <label for="title">Title</label>
+         <input
+           type="text"
+           id="title"
+           name="title"
+           class="input-forms mt-1"
+           required
+           placeholder="Title of the product"
+         />
+       </div>
+
+       <div>
+         <label for="description">Description</label>
+         <textarea
+           name="description"
+           id="description"
+           cols="10"
+           rows="5"
+           class="input-forms mt-1"
+           maxlength="120"
+           placeholder="Max 120 characters"
+         ></textarea>
+       </div>
+
+       <div class="mb-2">
+         <label for="category" class="relative">Category</label>
+         <select name="category" id="category" class="input-forms mt-1" required>
+           <option value="">Select Category</option>
+           <option value="Electronics">Electronics</option>
+           <option value="Home & Garden">Home & Garden</option>
+           <option value="Fashion & Accessories">Fashion & Accessories</option>
+           <option value="Collectibles">Collectibles</option>
+           <option value="Art & Antiques">Art & Antiques</option>
+           <option value="Vehicles & Parts">Vehicles & Parts</option>
+           <option value="Sports & Outdoors">Sports & Outdoors</option>
+           <option value="Toys & Hobbies">Toys & Hobbies</option>
+           <option value="Books, Music & Movies">Books, Music & Movies</option>
+           <option value="Industrial & Business">Industrial & Business</option>
+           <option value="">None of the above</option>
+         </select>
+       </div>
+
+       <div class="mb-2">
+         <label for="end-auction-date">End auction at</label>
+         <span class="">Format: YYYY-MM-DD 24:00</span>
+         <input
+           type="datetime-local"
+           name="end-auction-date"
+           id="end-auction-date"
+           class="input-forms mt-1"
+           placeholder="YYYY-MM-DD 24:00"
+           required
+         />
+       </div>
+
+       <div class="mb-2">
+         <label for="starting-price">Starting price</label>
+         <input
+           type="number"
+           name="starting-price"
+           id="starting-price"
+           class="input-forms mt-1"
+           required
+           min="1"
+           placeholder="Minimum Bid starts at 1 NOK"
+         />
+       </div>
+
+       <div class="mb-2">
+         <label for="images">Images</label>
+         <div data-imgs-container>
+           <div class="imgs-group-container">
+             <input
+               type="url"
+               name="image-url"
+               id="image"
+               class="input-forms mt-1"
+               required
+               placeholder="Only valid url"
+               pattern="https://.*"
+             />
+             <input
+               type="text"
+               name="image-alt"
+               id="image-alt"
+               class="input-forms mt-1"
+               required
+               placeholder="Image alt text"
+             />
+           </div>
+         </div>
+         <a href="#" class="btn btn-secondary dark:btn-secondary-dark mb-4 addMoreImgs">Add more images</a>
+       </div>
+
+       <button class="btn btn-primary dark:btn-primary-dark" type="submit" id="btnCreateList">Submit</button>
+     </form>
+   </div>
+ </section>
+</div>`;
   return html;
 };
