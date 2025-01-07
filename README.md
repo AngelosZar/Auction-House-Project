@@ -6,11 +6,15 @@ A vanilla JavaScript auction platform built as a semester project at Noroff Scho
 
 ## API Access
 Authentication tokens and API keys are provided upon successful login.
-Environment Setup.
-For extra simplicity anyone may log in with those credentilas as a visitor :
-**Email: testuser92@stud.noroff.no**
-** Username: testUser92 **
-** password: QwertyqQ1/. **
+
+### Visitor Credentials
+Email: testuser92@stud.noroff.no
+Username: testUser92  
+Password: QwertyqQ1/.
+
+### Environment Setup
+1. Copy `.env.example` to `.env`
+2. Add provided API credentials
 
 ## Features
 
