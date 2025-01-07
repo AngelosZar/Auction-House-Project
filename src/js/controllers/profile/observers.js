@@ -114,12 +114,17 @@ export const initEditBtnObserver = async function () {
 
         localStorage.setItem('listingId', listingId);
 
-        const editPostContainer = document.getElementById('editPost-on-profile');
+        const editPostContainer =
+          document.getElementById('editPost-on-profile') ||
+          document.getElementById('editPost-on-single-listing');
+
         renderEditListingForm(editPostContainer, listingId);
 
         editPostContainer.classList.add('pt-24', 'lg:justify-center');
         editPostContainer.scrollIntoView({ behavior: 'smooth' });
-        const tabComponent = document.getElementById('tab-component-on-profile');
+        const tabComponent =
+          document.getElementById('tab-component-on-profile') ||
+          document.getElementById('tab-component-on-singlePage');
         tabComponent.classList.add('hidden');
         initAddImgBtnObserver();
       });

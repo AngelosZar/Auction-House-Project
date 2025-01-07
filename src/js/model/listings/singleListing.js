@@ -1,6 +1,6 @@
 import { formatDateTime } from '../../utilities/formatDateTime';
 import { readProfile } from '../profile/read';
-import { initSpinner, terminateSpinner } from '../../utilities/spinner';
+// import { initSpinner, terminateSpinner } from '../../utilities/spinner';
 export const createSingleListingCard = async function (listing) {
   const mediaLibrary = listing.media;
   let carouselButtons = '';

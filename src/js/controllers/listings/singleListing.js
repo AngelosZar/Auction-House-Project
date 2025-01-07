@@ -83,13 +83,19 @@ async function renderHero() {
       //
       if (authGuard()) {
         const bidAmount = prompt('Enter your bid amount. min bid amount is ' + (+highestBid + 1));
+        if (!bidAmount) return;
         const isValidBid = validateBid(bidAmount, highestBid);
         if (!isValidBid) return;
-        const bid = {
-          amount: Number(bidAmount),
-        };
-        await bidOnListing(bid, listingId);
-        window.location.reload();
+
+        try {
+          const bid = {
+            amount: Number(bidAmount),
+          };
+          await bidOnListing(bid, listingId);
+          window.location.reload();
+        } catch (error) {
+          throw error;
+        }
       }
     });
 
