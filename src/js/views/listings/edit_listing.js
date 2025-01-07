@@ -96,7 +96,7 @@ export const renderEditListingForm = async function (parentContainer, listingId)
      <img 
        src="${img.url}" 
        alt="${img.alt}" 
-       class="w-full h-32 object-cover rounded transition-opacity"
+       class="w-full h-32 object-cover rounded transition-opacity hover:opacity-70"
        onclick="this.classList.toggle('opacity-50'); this.nextElementSibling.classList.toggle('hidden')"
      >
      <span class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-sm">
@@ -125,7 +125,6 @@ export const renderEditListingForm = async function (parentContainer, listingId)
                 name="image-alt"
                 id="image-alt"
                 class="input-forms mt-1"
-                required
                 placeholder="Image alt text"
               />
             </div>
