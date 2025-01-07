@@ -48,11 +48,13 @@ npm run format
 Testing
 npm run cypress
 
-# API Access
 ## API Access
 Authentication tokens and API keys are provided upon successful login.
 Environment Setup.
-
+For extra simplicity anyone may log in with those credentilas as a visitor :
+Email :
+Username :
+password :
 
 Copy .env.example to .env
 Add required API credentials
