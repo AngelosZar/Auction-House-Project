@@ -26,12 +26,12 @@ Password: QwertyqQ1/.
 - Create & manage listings
 - Place & track bids
 - Profile dashboard for listings/bids
-- Edit profile settings
+- Edit profile settings (Limited due to API)
 
 **Browse & Search**
 - View active auctions
-- Filter by categories
-- Guest browsing available
+- Filter by categories (In development)
+- Guest browsing available (Limited due to API)
 
 ## Tech Stack
 - Vanilla JavaScript
