@@ -8,9 +8,9 @@ A vanilla JavaScript auction platform built as a semester project at Noroff Scho
 Authentication tokens and API keys are provided upon successful login.
 Environment Setup.
 For extra simplicity anyone may log in with those credentilas as a visitor :
-## Email: testuser92@stud.noroff.no
-## Username: testUser92
-## password:QwertyqQ1/.
+# Email: testuser92@stud.noroff.no
+# Username: testUser92
+# password: QwertyqQ1/.
 
 ## Features
 
