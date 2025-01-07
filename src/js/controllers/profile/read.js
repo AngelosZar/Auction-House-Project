@@ -61,12 +61,15 @@ const init = async function () {
   await renderProfilePage();
   const params = new URLSearchParams(window.location.search);
   if (params.get('action') === 'create/') {
+    document.querySelector('#tab-create-listing').scrollIntoView({ behavior: 'smooth' });
     document.querySelector('#tab-create-listing').click();
   }
   if (params.get('action') === 'biddings/') {
+    document.querySelector('#tab-users-bids').scrollIntoView({ behavior: 'smooth' });
     document.querySelector('#tab-users-bids').click();
   }
   if (params.get('action') === 'listings/') {
+    document.querySelector('#tab-user-listings').scrollIntoView({ behavior: 'smooth' });
     document.querySelector('#tab-user-listings').click();
   }
 };

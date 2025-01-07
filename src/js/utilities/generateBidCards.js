@@ -43,8 +43,8 @@ export const generateHtml = async function (listings, parentContainer) {
 
       if (authGuard()) {
         const bidAmount = prompt('Enter your bid amount. min bid amount is ' + (+highestBid + 1));
+        if (!bidAmount) return;
         const isValidBid = validateBid(bidAmount, highestBid);
-
         if (!isValidBid) return;
         const bid = {
           amount: Number(bidAmount),
