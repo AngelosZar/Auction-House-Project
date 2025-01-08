@@ -215,6 +215,8 @@ export async function createTabs2Content(listing) {
 export async function createTabs3Content(listing) {
   try {
     const seller = listing.seller.name;
+    console.log(seller);
+    if (!seller) return;
     const response = await readProfile(seller);
     const profile = response.data;
     if (profile === null) {
