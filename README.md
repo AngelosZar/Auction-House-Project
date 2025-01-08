@@ -1,43 +1,71 @@
-# Auction-House-Project
 
-Project set up
+# Auction House
 
-## Prerequisites
+A vanilla JavaScript auction platform built as a semester project at Noroff School of Technology. Project requirements specified using only vanilla JavaScript - no frameworks like React.js or other libraries were permitted.
+## Due to API limitations, some features require user authentication to access full functionality.
 
-- Node.js and npm installed
+## API Access
+Authentication tokens and API keys are provided upon successful login.
 
-## Installation Steps
+### Visitor Credentials
+Email: testuser92@stud.noroff.no  
+Username: testUser92  
+Password: QwertyqQ1/.
 
-1. Clone repository
-2. Install dependencies:
+### Environment Setup
+1. Copy `.env.example` to `.env`
+2. Add provided API credentials
 
-```bash
-# npm install
+## Features
 
-## Development
-# Run on local server
+**User Authentication & Credits**
+- Start with 1000 credits
+- Secure login/registration
+ 
+**Auction Management**
+- Create & manage listings
+- Place & track bids
+- Profile dashboard for listings/bids
+- Edit profile settings (Limited due to API)
+
+**Browse & Search**
+- View active auctions
+- Filter by categories (In development)
+- Guest browsing available (Limited due to API)
+
+## Tech Stack
+- Vanilla JavaScript
+- SCSS/Tailwind CSS 
+- Cypress for testing
+
+## Getting Started
+
+
+## Install dependencies
+npm install
+
+## Development server
 npm run dev
 
-## Building
-# Build for production:
+## Production build
 npm run build
 
-## Testing
-# Run Cypress tests:
-# npm run cypress
+Development Tools
+Linting
+npm run lint
+npm run lint:fix
 
-# Tools
-Lint: npm run lint
-Fix linting: npm run lint:fix
-Format code(prettier): npm run format
+## Code formatting
+npm run format
 
-```
- 
-## User Registration and Credits:
-## New users are provided with 1000 credits to start bidding and selling.
-##Auction Listings:
-## Users can list items for auction and bid on other users listings.
-## Guest Access:
-On profile page the user is able to see listings creted by him , bid he made , create a new list as welll as edit his profile.
-## Non-registered users can browse auction listings but cannot place bids.
-## Enviroment example is provided token and api key are provided by successfully log in .
+Testing
+npm run cypress
+
+
+
+Copy .env.example to .env
+Add required API credentials
+
+License
+MIT License
+
